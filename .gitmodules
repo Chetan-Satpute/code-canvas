@@ -1,0 +1,8 @@
+[submodule "app"]
+	path = app
+	url = git@github.com:Chetan-Satpute/code-canvas-app.git
+	branch = main
+[submodule "server"]
+	path = server
+	url = git@github.com:Chetan-Satpute/code-canvas-server.git
+	branch = main
