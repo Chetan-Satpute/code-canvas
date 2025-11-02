@@ -1,0 +1,62 @@
+{
+  "name": "code-canvas",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "check:format": "prettier --check .",
+    "check:lint": "eslint .",
+    "check:typescript": "tsc -b --noEmit",
+    "check": "pnpm run --sequential \"/check:.*/\"",
+    "dev": "vite",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.9.2",
+    "@tailwindcss/vite": "^4.1.14",
+    "@tanstack/react-query": "^5.90.5",
+    "@tanstack/react-router": "^1.133.32",
+    "axios": "^1.12.2",
+    "clsx": "^2.1.1",
+    "hast-util-to-jsx-runtime": "^2.3.6",
+    "lucide-react": "^0.546.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-redux": "^9.2.0",
+    "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^24.6.0",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.4",
+    "chalk": "^5.6.2",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.22",
+    "globals": "^16.4.0",
+    "shiki": "^3.13.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.45.0",
+    "vite": "npm:rolldown-vite@7.1.14"
+  },
+  "imports": {
+    "#*": "./src/*"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:rolldown-vite@7.1.14"
+    },
+    "onlyBuiltDependencies": [
+      "@tailwindcss/oxide"
+    ]
+  },
+  "packageManager": "pnpm@10.20.0"
+}

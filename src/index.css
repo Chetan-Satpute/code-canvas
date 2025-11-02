@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-ubuntu-mono: 'Ubuntu Mono', monospace;
+}
+
+html,
+body,
+#root {
+  @apply h-screen w-screen;
+}
+
+body {
+  @apply font-ubuntu-mono bg-neutral-900 text-neutral-200 select-none;
+}
+
+.shiki.material-theme-darker {
+  @apply size-min !bg-transparent;
+}
+
+/* hide scrollbar but allow scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
