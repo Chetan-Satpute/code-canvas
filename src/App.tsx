@@ -1,9 +1,7 @@
+import AppRouter from '#components/AppRouter.tsx';
+
 function App() {
-  return (
-    <div>
-      <h1>Code Canvas</h1>
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;
