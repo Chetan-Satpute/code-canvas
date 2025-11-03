@@ -4,7 +4,8 @@ import {
   createRouter,
 } from '@tanstack/react-router';
 
-import HomePage from '#components/home/HomePage.tsx';
+import HomePage from './home/HomePage';
+import StructurePage from './structure/StructurePage';
 
 const rootRoute = createRootRoute();
 
@@ -14,6 +15,12 @@ const indexRoute = createRoute({
   component: HomePage,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute]);
+const structureRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '$structureID',
+  component: StructurePage,
+});
+
+const routeTree = rootRoute.addChildren([indexRoute, structureRoute]);
 
 export const router = createRouter({ routeTree });

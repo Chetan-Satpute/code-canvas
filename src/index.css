@@ -27,3 +27,34 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* ===== View Transitions ===== */
+
+/* Fade Transition */
+html:active-view-transition-type(fade) {
+  &::view-transition-old(page) {
+    animation: 300ms ease both fade-out;
+  }
+
+  &::view-transition-new(page) {
+    animation: 300ms ease both fade-in;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
