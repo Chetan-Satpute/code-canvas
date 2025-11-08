@@ -1,0 +1,22 @@
+{
+  "array": {
+    "title": "Array",
+    "description": "An array is a fixed-size collection of elements stored in order, where each element can be accessed directly by its index."
+  },
+  "linked-list": {
+    "title": "Linked List",
+    "description": "A linked list is a linear collection of nodes, where each node contains data and a reference to the next node in sequence."
+  },
+  "binary-search-tree": {
+    "title": "Binary Search Tree",
+    "description": "A binary search tree stores elements in nodes, ensuring left children are smaller and right children are larger than their parent node."
+  },
+  "red-black-tree": {
+    "title": "Red-Black Tree",
+    "description": "A red-black tree is a self-balancing binary search tree that maintains balance using color properties and rotation rules."
+  },
+  "max-heap": {
+    "title": "Max Heap",
+    "description": "A max heap is a complete binary tree where the value of each node is greater than or equal to the values of its children."
+  }
+}
