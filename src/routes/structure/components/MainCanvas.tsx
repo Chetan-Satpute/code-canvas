@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-function Main() {
+function MainCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   return (
@@ -10,4 +10,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default MainCanvas;
