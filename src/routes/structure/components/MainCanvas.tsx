@@ -1,32 +1,40 @@
 import { useLayoutEffect, useRef } from 'react';
 
-import { renderCanvasFrame } from '#canvas/frame.tsx';
-import { CoreArray } from '#core/array/structure.tsx';
-import { createCoreFrame, serializeCoreFrame } from '#core/elements/frame.tsx';
+import { type CanvasFrame, renderCanvasFrame } from '#canvas/frame.tsx';
 
-function MainCanvas() {
+interface MainCanvasProps {
+  frames: CanvasFrame[];
+}
+
+function MainCanvas(props: MainCanvasProps) {
+  const { frames } = props;
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useLayoutEffect(() => {
-    const canvas = canvasRef.current;
+    let animationFrameID: number | null = null;
 
-    const id = window.requestAnimationFrame(() => {
+    const createFrameCallback = (frameIndex: number) => () => {
+      if (frameIndex >= frames.length) return;
+
+      const canvas = canvasRef.current;
       if (!canvas) return;
 
-      const frame = createCoreFrame();
-
-      const array = new CoreArray();
-      array.fromData([1, 20, 30, 40, 5]);
-
-      array.serialize(frame);
-
-      const canvasFrame = serializeCoreFrame(frame);
+      const canvasFrame = frames[frameIndex];
 
       renderCanvasFrame(canvas, canvasFrame);
-    });
 
-    return () => window.cancelAnimationFrame(id);
-  }, []);
+      animationFrameID = window.requestAnimationFrame(
+        createFrameCallback(frameIndex + 1),
+      );
+    };
+
+    animationFrameID = window.requestAnimationFrame(createFrameCallback(0));
+
+    return () => {
+      if (animationFrameID) window.cancelAnimationFrame(animationFrameID);
+    };
+  }, [frames]);
 
   return (
     <main className="no-scrollbar flex-1 overflow-auto">
