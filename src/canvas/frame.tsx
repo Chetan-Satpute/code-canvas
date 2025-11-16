@@ -6,6 +6,9 @@ export interface CanvasFrame {
   nodes: CanvasNode[];
   edges: CanvasEdge[];
   labels: CanvasLabel[];
+
+  height: number;
+  width: number;
 }
 
 export function drawCanvasFrame(
@@ -22,11 +25,9 @@ export function drawCanvasFrame(
 export function renderCanvasFrame(
   canvas: HTMLCanvasElement,
   frame: CanvasFrame,
-  width: number,
-  height: number,
 ) {
-  canvas.height = height;
-  canvas.width = width;
+  canvas.height = frame.height;
+  canvas.width = frame.width;
 
   const ctx = canvas.getContext('2d');
   if (!ctx) return;

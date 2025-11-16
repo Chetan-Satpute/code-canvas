@@ -1,3 +1,5 @@
+import type { CoreFrame } from './elements/frame';
+
 export class CoreStructure {
   x: number;
   y: number;
@@ -13,8 +15,16 @@ export class CoreStructure {
     this.height = 0;
   }
 
-  moveTo(x: number, y: number) {
+  fromData(_data: unknown): void {}
+
+  toData(): unknown {
+    return;
+  }
+
+  moveTo(x: number, y: number): void {
     this.x = x;
     this.y = y;
   }
+
+  serialize(_frame: CoreFrame): void {}
 }

@@ -17,10 +17,12 @@ export function createCoreFrame(): CoreFrame {
 export function serializeCoreFrame(frame: CoreFrame): CanvasFrame {
   const { nodes, edges, labels } = frame;
 
-  return { nodes, edges, labels };
+  const { width, height } = frameSize(frame);
+
+  return { nodes, edges, labels, width, height };
 }
 
-export function frameSize(frame: CanvasFrame): {
+export function frameSize(frame: CoreFrame): {
   width: number;
   height: number;
 } {
