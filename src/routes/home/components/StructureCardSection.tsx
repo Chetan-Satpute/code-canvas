@@ -5,6 +5,7 @@ import StructureCard from './StructureCard';
 function StructureCardSection() {
   const { data, isLoading, error, isError } = useStructures();
 
+  // TODO: Add a loading and error state
   if (isLoading) return null;
   if (error || isError || !data) return null;
 

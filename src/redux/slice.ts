@@ -3,10 +3,12 @@ import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { CanvasFrame } from '#canvas/frame.tsx';
 
 interface AppSlice {
+  activeCodeLine: number;
   frames: CanvasFrame[];
 }
 
 const initialState: AppSlice = {
+  activeCodeLine: 3,
   frames: [],
 };
 
