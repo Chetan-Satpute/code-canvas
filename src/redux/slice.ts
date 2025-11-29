@@ -1,15 +1,26 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import type { CanvasFrame } from '#canvas/frame.tsx';
+import type { CoreFunction } from '#core/elements/function.tsx';
 
 interface AppSlice {
   activeCodeLine: number;
   frames: CanvasFrame[];
+  callStack: CoreFunction[];
 }
 
 const initialState: AppSlice = {
   activeCodeLine: 0,
   frames: [],
+  callStack: [
+    {
+      name: 'linearSearch',
+      arguments: [
+        { parameter: 'array', argument: [1, 2, 3, 4, 5] },
+        { parameter: 'value', argument: 5 },
+      ],
+    },
+  ],
 };
 
 export const appSlice = createSlice({

@@ -33,7 +33,7 @@ function CodeBlock() {
       <div
         key={lineIndex}
         className={cn(
-          'size-min min-w-full px-2',
+          'size-min min-w-full px-2 py-px',
           shouldHighlight && 'bg-gradient-to-r from-white/20 to-transparent',
         )}
       >
