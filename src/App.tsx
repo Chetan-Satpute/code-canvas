@@ -1,11 +1,14 @@
 import AppRouter from '#components/AppRouter.tsx';
 import QueryClientProvider from '#components/QueryClientProvider.tsx';
+import ReduxProvider from '#redux/ReduxProvider.tsx';
 
 function App() {
   return (
-    <QueryClientProvider>
-      <AppRouter />
-    </QueryClientProvider>
+    <ReduxProvider>
+      <QueryClientProvider>
+        <AppRouter />
+      </QueryClientProvider>
+    </ReduxProvider>
   );
 }
 

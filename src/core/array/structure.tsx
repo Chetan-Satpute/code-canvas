@@ -12,13 +12,17 @@ export class CoreArray extends CoreStructure {
     this.nodes = [];
   }
 
-  fromData(data: number[]): void {
-    this.nodes = [];
+  static fromData(data: number[]): CoreArray {
+    const array = new CoreArray();
+
+    array.nodes = [];
 
     for (const value of data) {
       const node = new CoreNode(value);
-      this.nodes.push(node);
+      array.nodes.push(node);
     }
+
+    return array;
   }
 
   toData(): number[] {

@@ -15,10 +15,12 @@ export class CoreStructure {
     this.height = 0;
   }
 
-  fromData(_data: unknown): void {}
+  static fromData(_data: unknown): CoreStructure {
+    return new CoreStructure();
+  }
 
   toData(): unknown {
-    return;
+    return null;
   }
 
   moveTo(x: number, y: number): void {
