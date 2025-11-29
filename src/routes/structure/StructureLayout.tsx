@@ -24,9 +24,7 @@ function StructureLayout() {
         <Header />
         <MainCanvas frames={frames} />
       </div>
-      <aside className="m-1 flex-1 overflow-auto rounded-lg bg-neutral-800 lg:m-2">
-        <Outlet />
-      </aside>
+      <Outlet />
     </div>
   );
 }

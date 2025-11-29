@@ -8,7 +8,7 @@ interface AppSlice {
 }
 
 const initialState: AppSlice = {
-  activeCodeLine: 3,
+  activeCodeLine: 0,
   frames: [],
 };
 
