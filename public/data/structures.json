@@ -1,7 +1,14 @@
 {
   "array": {
     "title": "Array",
-    "description": "An array is a fixed-size collection of elements stored in order, where each element can be accessed directly by its index."
+    "description": "An array is a fixed-size collection of elements stored in order, where each element can be accessed directly by its index.",
+    "algorithms": [
+      {
+        "id": "linear-search",
+        "name": "Linear Search",
+        "args": [{ "parameter": "value", "type": "number" }]
+      }
+    ]
   },
   "linked-list": {
     "title": "Linked List",
