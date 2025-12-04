@@ -37,10 +37,14 @@ export class CoreArray extends CoreStructure {
 
   serialize(frame: CoreFrame): void {
     for (let i = 0; i < this.nodes.length; i++) {
+      this.nodes[i].serialize(frame);
+    }
+  }
+
+  rearrange(): void {
+    for (let i = 0; i < this.nodes.length; i++) {
       this.nodes[i].x = this.x + i * CANVAS_NODE_WIDTH;
       this.nodes[i].y = this.y;
-
-      this.nodes[i].serialize(frame);
     }
   }
 }

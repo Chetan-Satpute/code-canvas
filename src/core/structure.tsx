@@ -29,4 +29,6 @@ export class CoreStructure {
   }
 
   serialize(_frame: CoreFrame): void {}
+
+  rearrange() {}
 }
