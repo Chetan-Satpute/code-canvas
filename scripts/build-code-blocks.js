@@ -97,4 +97,3 @@ function extractCodeFromMarkdown(md) {
   const match = md.match(fenceRegex);
   return match ? match[1].trim() : md.trim();
 }
-

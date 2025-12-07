@@ -4,8 +4,7 @@ import {
   type CoreFunctionContext,
   runAlgorithms,
 } from '#core/helpers/algorithms.tsx';
-import { setFrames, setStructureData } from '#redux/slice.ts';
-import type { RootState } from '#redux/types.tsx';
+import { type RootState } from '#redux/types.tsx';
 
 export const runAlgorithm = createAsyncThunk(
   'algorithm/run',
@@ -22,19 +21,12 @@ export const runAlgorithm = createAsyncThunk(
       app: { structureData },
     } = state;
 
-    const result = runAlgorithms({
+    runAlgorithms({
       data: structureData,
       structureID,
       algorithmID,
       args,
+      dispatch: thunkAPI.dispatch,
     });
-
-    if (!result) return;
-
-    const { frames, data } = result;
-
-    // TODO: Maybe pass dispatch in the context so we don't have to handle anything specific to execution here??
-    thunkAPI.dispatch(setFrames(frames));
-    thunkAPI.dispatch(setStructureData(data));
   },
 );

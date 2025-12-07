@@ -1,42 +1,29 @@
-import type { CanvasFrame } from '#canvas/frame.tsx';
+import type { ThunkDispatch, UnknownAction } from '@reduxjs/toolkit';
+
 import { runInsertValue } from '#core/array/insert-value/run.tsx';
-import { CoreArray } from '#core/array/structure.tsx';
 import { CoreBoard } from '#core/board.tsx';
 import type { CoreFunctionArgumentValue } from '#core/elements/function.tsx';
-import type { CoreStructure } from '#core/structure.tsx';
+
+import { createStructureFromData } from './structures';
 
 export interface CoreFunctionContext {
   data: unknown;
   structureID: string;
   algorithmID: string;
   args: Record<string, CoreFunctionArgumentValue>;
-  structure: CoreStructure;
-  board: CoreBoard;
+  dispatch: ThunkDispatch<unknown, unknown, UnknownAction>;
 }
 
-export interface CoreFunctionRunReturn {
-  frames: CanvasFrame[];
-  data: unknown;
-}
+export function runAlgorithms(context: CoreFunctionContext) {
+  const { structureID, algorithmID, data } = context;
 
-export function runAlgorithms(
-  context: Omit<CoreFunctionContext, 'board' | 'structure'>,
-): CoreFunctionRunReturn | null {
-  const { structureID, algorithmID } = context;
   const board = new CoreBoard();
+  const structure = createStructureFromData(structureID, data);
+  board.add(structure);
 
   if (structureID === 'array') {
     if (algorithmID === 'insert-value') {
-      const array = CoreArray.fromData(context.data as number[]);
-      board.add(array);
-
-      return runInsertValue({
-        ...context,
-        board,
-        structure: array,
-      });
+      runInsertValue({ context, board, structure });
     }
   }
-
-  return null;
 }

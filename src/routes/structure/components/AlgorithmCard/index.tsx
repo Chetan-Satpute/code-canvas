@@ -1,70 +1,36 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
-import type { CoreFunctionArgumentValue } from '#core/elements/function.tsx';
+import { useParams } from '@tanstack/react-router';
+
 import type { AlgorithmInfo } from '#data/types.tsx';
+import { useAppDispatch } from '#redux/hooks.tsx';
+import { runAlgorithm } from '#redux/thunks/runAlgorithm.tsx';
 
 import AlgorithmCardArgItem from './ArgItem';
 import AlgorithmCardButtonGroup from './ButtonGroup';
+import { validateForm } from './utils';
 
 type AlgorithmCardProps = AlgorithmInfo;
 
 function AlgorithmCard(props: AlgorithmCardProps) {
   const { id, name, args } = props;
 
+  const { structureID } = useParams({ from: '/$structureID' });
   const formRef = useRef<HTMLFormElement>(null);
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
+
+  const dispatch = useAppDispatch();
 
   const handleRun = () => {
     if (!formRef.current) return;
 
-    const formData = new FormData(formRef.current);
-    const formValues = Object.fromEntries(formData.entries());
+    const { values, errors, hasError } = validateForm(formRef.current, args);
 
-    let result: {
-      values: Record<string, CoreFunctionArgumentValue>;
-      errors: Record<string, boolean>;
-    } = {
-      values: {},
-      errors: {},
-    };
+    if (hasError) {
+      return setErrors(errors);
+    } else setErrors({});
 
-    result = args.reduce((result, arg) => {
-      const { parameter, type } = arg;
-
-      const valueString = (formValues[parameter] as string) || '';
-
-      let parsedValue: CoreFunctionArgumentValue | null = null;
-      let error = false;
-
-      if (type === 'number') {
-        const num = Number(valueString);
-        if (Number.isNaN(num)) {
-          error = true;
-        } else {
-          parsedValue = num;
-        }
-      }
-
-      if (type === 'number[]') {
-        const arr = valueString
-          .split(',')
-          .map((v) => v.trim())
-          .filter((v) => v.length > 0)
-          .map((v) => Number(v));
-
-        if (arr.some((n) => Number.isNaN(n))) {
-          error = true;
-        } else {
-          parsedValue = arr;
-        }
-      }
-
-      if (parsedValue) result.values[parameter] = parsedValue;
-      else result.errors[parameter] = error;
-
-      return result;
-    }, result);
-
-    console.log(result);
+    dispatch(runAlgorithm({ structureID, algorithmID: id, args: values }));
   };
 
   const argItems = args.map((arg) => (
@@ -72,6 +38,7 @@ function AlgorithmCard(props: AlgorithmCardProps) {
       key={arg.parameter}
       parameter={arg.parameter}
       type={arg.type}
+      error={errors[arg.parameter]}
     />
   ));
 

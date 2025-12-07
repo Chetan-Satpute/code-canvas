@@ -11,6 +11,7 @@ export const structureInit = createAsyncThunk(
     const frame = createCoreFrame();
 
     const structureData = structure.toData();
+    structure.rearrange();
     structure.serialize(frame);
 
     const canvasFrame = serializeCoreFrame(frame);
