@@ -11,9 +11,12 @@ function CodeBlock() {
   });
 
   const activeCodeLine = useAppSelector((state) => state.app.activeCodeLine);
+  const codeID = useAppSelector((state) => state.app.codeID);
+
+  const codePath = codeID || `${structureID}/${algorithmID}`;
 
   const { data, isLoading } = useJSONData<TokensResult>(
-    `/code/${structureID}/${algorithmID}.json`,
+    `/code/${codePath}.json`,
   );
 
   if (isLoading || !data) return null;

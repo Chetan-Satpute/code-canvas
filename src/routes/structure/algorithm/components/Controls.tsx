@@ -2,7 +2,11 @@ import { Play, RedoDot, X } from 'lucide-react';
 
 import cn from '#utils/cn.tsx';
 
+import { useControls } from '../hooks/controls';
+
 function Controls() {
+  const { handleClose, handleNextStep } = useControls();
+
   return (
     <div className="flex">
       <button
@@ -11,6 +15,7 @@ function Controls() {
           'bg-gradient-to-b from-white/10 to-white/5 text-white hover:from-white/20 hover:to-white/10',
           'cursor-pointer active:translate-y-px',
         )}
+        onClick={handleClose}
       >
         <span>close</span>
         <X size={16} />
@@ -31,6 +36,7 @@ function Controls() {
           'bg-gradient-to-b from-white/10 to-white/5 text-white hover:from-white/20 hover:to-white/10',
           'cursor-pointer active:translate-y-px',
         )}
+        onClick={handleNextStep}
       >
         <span>next step</span>
         <RedoDot size={16} />

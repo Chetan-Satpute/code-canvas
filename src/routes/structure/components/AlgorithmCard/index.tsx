@@ -16,7 +16,7 @@ function AlgorithmCard(props: AlgorithmCardProps) {
 
   const { onRun, onPlay } = useAlgorithmActions(id);
 
-  const { formRef, handleRun, errors, playLoading, runLoading } =
+  const { formRef, handleRun, handlePlay, errors, playLoading, runLoading } =
     useAlgorithmForm({ args, onRun, onPlay });
 
   const argItems = args.map((arg) => (
@@ -52,6 +52,7 @@ function AlgorithmCard(props: AlgorithmCardProps) {
           <ActionButton
             variant="primary"
             label="Play"
+            onClick={handlePlay}
             icon={<Play size={16} />}
             loading={playLoading}
             disabled={disableSubmit}

@@ -21,7 +21,7 @@ export default function StructurePage() {
   ));
 
   return (
-    <aside className="m-1 flex flex-1 flex-col rounded-lg bg-neutral-900/60 text-white backdrop-blur-md lg:m-2">
+    <aside className="m-1 flex flex-1 flex-col overflow-auto rounded-lg bg-neutral-900/60 text-white backdrop-blur-md lg:m-2">
       <div className="flex flex-col gap-4 p-1">{algorithmCards}</div>
     </aside>
   );

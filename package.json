@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
+    "build:codes": "node ./scripts/build-code-blocks.js",
     "check:format": "prettier --check .",
     "check:lint": "eslint .",
     "check:typescript": "tsc -b --noEmit",

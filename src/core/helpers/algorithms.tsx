@@ -1,4 +1,4 @@
-import { getRunFunction } from './mappings';
+import { getPlayFunction, getRunFunction } from './mappings';
 import { initContextStructure } from './structures';
 import type { CoreFunctionContext } from './types';
 
@@ -11,4 +11,15 @@ export async function runAlgorithm(
   if (!runFunction) return;
 
   runFunction(context);
+}
+
+export async function playAlgorithm(
+  contextProps: Omit<CoreFunctionContext, 'board' | 'structure'>,
+) {
+  const context = initContextStructure(contextProps);
+  const playFunction = await getPlayFunction(context);
+
+  if (!playFunction) return null;
+
+  return playFunction(context);
 }

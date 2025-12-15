@@ -2,10 +2,12 @@ import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import type { CanvasFrame } from '#canvas/frame.tsx';
 import type { CoreFunction } from '#core/elements/function.tsx';
+import type { CoreStepActionPayload } from '#core/helpers/types.tsx';
 
 interface AppSlice {
   disableSubmit: boolean;
 
+  codeID: string;
   structureData: unknown;
   activeCodeLine: number;
   frames: CanvasFrame[];
@@ -15,18 +17,11 @@ interface AppSlice {
 const initialState: AppSlice = {
   disableSubmit: false,
 
+  codeID: '',
   structureData: null,
   activeCodeLine: 0,
   frames: [],
-  callStack: [
-    {
-      name: 'linearSearch',
-      arguments: [
-        { parameter: 'array', argument: [1, 2, 3, 4, 5] },
-        { parameter: 'value', argument: 5 },
-      ],
-    },
-  ],
+  callStack: [],
 };
 
 export const appSlice = createSlice({
@@ -42,8 +37,11 @@ export const appSlice = createSlice({
     setDisableSubmit: (state, action: PayloadAction<boolean>) => {
       state.disableSubmit = action.payload;
     },
+    setStep: (state, action: PayloadAction<CoreStepActionPayload>) => {
+      Object.assign(state, action.payload);
+    },
   },
 });
 
-export const { setFrames, setStructureData, setDisableSubmit } =
+export const { setFrames, setStructureData, setDisableSubmit, setStep } =
   appSlice.actions;
