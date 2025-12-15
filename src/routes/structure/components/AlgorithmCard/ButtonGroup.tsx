@@ -10,7 +10,7 @@ function AlgorithmCardButtonGroup(props: AlgorithmCardButtonGroupProps) {
   const { onRun } = props;
 
   return (
-    <div className="mt-1 flex gap-2">
+    <div className="flex gap-2">
       <button
         className={cn(
           'flex flex-1 items-center justify-center gap-4 rounded-lg px-3 py-1 text-sm font-medium',

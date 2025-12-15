@@ -45,12 +45,14 @@ function AlgorithmCard(props: AlgorithmCardProps) {
   return (
     <div
       key={id}
-      className="rounded-lg bg-neutral-800/90 p-4 shadow-sm backdrop-blur-md"
+      className="rounded-xl border border-white/5 bg-neutral-800/90 p-4 shadow-sm backdrop-blur-md"
     >
-      <h3 className="mb-3 text-lg font-semibold tracking-wide">{name}</h3>
-
       <div className="flex flex-col gap-4">
-        <form ref={formRef}>{argItems}</form>
+        <h3 className="text-lg font-semibold tracking-wide">{name}</h3>
+
+        <form ref={formRef} className="flex flex-col gap-3">
+          {argItems}
+        </form>
 
         <AlgorithmCardButtonGroup onRun={handleRun} />
       </div>
