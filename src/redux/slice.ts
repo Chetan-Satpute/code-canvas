@@ -4,6 +4,8 @@ import type { CanvasFrame } from '#canvas/frame.tsx';
 import type { CoreFunction } from '#core/elements/function.tsx';
 
 interface AppSlice {
+  disableSubmit: boolean;
+
   structureData: unknown;
   activeCodeLine: number;
   frames: CanvasFrame[];
@@ -11,6 +13,8 @@ interface AppSlice {
 }
 
 const initialState: AppSlice = {
+  disableSubmit: false,
+
   structureData: null,
   activeCodeLine: 0,
   frames: [],
@@ -35,7 +39,11 @@ export const appSlice = createSlice({
     setStructureData: (state, action: PayloadAction<unknown>) => {
       state.structureData = action.payload;
     },
+    setDisableSubmit: (state, action: PayloadAction<boolean>) => {
+      state.disableSubmit = action.payload;
+    },
   },
 });
 
-export const { setFrames, setStructureData } = appSlice.actions;
+export const { setFrames, setStructureData, setDisableSubmit } =
+  appSlice.actions;

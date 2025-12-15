@@ -1,37 +1,23 @@
-import { useRef, useState } from 'react';
-
-import { useParams } from '@tanstack/react-router';
+import { Play, SkipForward } from 'lucide-react';
 
 import type { AlgorithmInfo } from '#data/types.tsx';
-import { useAppDispatch } from '#redux/hooks.tsx';
-import { runAlgorithm } from '#redux/thunks/runAlgorithm.tsx';
+import { useAppSelector } from '#redux/hooks.tsx';
 
+import ActionButton from './ActionButton';
 import AlgorithmCardArgItem from './ArgItem';
-import AlgorithmCardButtonGroup from './ButtonGroup';
-import { validateForm } from './utils';
+import { useAlgorithmActions, useAlgorithmForm } from './hooks';
 
 type AlgorithmCardProps = AlgorithmInfo;
 
 function AlgorithmCard(props: AlgorithmCardProps) {
   const { id, name, args } = props;
 
-  const { structureID } = useParams({ from: '/$structureID' });
-  const formRef = useRef<HTMLFormElement>(null);
-  const [errors, setErrors] = useState<Record<string, boolean>>({});
+  const disableSubmit = useAppSelector((state) => state.app.disableSubmit);
 
-  const dispatch = useAppDispatch();
+  const { onRun, onPlay } = useAlgorithmActions(id);
 
-  const handleRun = () => {
-    if (!formRef.current) return;
-
-    const { values, errors, hasError } = validateForm(formRef.current, args);
-
-    if (hasError) {
-      return setErrors(errors);
-    } else setErrors({});
-
-    dispatch(runAlgorithm({ structureID, algorithmID: id, args: values }));
-  };
+  const { formRef, handleRun, errors, playLoading, runLoading } =
+    useAlgorithmForm({ args, onRun, onPlay });
 
   const argItems = args.map((arg) => (
     <AlgorithmCardArgItem
@@ -54,7 +40,23 @@ function AlgorithmCard(props: AlgorithmCardProps) {
           {argItems}
         </form>
 
-        <AlgorithmCardButtonGroup onRun={handleRun} />
+        <div className="flex gap-2">
+          <ActionButton
+            label="Run"
+            icon={<SkipForward size={16} />}
+            onClick={handleRun}
+            loading={runLoading}
+            disabled={disableSubmit}
+          />
+
+          <ActionButton
+            variant="primary"
+            label="Play"
+            icon={<Play size={16} />}
+            loading={playLoading}
+            disabled={disableSubmit}
+          />
+        </div>
       </div>
     </div>
   );

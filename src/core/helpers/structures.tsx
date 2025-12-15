@@ -1,6 +1,9 @@
 import { CoreArray } from '#core/array/structure.tsx';
+import { CoreBoard } from '#core/board.tsx';
 import { CoreStructure } from '#core/structure.tsx';
 import { randomNumber, randomNumberArray } from '#utils/random.tsx';
+
+import type { CoreFunctionContext } from './types';
 
 export function createRandomStructureByID(structureId: string): CoreStructure {
   switch (structureId) {
@@ -21,4 +24,19 @@ export function createStructureFromData(
     default:
       return CoreStructure.fromData(null);
   }
+}
+
+export function initContextStructure(
+  contextProps: Omit<CoreFunctionContext, 'board' | 'structure'>,
+): CoreFunctionContext {
+  const board = new CoreBoard();
+
+  const structure = createStructureFromData(
+    contextProps.structureID,
+    contextProps.structureData,
+  );
+
+  board.add(structure);
+
+  return { ...contextProps, board, structure };
 }

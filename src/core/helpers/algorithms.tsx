@@ -1,29 +1,14 @@
-import type { ThunkDispatch, UnknownAction } from '@reduxjs/toolkit';
+import { getRunFunction } from './mappings';
+import { initContextStructure } from './structures';
+import type { CoreFunctionContext } from './types';
 
-import { runInsertValue } from '#core/array/insert-value/run.tsx';
-import { CoreBoard } from '#core/board.tsx';
-import type { CoreFunctionArgumentValue } from '#core/elements/function.tsx';
+export async function runAlgorithm(
+  contextProps: Omit<CoreFunctionContext, 'board' | 'structure'>,
+) {
+  const context = initContextStructure(contextProps);
+  const runFunction = await getRunFunction(context);
 
-import { createStructureFromData } from './structures';
+  if (!runFunction) return;
 
-export interface CoreFunctionContext {
-  data: unknown;
-  structureID: string;
-  algorithmID: string;
-  args: Record<string, CoreFunctionArgumentValue>;
-  dispatch: ThunkDispatch<unknown, unknown, UnknownAction>;
-}
-
-export function runAlgorithms(context: CoreFunctionContext) {
-  const { structureID, algorithmID, data } = context;
-
-  const board = new CoreBoard();
-  const structure = createStructureFromData(structureID, data);
-  board.add(structure);
-
-  if (structureID === 'array') {
-    if (algorithmID === 'insert-value') {
-      runInsertValue({ context, board, structure });
-    }
-  }
+  runFunction(context);
 }
