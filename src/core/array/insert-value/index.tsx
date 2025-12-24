@@ -3,7 +3,7 @@ import type {
   CoreFunctionContext,
   CoreStepActionPayload,
 } from '#core/helpers/types.tsx';
-import { setFrames, setStructureData } from '#redux/slice.ts';
+import { setStep } from '#redux/slice.ts';
 
 import { CoreArray } from '../structure';
 
@@ -37,8 +37,13 @@ export function runInsertValue(context: CoreFunctionContext) {
   const frames = [board.toFrame()];
   const data = array.toData();
 
-  control.dispatch(setFrames(frames));
-  control.dispatch(setStructureData(data));
+  control.dispatch(
+    setStep({
+      frames,
+      structureData: data,
+      structureFrames: frames,
+    }),
+  );
 }
 
 export function* playInsertValue(

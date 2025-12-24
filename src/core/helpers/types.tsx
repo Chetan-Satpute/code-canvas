@@ -22,6 +22,7 @@ export interface CoreFunctionContext {
 export interface CoreStepActionPayload {
   codeID?: string;
   structureData?: unknown;
+  structureFrames?: CanvasFrame[];
   activeCodeLine?: number;
   frames?: CanvasFrame[];
   callStack?: CoreFunction[];

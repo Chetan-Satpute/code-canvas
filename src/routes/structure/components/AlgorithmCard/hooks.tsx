@@ -7,7 +7,7 @@ import { playAlgorithm, runAlgorithm } from '#core/helpers/algorithms.tsx';
 import type { AlgorithmArgInfo } from '#data/types.tsx';
 import { usePlayContextRef } from '#hooks/playContext.tsx';
 import { useAppDispatch, useAppSelector } from '#redux/hooks.tsx';
-import { setDisableSubmit } from '#redux/slice.ts';
+import { setDisableSubmit, setStructureFrames } from '#redux/slice.ts';
 
 import { validateForm } from './utils';
 
@@ -63,6 +63,9 @@ export function useAlgorithmForm(props: UseAlgorithmFormProps) {
         dispatch(setDisableSubmit(false));
         if (action === 'play') setPlayLoading(false);
         if (action === 'run') setRunLoading(false);
+
+        // clear form fields
+        formRef.current?.reset();
       }
     };
   };
@@ -81,6 +84,7 @@ export function useAlgorithmActions(algorithmID: string) {
 
   const dispatch = useAppDispatch();
   const structureData = useAppSelector((state) => state.app.structureData);
+  const frames = useAppSelector((state) => state.app.frames);
 
   const onRun = async (values: FormValues) => {
     await runAlgorithm({
@@ -107,6 +111,8 @@ export function useAlgorithmActions(algorithmID: string) {
     }
 
     playContextRef.current = { generator, structureData };
+
+    dispatch(setStructureFrames(frames));
 
     navigate({
       to: '/$structureID/$algorithmID',

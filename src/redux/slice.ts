@@ -5,10 +5,15 @@ import type { CoreFunction } from '#core/elements/function.tsx';
 import type { CoreStepActionPayload } from '#core/helpers/types.tsx';
 
 interface AppSlice {
+  // Disable form submit while processing a submission
   disableSubmit: boolean;
 
-  codeID: string;
+  // Structure data and frames for the structure layout
   structureData: unknown;
+  structureFrames: CanvasFrame[];
+
+  // Code execution step state
+  codeID: string;
   activeCodeLine: number;
   frames: CanvasFrame[];
   callStack: CoreFunction[];
@@ -17,8 +22,10 @@ interface AppSlice {
 const initialState: AppSlice = {
   disableSubmit: false,
 
-  codeID: '',
   structureData: null,
+  structureFrames: [],
+
+  codeID: '',
   activeCodeLine: 0,
   frames: [],
   callStack: [],
@@ -40,8 +47,16 @@ export const appSlice = createSlice({
     setStep: (state, action: PayloadAction<CoreStepActionPayload>) => {
       Object.assign(state, action.payload);
     },
+    setStructureFrames: (state, action: PayloadAction<CanvasFrame[]>) => {
+      state.structureFrames = action.payload;
+    },
   },
 });
 
-export const { setFrames, setStructureData, setDisableSubmit, setStep } =
-  appSlice.actions;
+export const {
+  setFrames,
+  setStructureData,
+  setDisableSubmit,
+  setStep,
+  setStructureFrames,
+} = appSlice.actions;
