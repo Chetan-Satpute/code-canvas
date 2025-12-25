@@ -3,7 +3,11 @@ import type { CoreFunctionArgumentType } from '#core/elements/function.tsx';
 export interface StructureInfo {
   title: string;
   description: string;
-  algorithms: AlgorithmInfo[];
+  sections: {
+    id: string;
+    name: string;
+    algorithms: AlgorithmInfo[];
+  }[];
 }
 
 export interface AlgorithmInfo {

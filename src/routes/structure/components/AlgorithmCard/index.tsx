@@ -31,16 +31,18 @@ function AlgorithmCard(props: AlgorithmCardProps) {
   return (
     <div
       key={id}
-      className="rounded-xl border border-white/5 bg-neutral-800/90 p-4 shadow-sm backdrop-blur-md"
+      className="rounded-xl border border-neutral-700/40 bg-neutral-800/70 p-4 backdrop-blur-md"
     >
-      <div className="flex flex-col gap-4">
-        <h3 className="text-lg font-semibold tracking-wide">{name}</h3>
+      <div className="flex flex-col gap-3">
+        <h3 className="text-sm font-medium tracking-wide text-neutral-100">
+          {name}
+        </h3>
 
-        <form ref={formRef} className="flex flex-col gap-3">
+        <form ref={formRef} className="flex flex-col gap-2">
           {argItems}
         </form>
 
-        <div className="flex gap-2">
+        <div className="mt-2 flex justify-end gap-2">
           <ActionButton
             label="Run"
             icon={<SkipForward size={16} />}

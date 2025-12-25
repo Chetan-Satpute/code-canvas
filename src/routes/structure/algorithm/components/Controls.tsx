@@ -17,7 +17,7 @@ function Controls() {
       <div className="flex">
         <ControlButton
           className="rounded-t-lg"
-          label="stop"
+          label="Stop"
           icon={<Square size={16} />}
           onClick={handleStop}
         />
@@ -29,13 +29,13 @@ function Controls() {
     <div className="flex">
       <ControlButton
         className="rounded-tl-lg"
-        label="close"
+        label="Close"
         icon={<X size={16} />}
         onClick={handleClose}
       />
 
       <ControlButton
-        label="start"
+        label="Start"
         icon={<Play size={16} />}
         onClick={handleStart}
         className="border-x border-white/10"
@@ -43,7 +43,7 @@ function Controls() {
 
       <ControlButton
         className="rounded-tr-lg"
-        label="next step"
+        label="Next Step"
         icon={<RedoDot size={16} />}
         onClick={handleNextStep}
       />

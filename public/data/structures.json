@@ -2,19 +2,31 @@
   "array": {
     "title": "Array",
     "description": "An array is a fixed-size collection of elements stored in order, where each element can be accessed directly by its index.",
-    "algorithms": [
+    "sections": [
       {
-        "id": "insert-value",
-        "name": "Insert Value",
-        "args": [
-          { "parameter": "index", "type": "number" },
-          { "parameter": "value", "type": "number" }
+        "id": "modify",
+        "name": "Modify array",
+        "algorithms": [
+          {
+            "id": "insert-value",
+            "name": "Insert Value",
+            "args": [
+              { "parameter": "index", "type": "number" },
+              { "parameter": "value", "type": "number" }
+            ]
+          }
         ]
       },
       {
-        "id": "linear-search",
-        "name": "Linear Search",
-        "args": [{ "parameter": "value", "type": "number" }]
+        "id": "search",
+        "name": "Search a value",
+        "algorithms": [
+          {
+            "id": "linear-search",
+            "name": "Linear Search",
+            "args": [{ "parameter": "value", "type": "number" }]
+          }
+        ]
       }
     ]
   },

@@ -16,7 +16,7 @@ function ControlButton({
   return (
     <button
       className={cn(
-        'flex flex-1 items-center justify-around gap-4 px-2 py-1 font-medium',
+        'flex flex-1 items-center justify-center gap-4 px-2 py-1 font-medium',
         'backdrop-blur-md transition-all duration-100',
         'bg-gradient-to-b from-white/10 to-white/5 text-white',
         'hover:from-white/20 hover:to-white/10',
