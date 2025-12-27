@@ -1,13 +1,14 @@
+import ErrorSection from '#components/ErrorSection.tsx';
+import LoadingSection from '#components/LoadingSection.tsx';
 import { useStructures } from '#hooks/structures.tsx';
 
 import StructureCard from './StructureCard';
 
 function StructureCardSection() {
-  const { data, isLoading, error, isError } = useStructures();
+  const { data, isLoading, isError, refetch, isRefetching } = useStructures();
 
-  // TODO: Add a loading and error state
-  if (isLoading) return null;
-  if (error || isError || !data) return null;
+  if (isLoading || isRefetching) return <LoadingSection />;
+  if (isError || !data) return <ErrorSection onRetry={refetch} />;
 
   const structures = Object.entries(data);
   const structureCards = structures.map(([structureID, structureInfo]) => (

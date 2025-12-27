@@ -1,6 +1,8 @@
 import { useParams } from '@tanstack/react-router';
 import type { TokensResult } from 'shiki';
 
+import ErrorSection from '#components/ErrorSection.tsx';
+import LoadingSection from '#components/LoadingSection.tsx';
 import { useJSONData } from '#queries/jsonData.tsx';
 import { useAppSelector } from '#redux/hooks.tsx';
 import cn from '#utils/cn.tsx';
@@ -15,11 +17,11 @@ function CodeBlock() {
 
   const codePath = codeID || `${structureID}/${algorithmID}`;
 
-  const { data, isLoading } = useJSONData<TokensResult>(
-    `/code/${codePath}.json`,
-  );
+  const { data, isLoading, isError, refetch, isRefetching } =
+    useJSONData<TokensResult>(`/code/${codePath}.json`);
 
-  if (isLoading || !data) return null;
+  if (isLoading || isRefetching) return <LoadingSection />;
+  if (isError || !data) return <ErrorSection onRetry={refetch} />;
 
   const { tokens } = data;
 
