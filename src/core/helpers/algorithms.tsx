@@ -1,3 +1,4 @@
+import { AlgorithmNotFoundError } from './errors';
 import { getPlayFunction, getRunFunction } from './mappings';
 import { initContextStructure } from './structures';
 import type { CoreFunctionContext } from './types';
@@ -8,7 +9,7 @@ export async function runAlgorithm(
   const context = initContextStructure(contextProps);
   const runFunction = await getRunFunction(context);
 
-  if (!runFunction) return;
+  if (!runFunction) throw new AlgorithmNotFoundError();
 
   runFunction(context);
 }
@@ -19,7 +20,7 @@ export async function playAlgorithm(
   const context = initContextStructure(contextProps);
   const playFunction = await getPlayFunction(context);
 
-  if (!playFunction) return null;
+  if (!playFunction) throw new AlgorithmNotFoundError();
 
   return playFunction(context);
 }

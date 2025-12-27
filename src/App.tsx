@@ -1,6 +1,7 @@
 import AppRouter from '#components/AppRouter.tsx';
 import PlayContextProvider from '#components/PlayContextProvider.tsx';
 import QueryClientProvider from '#components/QueryClientProvider.tsx';
+import ToastProvider from '#components/ToastProvider.tsx';
 import ReduxProvider from '#redux/ReduxProvider.tsx';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <QueryClientProvider>
         <PlayContextProvider>
           <AppRouter />
+          <ToastProvider />
         </PlayContextProvider>
       </QueryClientProvider>
     </ReduxProvider>

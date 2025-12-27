@@ -8,6 +8,7 @@ import type { AlgorithmArgInfo } from '#data/types.tsx';
 import { usePlayContextRef } from '#hooks/playContext.tsx';
 import { useAppDispatch, useAppSelector } from '#redux/hooks.tsx';
 import { setDisableSubmit, setStructureFrames } from '#redux/slice.ts';
+import { errorToast } from '#utils/toast.tsx';
 
 import { validateForm } from './utils';
 
@@ -38,19 +39,22 @@ export function useAlgorithmForm(props: UseAlgorithmFormProps) {
     ) => Promise<unknown>,
   ) => {
     return async () => {
-      if (!formRef.current) return;
+      if (!formRef.current) return { success: false };
+
       const { values, errors, hasError } = validateForm(formRef.current, args);
 
       if (hasError) setErrors(errors);
       else setErrors({});
 
       if (!hasError) await callback(values);
+
+      return { success: !hasError };
     };
   };
 
   const submitWrapper = (
     action: 'play' | 'run',
-    handler: () => Promise<unknown>,
+    handler: () => Promise<{ success: boolean }>,
   ) => {
     return async () => {
       dispatch(setDisableSubmit(true));
@@ -58,14 +62,16 @@ export function useAlgorithmForm(props: UseAlgorithmFormProps) {
       if (action === 'run') setRunLoading(true);
 
       try {
-        await handler();
+        const { success } = await handler();
+
+        // clear form fields on success
+        if (success) formRef.current?.reset();
+      } catch {
+        errorToast();
       } finally {
         dispatch(setDisableSubmit(false));
         if (action === 'play') setPlayLoading(false);
         if (action === 'run') setRunLoading(false);
-
-        // clear form fields
-        formRef.current?.reset();
       }
     };
   };
@@ -104,11 +110,6 @@ export function useAlgorithmActions(algorithmID: string) {
       args: values,
       control: { dispatch },
     });
-
-    if (!generator) {
-      // TODO: handle this
-      return;
-    }
 
     playContextRef.current = { generator, structureData };
 
