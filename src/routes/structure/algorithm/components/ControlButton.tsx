@@ -3,7 +3,7 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import cn from '#utils/cn.tsx';
 
 type ControlButtonProps = {
-  label: string
+  label: string;
   icon: ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -16,11 +16,13 @@ function ControlButton({
   return (
     <button
       className={cn(
-        'flex flex-1 items-center justify-center gap-4 px-2 py-1 font-medium',
-        'backdrop-blur-md transition-all duration-100',
-        'bg-gradient-to-b from-white/10 to-white/5 text-white',
-        'hover:from-white/20 hover:to-white/10',
-        'cursor-pointer active:translate-y-px',
+        'flex flex-1 items-center justify-center gap-3 px-3 py-1.5 text-sm font-medium',
+        'rounded-md cursor-pointer',
+        'bg-neutral-700/40 text-neutral-200',
+        'border border-neutral-600/40',
+        'hover:bg-neutral-700/60 hover:text-white',
+        'active:translate-y-px active:bg-neutral-700/70',
+        'transition-colors duration-150',
         className,
       )}
       {...props}
