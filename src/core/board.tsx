@@ -46,12 +46,17 @@ export class CoreBoard {
     this.frames.push(this.toFrame());
   }
 
-  serialize(): CoreStepActionPayload {
+  serialize(activeCodeLine: number): CoreStepActionPayload {
     const frames = this.frames;
+
+    if (frames.length === 0) {
+      this.pushFrame();
+    }
 
     this.frames = [];
 
     return {
+      activeCodeLine,
       callStack: [...this.callstack].reverse(),
       frames,
     };

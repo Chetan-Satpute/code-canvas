@@ -1,4 +1,11 @@
-import type { CoreFrame } from './elements/frame';
+import type { CanvasFrame } from '#canvas/frame.tsx';
+import { CANVAS_NODE_HEIGHT, CANVAS_NODE_WIDTH } from '#constants/canvas.tsx';
+
+import {
+  type CoreFrame,
+  createCoreFrame,
+  serializeCoreFrame,
+} from './elements/frame';
 
 export class CoreStructure {
   x: number;
@@ -8,8 +15,8 @@ export class CoreStructure {
   height: number;
 
   constructor() {
-    this.x = 0;
-    this.y = 0;
+    this.x = CANVAS_NODE_WIDTH;
+    this.y = CANVAS_NODE_HEIGHT;
 
     this.width = 0;
     this.height = 0;
@@ -21,6 +28,14 @@ export class CoreStructure {
 
   toData(): unknown {
     return null;
+  }
+
+  toCanvasFrame(): CanvasFrame {
+    const frame = createCoreFrame();
+
+    this.serialize(frame);
+
+    return serializeCoreFrame(frame);
   }
 
   moveTo(x: number, y: number): void {

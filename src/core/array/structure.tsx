@@ -1,9 +1,11 @@
-import { CANVAS_NODE_WIDTH } from '#constants/canvas.tsx';
+import { CANVAS_NODE_HEIGHT, CANVAS_NODE_WIDTH } from '#constants/canvas.tsx';
 import type { CoreFrame } from '#core/elements/frame.tsx';
+import { CoreLabel } from '#core/elements/label.tsx';
 import { CoreNode } from '#core/elements/node.tsx';
 import { CoreStructure } from '#core/structure.tsx';
 
 export class CoreArray extends CoreStructure {
+  name?: CoreLabel;
   nodes: CoreNode[];
 
   constructor() {
@@ -18,8 +20,7 @@ export class CoreArray extends CoreStructure {
     array.nodes = [];
 
     for (const value of data) {
-      const node = new CoreNode(value);
-      array.nodes.push(node);
+      array.push(value);
     }
 
     return array;
@@ -39,12 +40,43 @@ export class CoreArray extends CoreStructure {
     for (let i = 0; i < this.nodes.length; i++) {
       this.nodes[i].serialize(frame);
     }
+
+    this.name?.serialize(frame);
   }
 
   rearrange(): void {
     for (let i = 0; i < this.nodes.length; i++) {
       this.nodes[i].x = this.x + i * CANVAS_NODE_WIDTH;
       this.nodes[i].y = this.y;
+
+      if (!this.nodes[i].label.top) {
+        this.nodes[i].label.top = new CoreLabel(i.toString());
+      }
+
+      const topLabel = this.nodes[i].label.top;
+      if (topLabel) {
+        topLabel.x = this.x + i * CANVAS_NODE_WIDTH;
+        topLabel.y = this.y - CANVAS_NODE_HEIGHT;
+        topLabel.text = i.toString();
+      }
     }
+
+    if (this.name) {
+      this.name.x = this.x - CANVAS_NODE_WIDTH;
+      this.name.y = this.y;
+    }
+  }
+
+  push(value: number) {
+    const index = this.nodes.length;
+    const node = new CoreNode(value);
+
+    this.nodes.push(node);
+    node.label.top = new CoreLabel(index.toString());
+  }
+
+  setName(name?: string) {
+    if (name) this.name = new CoreLabel(name);
+    else this.name = undefined;
   }
 }

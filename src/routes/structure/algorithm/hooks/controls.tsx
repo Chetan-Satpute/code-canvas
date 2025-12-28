@@ -22,7 +22,7 @@ export function useControls() {
 
   const playGeneratorRef = usePlayContextRef();
 
-  const handleClose = () => {
+  const handleClose = (done?: boolean) => {
     handleStop();
 
     const payload: CoreStepActionPayload = {
@@ -33,6 +33,7 @@ export function useControls() {
     };
 
     if (
+      !done &&
       playGeneratorRef.current &&
       playGeneratorRef.current.structureData != null
     ) {
@@ -51,7 +52,7 @@ export function useControls() {
 
     const { value, done } = playGeneratorRef.current.generator.next();
 
-    if (done) handleClose();
+    if (done) handleClose(true);
     else dispatch(setStep(value));
   };
 

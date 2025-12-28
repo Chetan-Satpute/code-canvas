@@ -1,4 +1,7 @@
+import { CANVAS_NODE_HEIGHT } from '#constants/canvas.tsx';
 import { CoreNode } from '#core/elements/node.tsx';
+import { animateMove } from '#core/helpers/animation.tsx';
+import { COLOR_ACTIVE, COLOR_IDLE } from '#core/helpers/color.tsx';
 import type {
   CoreFunctionContext,
   CoreStepActionPayload,
@@ -53,7 +56,7 @@ export function* playInsertValue(
   const { board, array, value } = fromContextResult;
   let { index } = fromContextResult;
 
-  // Line 1 – function entry
+  // 0 function insertValue(array: number[], value: number, index: number) {
   board.callstack.push({
     name: 'insertValue',
     arguments: [
@@ -62,109 +65,88 @@ export function* playInsertValue(
       { parameter: 'index', argument: index },
     ],
   });
+
+  array.setName('array');
+  array.rearrange();
   yield {
+    ...board.serialize(0),
     codeID: `${context.structureID}/${context.algorithmID}`,
-    activeCodeLine: 1,
-    ...board.serialize(),
   };
 
-  // Line 2: if (index < 0)
-  yield {
-    activeCodeLine: 2,
-    ...board.serialize(),
-  };
+  yield board.serialize(1);
 
+  // 1   if (index < 0) {
   if (index < 0) {
-    // Line 3: index = 0
+    // 2     index = 0;
     index = 0;
-    board.pushFrame();
-
-    yield {
-      activeCodeLine: 3,
-      ...board.serialize(),
-    };
+    yield board.serialize(2);
   }
 
-  // Line 6: if (index > array.length)
-  yield {
-    activeCodeLine: 6,
-    ...board.serialize(),
-  };
-
+  yield board.serialize(5);
+  // 5   if (index > array.length) {
   if (index > array.nodes.length) {
-    // Line 7: index = array.length
+    // 6     index = array.length;
     index = array.nodes.length;
-    board.pushFrame();
-
-    yield {
-      activeCodeLine: 7,
-      ...board.serialize(),
-    };
+    yield board.serialize(6);
   }
 
-  // Line 10: allocate result array
+  // 9   const result = new Array(array.length + 1);
   const result = new CoreArray();
-  result.nodes = new Array(array.nodes.length + 1).fill(
-    () => new CoreNode(NaN),
-  );
-  board.pushFrame();
+  result.setName('result');
+  board.add(result);
 
-  yield {
-    activeCodeLine: 10,
-    ...board.serialize(),
-  };
+  for (let i = 0; i < array.nodes.length + 1; i++) result.push(0);
 
-  // Line 12: for (let i = 0; i < index; i++)
+  result.moveTo(array.x, array.y + CANVAS_NODE_HEIGHT * 3);
+  result.rearrange();
+
+  yield board.serialize(9);
+
+  yield board.serialize(11);
+  // 11   for (let i = 0; i < index; i++) {
   for (let i = 0; i < index; i++) {
-    // loop condition check
-    yield {
-      activeCodeLine: 12,
-      ...board.serialize(),
-    };
-
-    // Line 13: result[i] = array[i]
+    // 12     result[i] = array[i];
+    array.nodes[i].color = COLOR_ACTIVE;
+    result.nodes[i].color = COLOR_ACTIVE;
     result.nodes[i].value = array.nodes[i].value;
-    board.pushFrame();
+    yield board.serialize(12);
+    array.nodes[i].color = COLOR_IDLE;
+    result.nodes[i].color = COLOR_IDLE;
 
-    yield {
-      activeCodeLine: 13,
-      ...board.serialize(),
-    };
+    yield board.serialize(11);
   }
 
-  // Line 16: result[index] = value
+  // 15   result[index] = value;
+  result.nodes[index].color = COLOR_ACTIVE;
   result.nodes[index].value = value;
-  board.pushFrame();
+  yield board.serialize(15);
+  result.nodes[index].color = COLOR_IDLE;
 
-  yield {
-    activeCodeLine: 16,
-    ...board.serialize(),
-  };
-
-  // Line 18: second loop
+  // 17   for (let i = index; i < array.length; i++) {
+  yield board.serialize(17);
   for (let i = index; i < array.nodes.length; i++) {
-    // loop condition check
-    yield {
-      activeCodeLine: 18,
-      ...board.serialize(),
-    };
-
-    // Line 19: result[i + 1] = array[i]
+    // 18     result[i + 1] = array[i];
+    array.nodes[i].color = COLOR_ACTIVE;
+    result.nodes[i + 1].color = COLOR_ACTIVE;
     result.nodes[i + 1].value = array.nodes[i].value;
-    board.pushFrame();
+    yield board.serialize(18);
+    array.nodes[i].color = COLOR_IDLE;
+    result.nodes[i + 1].color = COLOR_IDLE;
 
-    yield {
-      activeCodeLine: 19,
-      ...board.serialize(),
-    };
+    yield board.serialize(17);
   }
 
-  // Line 22: array = result
-  // array = result;
-  board.pushFrame();
+  // 21   array = result;
+  board.remove(array);
+  result.setName('array');
+  animateMove(board, result, array.x, array.y);
+  yield board.serialize(21);
 
+  // 22 }
+  result.setName();
   yield {
-    activeCodeLine: 22,
-    ...board.serialize(),
+    ...board.serialize(22),
+    structureData: result.toData(),
+    structureFrames: [result.toCanvasFrame()],
   };
 }
