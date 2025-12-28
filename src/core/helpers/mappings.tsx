@@ -1,29 +1,23 @@
 import type { CoreFunctionContext } from './types';
 
 export async function getRunFunction(context: CoreFunctionContext) {
-  const { algorithmID, structureID } = context;
+  const { structureID } = context;
 
   switch (structureID) {
     case 'array':
-      switch (algorithmID) {
-        case 'insert-value':
-          return import('#core/array/insert-value/index.tsx').then(
-            (module) => module.runInsertValue,
-          );
-      }
+      return import('#core/array/mappings.tsx').then((module) =>
+        module.getRunFunction(context),
+      );
   }
 }
 
 export async function getPlayFunction(context: CoreFunctionContext) {
-  const { algorithmID, structureID } = context;
+  const { structureID } = context;
 
   switch (structureID) {
     case 'array':
-      switch (algorithmID) {
-        case 'insert-value':
-          return import('#core/array/insert-value/index.tsx').then(
-            (module) => module.playInsertValue,
-          );
-      }
+      return import('#core/array/mappings.tsx').then((module) =>
+        module.getPlayFunction(context),
+      );
   }
 }
