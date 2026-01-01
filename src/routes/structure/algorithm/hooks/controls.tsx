@@ -6,6 +6,7 @@ import type { CoreStepActionPayload } from '#core/helpers/types.tsx';
 import { usePlayContextRef } from '#hooks/playContext.tsx';
 import { useAppDispatch, useAppSelector } from '#redux/hooks.tsx';
 import { setStep } from '#redux/slice.ts';
+import { playSuccessToast } from '#utils/toast.tsx';
 
 const AUTOPLAY_INTERVAL_MS = 500;
 
@@ -52,8 +53,10 @@ export function useControls() {
 
     const { value, done } = playGeneratorRef.current.generator.next();
 
-    if (done) handleClose(true);
-    else dispatch(setStep(value));
+    if (done) {
+      playSuccessToast();
+      handleClose(true);
+    } else dispatch(setStep(value));
   };
 
   const handleStart = () => {
