@@ -1,5 +1,5 @@
 import type { CanvasNode } from '#canvas/node.tsx';
-import { CANVAS_FILL_COLOR } from '#constants/canvas.tsx';
+import { CANVAS_FILL_COLOR, CANVAS_NODE_HEIGHT, CANVAS_NODE_WIDTH } from '#constants/canvas.tsx';
 
 import type { CoreFrame } from './frame';
 import type { CoreLabel } from './label';
@@ -47,5 +47,31 @@ export class CoreNode {
     this.label.bottom?.serialize(frame);
 
     frame.nodes.push(canvasNode);
+  }
+
+  rearrange() {
+    if (this.label.top) {
+      this.label.top.x = this.x;
+      this.label.top.y = this.y - CANVAS_NODE_HEIGHT;
+      this.label.top.opacity = this.opacity;
+    }
+
+    if (this.label.right) {
+      this.label.right.x = this.x + CANVAS_NODE_WIDTH;
+      this.label.right.y = this.y;
+      this.label.right.opacity = this.opacity;
+    }
+
+    if (this.label.bottom) {
+      this.label.bottom.x = this.x;
+      this.label.bottom.y = this.y + CANVAS_NODE_HEIGHT;
+      this.label.bottom.opacity = this.opacity;
+    }
+
+    if (this.label.left) {
+      this.label.left.x = this.x - CANVAS_NODE_WIDTH;
+      this.label.left.y = this.y;
+      this.label.left.opacity = this.opacity;
+    }
   }
 }

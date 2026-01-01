@@ -54,11 +54,8 @@ export class CoreArray extends CoreStructure {
       }
 
       const topLabel = this.nodes[i].label.top;
-      if (topLabel) {
-        topLabel.x = this.x + i * CANVAS_NODE_WIDTH;
-        topLabel.y = this.y - CANVAS_NODE_HEIGHT;
-        topLabel.text = i.toString();
-      }
+      if (topLabel) topLabel.text = i.toString();
+      this.nodes[i].rearrange();
     }
 
     if (this.name) {

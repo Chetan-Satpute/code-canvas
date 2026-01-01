@@ -16,6 +16,13 @@
             ],
             "canPlay": true,
             "canRun": true
+          },
+          {
+            "id": "remove-value",
+            "name": "Remove Value",
+            "args": [{ "parameter": "index", "type": "number" }],
+            "canPlay": true,
+            "canRun": true
           }
         ]
       },
