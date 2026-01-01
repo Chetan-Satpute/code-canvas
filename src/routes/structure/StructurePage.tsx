@@ -5,6 +5,7 @@ import LoadingSection from '#components/LoadingSection.tsx';
 import { useStructure } from '#hooks/structures.tsx';
 
 import AlgorithmCard from './components/AlgorithmCard';
+import EmptySection from './components/EmptySection';
 
 export default function StructurePage() {
   const { structureID } = useParams({ from: '/$structureID' });
@@ -43,7 +44,7 @@ export default function StructurePage() {
 
   return (
     <aside className="m-1 flex flex-1 flex-col overflow-auto rounded-lg bg-neutral-900 text-white lg:m-2">
-      {sectionItems}
+      {sectionItems.length > 0 ? sectionItems : <EmptySection />}
     </aside>
   );
 }

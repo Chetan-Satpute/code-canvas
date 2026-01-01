@@ -1,12 +1,10 @@
 import { CANVAS_NODE_HEIGHT } from '#constants/canvas.tsx';
-import { CoreNode } from '#core/elements/node.tsx';
 import { animateMove } from '#core/helpers/animation.tsx';
 import { COLOR_ACTIVE, COLOR_IDLE } from '#core/helpers/color.tsx';
 import type {
   CoreFunctionContext,
   CoreStepActionPayload,
 } from '#core/helpers/types.tsx';
-import { setStep } from '#redux/slice.ts';
 
 import { CoreArray } from '../structure';
 
@@ -18,35 +16,6 @@ function fromContext(context: CoreFunctionContext) {
     board: context.board,
     control: context.control,
   };
-}
-
-export function runInsertValue(context: CoreFunctionContext) {
-  const {
-    array,
-    value,
-    index: rawIndex,
-    board,
-    control,
-  } = fromContext(context);
-
-  let index = rawIndex;
-
-  if (index < 0) index = 0;
-  if (index > array.nodes.length) index = array.nodes.length;
-
-  array.nodes.splice(index, 0, new CoreNode(value));
-  array.rearrange();
-
-  const frames = [board.toFrame()];
-  const data = array.toData();
-
-  control.dispatch(
-    setStep({
-      frames,
-      structureData: data,
-      structureFrames: frames,
-    }),
-  );
 }
 
 export function* playInsertValue(

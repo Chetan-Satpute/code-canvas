@@ -1,12 +1,11 @@
-import {
-  playInsertValue,
-  runInsertValue,
-} from '#core/array/insert-value/index.tsx';
 import { AlgorithmNotFoundError } from '#core/helpers/errors.tsx';
 import type {
   CoreFunctionContext,
   CoreStepActionPayload,
 } from '#core/helpers/types.tsx';
+
+import { playInsertValue } from './insert-value/play.tsx';
+import { runInsertValue } from './insert-value/run.tsx';
 
 const RUN_FUNCTION_MAPPING: Record<
   string,
