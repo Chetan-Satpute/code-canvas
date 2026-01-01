@@ -26,7 +26,7 @@
           {
             "id": "linear-search",
             "name": "Linear Search",
-            "args": [{ "parameter": "value", "type": "number" }],
+            "args": [{ "parameter": "target", "type": "number" }],
             "canPlay": true,
             "canRun": false
           }

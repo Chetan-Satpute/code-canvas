@@ -113,6 +113,7 @@ export function* playInsertValue(
 
   // 22 }
   result.setName();
+  board.callstack.pop();
   yield {
     ...board.serialize(22),
     structureData: result.toData(),

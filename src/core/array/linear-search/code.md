@@ -1,7 +1,7 @@
 ```tsx
-function linearSearch(array: number[], value: number) {
+function linearSearch(array: number[], target: number) {
   for (let i = 0; i < array.length; i++) {
-    if (array[i] === value) {
+    if (array[i] === target) {
       return i;
     }
   }

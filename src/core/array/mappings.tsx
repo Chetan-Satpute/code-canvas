@@ -6,6 +6,7 @@ import type {
 
 import { playInsertValue } from './insert-value/play.tsx';
 import { runInsertValue } from './insert-value/run.tsx';
+import { playLinearSearch } from './linear-search/play.tsx';
 
 const RUN_FUNCTION_MAPPING: Record<
   string,
@@ -19,6 +20,7 @@ const PLAY_FUNCTION_MAPPING: Record<
   (context: CoreFunctionContext) => Generator<CoreStepActionPayload>
 > = {
   'insert-value': playInsertValue,
+  'linear-search': playLinearSearch,
 };
 
 export async function getRunFunction(context: CoreFunctionContext) {
