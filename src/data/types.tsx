@@ -14,6 +14,8 @@ export interface AlgorithmInfo {
   id: string;
   name: string;
   args: AlgorithmArgInfo[];
+  canPlay: boolean;
+  canRun: boolean;
 }
 
 export interface AlgorithmArgInfo {

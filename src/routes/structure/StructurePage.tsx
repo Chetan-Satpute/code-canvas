@@ -26,6 +26,8 @@ export default function StructurePage() {
         id={algo.id}
         name={algo.name}
         args={algo.args}
+        canPlay={algo.canPlay}
+        canRun={algo.canRun}
       />
     ));
 

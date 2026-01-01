@@ -10,7 +10,7 @@ import { useAlgorithmActions, useAlgorithmForm } from './hooks';
 type AlgorithmCardProps = AlgorithmInfo;
 
 function AlgorithmCard(props: AlgorithmCardProps) {
-  const { id, name, args } = props;
+  const { id, name, args, canPlay = false, canRun = false } = props;
 
   const disableSubmit = useAppSelector((state) => state.app.disableSubmit);
 
@@ -43,22 +43,25 @@ function AlgorithmCard(props: AlgorithmCardProps) {
         </form>
 
         <div className="mt-2 flex justify-end gap-2">
-          <ActionButton
-            label="Run"
-            icon={<SkipForward size={16} />}
-            onClick={handleRun}
-            loading={runLoading}
-            disabled={disableSubmit}
-          />
-
-          <ActionButton
-            variant="primary"
-            label="Play"
-            onClick={handlePlay}
-            icon={<Play size={16} />}
-            loading={playLoading}
-            disabled={disableSubmit}
-          />
+          {canRun && (
+            <ActionButton
+              label="Run"
+              icon={<SkipForward size={16} />}
+              onClick={handleRun}
+              loading={runLoading}
+              disabled={disableSubmit}
+            />
+          )}
+          {canPlay && (
+            <ActionButton
+              variant="primary"
+              label="Play"
+              onClick={handlePlay}
+              icon={<Play size={16} />}
+              loading={playLoading}
+              disabled={disableSubmit}
+            />
+          )}
         </div>
       </div>
     </div>

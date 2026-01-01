@@ -13,7 +13,9 @@
             "args": [
               { "parameter": "index", "type": "number" },
               { "parameter": "value", "type": "number" }
-            ]
+            ],
+            "canPlay": true,
+            "canRun": true
           }
         ]
       },
@@ -24,7 +26,9 @@
           {
             "id": "linear-search",
             "name": "Linear Search",
-            "args": [{ "parameter": "value", "type": "number" }]
+            "args": [{ "parameter": "value", "type": "number" }],
+            "canPlay": true,
+            "canRun": false
           }
         ]
       }
