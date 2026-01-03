@@ -19,7 +19,7 @@ export function* playRemoveValue(
   context: CoreFunctionContext,
 ): Generator<CoreStepActionPayload> {
   const { board, array } = fromContext(context);
-  let { index } = fromContext(context);
+  const { index } = fromContext(context);
 
   // 0 function removeValue(array: number[], index: number) {
   board.callstack.push({
@@ -57,7 +57,8 @@ export function* playRemoveValue(
 
   // 6    for (let i = index + 1; i < array.length; i++) {
   array.nodes[index].color = COLOR_ERROR;
-  if (index + 1 < array.nodes.length) array.nodes[index + 1].color = COLOR_ACTIVE;
+  if (index + 1 < array.nodes.length)
+    array.nodes[index + 1].color = COLOR_ACTIVE;
   yield board.serialize(6);
   for (let i = index + 1; i < array.nodes.length; i++) {
     // 7      array[i - 1] = array[i];

@@ -1,5 +1,9 @@
 import type { CanvasNode } from '#canvas/node.tsx';
-import { CANVAS_FILL_COLOR, CANVAS_NODE_HEIGHT, CANVAS_NODE_WIDTH } from '#constants/canvas.tsx';
+import {
+  CANVAS_FILL_COLOR,
+  CANVAS_NODE_HEIGHT,
+  CANVAS_NODE_WIDTH,
+} from '#constants/canvas.tsx';
 
 import type { CoreFrame } from './frame';
 import type { CoreLabel } from './label';

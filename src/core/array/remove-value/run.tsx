@@ -15,7 +15,7 @@ function fromContext(context: CoreFunctionContext) {
 export function runRemoveValue(context: CoreFunctionContext) {
   const { array, index: rawIndex, board, control } = fromContext(context);
 
-  let index = rawIndex;
+  const index = rawIndex;
 
   if (index >= 0 && index < array.nodes.length) {
     // remove element at index

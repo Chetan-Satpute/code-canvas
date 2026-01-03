@@ -62,7 +62,7 @@ export function* playLinearSearch(
         structureFrames: [array.toCanvasFrame()],
         codeID: `${context.structureID}/${context.algorithmID}`,
       };
-      
+
       return;
     }
 

@@ -17,7 +17,7 @@ function ControlButton({
     <button
       className={cn(
         'flex flex-1 items-center justify-center gap-3 px-3 py-1.5 text-sm font-medium',
-        'rounded-md cursor-pointer',
+        'cursor-pointer rounded-md',
         'bg-neutral-700/40 text-neutral-200',
         'border border-neutral-600/40',
         'hover:bg-neutral-700/60 hover:text-white',

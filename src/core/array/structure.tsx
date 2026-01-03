@@ -1,4 +1,4 @@
-import { CANVAS_NODE_HEIGHT, CANVAS_NODE_WIDTH } from '#constants/canvas.tsx';
+import { CANVAS_NODE_WIDTH } from '#constants/canvas.tsx';
 import type { CoreFrame } from '#core/elements/frame.tsx';
 import { CoreLabel } from '#core/elements/label.tsx';
 import { CoreNode } from '#core/elements/node.tsx';

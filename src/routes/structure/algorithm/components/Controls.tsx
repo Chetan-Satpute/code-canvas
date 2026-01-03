@@ -30,7 +30,7 @@ function Controls() {
         className="rounded-r-none"
         label="Close"
         icon={<X size={16} />}
-        onClick={handleClose}
+        onClick={() => handleClose()}
       />
 
       <ControlButton
