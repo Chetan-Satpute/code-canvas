@@ -4,11 +4,13 @@ import type {
   CoreStepActionPayload,
 } from '#core/helpers/types.tsx';
 
+import { playBinarySearch } from './binary-search/play.tsx';
 import { playInsertValue } from './insert-value/play.tsx';
 import { runInsertValue } from './insert-value/run.tsx';
 import { playLinearSearch } from './linear-search/play.tsx';
 import { playRemoveValue } from './remove-value/play.tsx';
 import { runRemoveValue } from './remove-value/run.tsx';
+import { runSortArray } from './sort-array/run.tsx';
 
 const RUN_FUNCTION_MAPPING: Record<
   string,
@@ -16,6 +18,7 @@ const RUN_FUNCTION_MAPPING: Record<
 > = {
   'insert-value': runInsertValue,
   'remove-value': runRemoveValue,
+  'sort-array': runSortArray,
 };
 
 const PLAY_FUNCTION_MAPPING: Record<
@@ -25,6 +28,7 @@ const PLAY_FUNCTION_MAPPING: Record<
   'insert-value': playInsertValue,
   'remove-value': playRemoveValue,
   'linear-search': playLinearSearch,
+  'binary-search': playBinarySearch,
 };
 
 export async function getRunFunction(context: CoreFunctionContext) {

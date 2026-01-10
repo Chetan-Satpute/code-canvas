@@ -23,6 +23,12 @@
             "args": [{ "parameter": "index", "type": "number" }],
             "canPlay": true,
             "canRun": true
+          },
+          {
+            "id": "sort-array",
+            "name": "Sort Array",
+            "args": [],
+            "canRun": true
           }
         ]
       },
@@ -36,6 +42,12 @@
             "args": [{ "parameter": "target", "type": "number" }],
             "canPlay": true,
             "canRun": false
+          },
+          {
+            "id": "binary-search",
+            "name": "Binary Search",
+            "args": [{ "parameter": "target", "type": "number" }],
+            "canPlay": true
           }
         ]
       }

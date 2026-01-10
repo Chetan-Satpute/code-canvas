@@ -1,0 +1,953 @@
+{
+  "tokens": [
+    [
+      {
+        "content": "/**",
+        "offset": 0,
+        "color": "#545454",
+        "fontStyle": 1
+      }
+    ],
+    [
+      {
+        "content": " * ⚠️ IMPORTANT:",
+        "offset": 4,
+        "color": "#545454",
+        "fontStyle": 1
+      }
+    ],
+    [
+      {
+        "content": " * The input array MUST be sorted in ascending order.",
+        "offset": 21,
+        "color": "#545454",
+        "fontStyle": 1
+      }
+    ],
+    [
+      {
+        "content": " * If the array is not sorted, binary search may return",
+        "offset": 75,
+        "color": "#545454",
+        "fontStyle": 1
+      }
+    ],
+    [
+      {
+        "content": " * an incorrect result or fail to find an existing element.",
+        "offset": 131,
+        "color": "#545454",
+        "fontStyle": 1
+      }
+    ],
+    [
+      {
+        "content": " */",
+        "offset": 191,
+        "color": "#545454",
+        "fontStyle": 1
+      }
+    ],
+    [
+      {
+        "content": "function",
+        "offset": 195,
+        "color": "#C792EA",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 203,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "binarySearch",
+        "offset": 204,
+        "color": "#82AAFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "offset": 216,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "array",
+        "offset": 217,
+        "color": "#EEFFFF",
+        "fontStyle": 1
+      },
+      {
+        "content": ":",
+        "offset": 222,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 223,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "number",
+        "offset": 224,
+        "color": "#FFCB6B",
+        "fontStyle": 0
+      },
+      {
+        "content": "[]",
+        "offset": 230,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ",",
+        "offset": 232,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 233,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "target",
+        "offset": 234,
+        "color": "#EEFFFF",
+        "fontStyle": 1
+      },
+      {
+        "content": ":",
+        "offset": 240,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 241,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "number",
+        "offset": 242,
+        "color": "#FFCB6B",
+        "fontStyle": 0
+      },
+      {
+        "content": "):",
+        "offset": 248,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 250,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "number",
+        "offset": 251,
+        "color": "#FFCB6B",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 257,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 258,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "  ",
+        "offset": 260,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "let",
+        "offset": 262,
+        "color": "#C792EA",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 265,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "left",
+        "offset": 266,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 270,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 271,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 272,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "0",
+        "offset": 273,
+        "color": "#F78C6C",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 274,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "  ",
+        "offset": 276,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "let",
+        "offset": 278,
+        "color": "#C792EA",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 281,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "right",
+        "offset": 282,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 287,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 288,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 289,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "array",
+        "offset": 290,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 295,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "length",
+        "offset": 296,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 302,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "offset": 303,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 304,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "1",
+        "offset": 305,
+        "color": "#F78C6C",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 306,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "  ",
+        "offset": 309,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "while",
+        "offset": 311,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": " (",
+        "offset": 316,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "left",
+        "offset": 318,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 322,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "offset": 323,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 324,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "right",
+        "offset": 325,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "offset": 330,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 332,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "    ",
+        "offset": 334,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "const",
+        "offset": 338,
+        "color": "#C792EA",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 343,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "mid",
+        "offset": 344,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 347,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 348,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 349,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "Math",
+        "offset": 350,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 354,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "floor",
+        "offset": 355,
+        "color": "#82AAFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "((",
+        "offset": 360,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "left",
+        "offset": 362,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 366,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "offset": 367,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 368,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "right",
+        "offset": 369,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "offset": 374,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "/",
+        "offset": 376,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 377,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "2",
+        "offset": 378,
+        "color": "#F78C6C",
+        "fontStyle": 0
+      },
+      {
+        "content": ")",
+        "offset": 379,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 380,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "    ",
+        "offset": 383,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "if",
+        "offset": 387,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": " (",
+        "offset": 389,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "array",
+        "offset": 391,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "[",
+        "offset": 396,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "mid",
+        "offset": 397,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "] ",
+        "offset": 400,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "<",
+        "offset": 402,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 403,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "target",
+        "offset": 404,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "offset": 410,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 412,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "      ",
+        "offset": 414,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "left",
+        "offset": 420,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 424,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 425,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 426,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "mid",
+        "offset": 427,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 430,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "+",
+        "offset": 431,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 432,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "1",
+        "offset": 433,
+        "color": "#F78C6C",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 434,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "    ",
+        "offset": 436,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "}",
+        "offset": 440,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 441,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "else",
+        "offset": 442,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": " ",
+        "offset": 446,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 447,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "      ",
+        "offset": 449,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "right",
+        "offset": 455,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 460,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 461,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 462,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "mid",
+        "offset": 463,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 466,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "    ",
+        "offset": 468,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "}",
+        "offset": 472,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "  ",
+        "offset": 474,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "}",
+        "offset": 476,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "  ",
+        "offset": 479,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "if",
+        "offset": 481,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": " (",
+        "offset": 483,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "array",
+        "offset": 485,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "[",
+        "offset": 490,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "left",
+        "offset": 491,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "] ",
+        "offset": 495,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "===",
+        "offset": 497,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 500,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "target",
+        "offset": 501,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "offset": 507,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 509,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "    ",
+        "offset": 511,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "return",
+        "offset": 515,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": " ",
+        "offset": 521,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "left",
+        "offset": 522,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 526,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "  ",
+        "offset": 528,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "}",
+        "offset": 530,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "  ",
+        "offset": 533,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "return",
+        "offset": 535,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": " ",
+        "offset": 541,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "-",
+        "offset": 542,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "1",
+        "offset": 543,
+        "color": "#F78C6C",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 544,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "}",
+        "offset": 546,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ]
+  ],
+  "fg": "#EEFFFF",
+  "bg": "#212121",
+  "themeName": "material-theme-darker",
+  "grammarState": {
+    "lang": "typescript",
+    "theme": "material-theme-darker",
+    "themes": [
+      "material-theme-darker"
+    ],
+    "scopes": [
+      "source.ts"
+    ]
+  }
+}

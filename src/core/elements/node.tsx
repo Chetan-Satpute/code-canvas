@@ -6,7 +6,7 @@ import {
 } from '#constants/canvas.tsx';
 
 import type { CoreFrame } from './frame';
-import type { CoreLabel } from './label';
+import { CoreLabel } from './label';
 
 export class CoreNode {
   x: number;
@@ -76,6 +76,14 @@ export class CoreNode {
       this.label.left.x = this.x - CANVAS_NODE_WIDTH;
       this.label.left.y = this.y;
       this.label.left.opacity = this.opacity;
+    }
+  }
+
+  setLabel(position: keyof typeof this.label, text?: string) {
+    if (text) {
+      this.label[position] = new CoreLabel(text);
+    } else {
+      this.label[position] = undefined;
     }
   }
 }
