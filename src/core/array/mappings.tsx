@@ -8,6 +8,7 @@ import { playBinarySearch } from './binary-search/play.tsx';
 import { playInsertValue } from './insert-value/play.tsx';
 import { runInsertValue } from './insert-value/run.tsx';
 import { playLinearSearch } from './linear-search/play.tsx';
+import { playMergeSort } from './merge-sort/play.tsx';
 import { playRemoveValue } from './remove-value/play.tsx';
 import { runRemoveValue } from './remove-value/run.tsx';
 import { runSortArray } from './sort-array/run.tsx';
@@ -29,6 +30,7 @@ const PLAY_FUNCTION_MAPPING: Record<
   'remove-value': playRemoveValue,
   'linear-search': playLinearSearch,
   'binary-search': playBinarySearch,
+  'merge-sort': playMergeSort,
 };
 
 export async function getRunFunction(context: CoreFunctionContext) {

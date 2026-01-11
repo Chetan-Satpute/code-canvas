@@ -17,7 +17,7 @@ function AlgorithmPage() {
   }
 
   return (
-    <aside className="m-1 flex flex-1 flex-col rounded-lg bg-neutral-800 lg:m-2">
+    <aside className="m-1 flex flex-1 flex-col overflow-auto rounded-lg bg-neutral-800 lg:m-2">
       <Controls />
       <CodeBlock />
       <CallStack />

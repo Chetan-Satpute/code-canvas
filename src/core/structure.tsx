@@ -11,12 +11,16 @@ export class CoreStructure {
   x: number;
   y: number;
 
+  opacity: number;
+
   width: number;
   height: number;
 
   constructor() {
     this.x = CANVAS_NODE_WIDTH;
     this.y = CANVAS_NODE_HEIGHT;
+
+    this.opacity = 1;
 
     this.width = 0;
     this.height = 0;

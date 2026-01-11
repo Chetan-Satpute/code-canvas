@@ -56,6 +56,10 @@ export class CoreArray extends CoreStructure {
       const topLabel = this.nodes[i].label.top;
       if (topLabel) topLabel.text = i.toString();
       this.nodes[i].rearrange();
+
+      if (this.opacity !== 1) {
+        this.nodes[i].opacity = this.opacity;
+      }
     }
 
     if (this.name) {

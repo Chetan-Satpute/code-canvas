@@ -26,6 +26,7 @@ export function appear<T extends { opacity: number; rearrange: () => void }>(
   for (; element.opacity < 1; element.opacity += 0.1) {
     element.rearrange();
     board.pushFrame();
+    if (board.frames.length) console.log(board.frames[board.frames.length - 1]);
   }
 
   element.opacity = 1;
@@ -33,12 +34,21 @@ export function appear<T extends { opacity: number; rearrange: () => void }>(
 
 export function disappear<T extends { opacity: number; rearrange: () => void }>(
   board: CoreBoard,
-  element: T,
+  ...elements: T[]
 ) {
-  for (; element.opacity > 0; element.opacity -= 0.1) {
-    element.rearrange();
+  let anyVisible = true;
+
+  while (anyVisible) {
+    anyVisible = false;
+
+    for (const element of elements) {
+      if (element.opacity > 0) {
+        element.opacity = Math.max(0, element.opacity - 0.1);
+        element.rearrange();
+        anyVisible = true;
+      }
+    }
+
     board.pushFrame();
   }
-
-  element.opacity = 0;
 }
