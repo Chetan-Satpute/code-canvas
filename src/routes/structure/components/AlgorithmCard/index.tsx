@@ -38,7 +38,7 @@ function AlgorithmCard(props: AlgorithmCardProps) {
           {name}
         </h3>
 
-        <form ref={formRef} className="flex flex-col gap-2">
+        <form ref={formRef} className="flex flex-col gap-2 [&:empty]:hidden">
           {argItems}
         </form>
 
