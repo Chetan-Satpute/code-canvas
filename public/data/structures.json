@@ -66,6 +66,12 @@
             "name": "Merge Sort",
             "args": [],
             "canPlay": true
+          },
+          {
+            "id": "quick-sort",
+            "name": "Quick Sort",
+            "args": [],
+            "canPlay": true
           }
         ]
       }
