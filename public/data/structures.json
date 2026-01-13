@@ -8,6 +8,18 @@
         "name": "Modify array",
         "algorithms": [
           {
+            "id": "random-array",
+            "name": "Random Array",
+            "args": [],
+            "canRun": true
+          },
+          {
+            "id": "sort-array",
+            "name": "Sort Array",
+            "args": [],
+            "canRun": true
+          },
+          {
             "id": "insert-value",
             "name": "Insert Value",
             "args": [
@@ -22,12 +34,6 @@
             "name": "Remove Value",
             "args": [{ "parameter": "index", "type": "number" }],
             "canPlay": true,
-            "canRun": true
-          },
-          {
-            "id": "sort-array",
-            "name": "Sort Array",
-            "args": [],
             "canRun": true
           }
         ]

@@ -9,6 +9,7 @@ import { playInsertValue } from './insert-value/play.tsx';
 import { runInsertValue } from './insert-value/run.tsx';
 import { playLinearSearch } from './linear-search/play.tsx';
 import { playMergeSort } from './merge-sort/play.tsx';
+import { runRandomArray } from './random-array/run.tsx';
 import { playRemoveValue } from './remove-value/play.tsx';
 import { runRemoveValue } from './remove-value/run.tsx';
 import { runSortArray } from './sort-array/run.tsx';
@@ -17,6 +18,7 @@ const RUN_FUNCTION_MAPPING: Record<
   string,
   (context: CoreFunctionContext) => void
 > = {
+  'random-array': runRandomArray,
   'insert-value': runInsertValue,
   'remove-value': runRemoveValue,
   'sort-array': runSortArray,
