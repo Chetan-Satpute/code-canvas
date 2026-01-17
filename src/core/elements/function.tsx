@@ -3,7 +3,7 @@ export type CoreFunctionArgumentValue = number | number[];
 
 export interface CoreFunctionArgument {
   parameter: string;
-  argument: CoreFunctionArgumentValue;
+  argument?: CoreFunctionArgumentValue;
 }
 
 export interface CoreFunction {

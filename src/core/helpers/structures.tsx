@@ -11,7 +11,7 @@ export function createRandomStructureByID(structureId: string): CoreStructure {
     case 'array':
       return CoreArray.fromData(randomNumberArray(randomNumber(5, 10)));
     case 'linked-list':
-      return CoreLinkedList.fromData(randomNumberArray(randomNumber(4, 10)));
+      return CoreLinkedList.fromData(randomNumberArray(randomNumber(2, 6)));
     default:
       return CoreStructure.fromData(null);
   }

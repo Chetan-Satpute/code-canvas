@@ -1,0 +1,340 @@
+{
+  "tokens": [
+    [
+      {
+        "content": "function",
+        "offset": 0,
+        "color": "#C792EA",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 8,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "insertHead",
+        "offset": 9,
+        "color": "#82AAFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "offset": 19,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "list",
+        "offset": 20,
+        "color": "#EEFFFF",
+        "fontStyle": 1
+      },
+      {
+        "content": ":",
+        "offset": 24,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 25,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "LinkedList",
+        "offset": 26,
+        "color": "#FFCB6B",
+        "fontStyle": 0
+      },
+      {
+        "content": ",",
+        "offset": 36,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 37,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "value",
+        "offset": 38,
+        "color": "#EEFFFF",
+        "fontStyle": 1
+      },
+      {
+        "content": ":",
+        "offset": 43,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 44,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "number",
+        "offset": 45,
+        "color": "#FFCB6B",
+        "fontStyle": 0
+      },
+      {
+        "content": ")",
+        "offset": 51,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 52,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 53,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "  ",
+        "offset": 55,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "const",
+        "offset": 57,
+        "color": "#C792EA",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 62,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "node",
+        "offset": 63,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 67,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 68,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 69,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "new",
+        "offset": 70,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 73,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "LinkedListNode",
+        "offset": 74,
+        "color": "#82AAFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "offset": 88,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "value",
+        "offset": 89,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ")",
+        "offset": 94,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 95,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "  ",
+        "offset": 98,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "node",
+        "offset": 100,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 104,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "next",
+        "offset": 105,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 109,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 110,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 111,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "list",
+        "offset": 112,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 116,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "head",
+        "offset": 117,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 121,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "  ",
+        "offset": 123,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "list",
+        "offset": 125,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 129,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "head",
+        "offset": 130,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 134,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 135,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 136,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "node",
+        "offset": 137,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 141,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "}",
+        "offset": 143,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ]
+  ],
+  "fg": "#EEFFFF",
+  "bg": "#212121",
+  "themeName": "material-theme-darker",
+  "grammarState": {
+    "lang": "typescript",
+    "theme": "material-theme-darker",
+    "themes": [
+      "material-theme-darker"
+    ],
+    "scopes": [
+      "source.ts"
+    ]
+  }
+}

@@ -90,6 +90,13 @@
             "name": "Random Linked List",
             "args": [],
             "canRun": true
+          },
+          {
+            "id": "insert-head",
+            "name": "Insert at Head",
+            "args": [{ "parameter": "value", "type": "number" }],
+            "canRun": true,
+            "canPlay": true
           }
         ]
       }

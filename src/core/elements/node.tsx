@@ -4,11 +4,12 @@ import {
   CANVAS_NODE_HEIGHT,
   CANVAS_NODE_WIDTH,
 } from '#constants/canvas.tsx';
+import { CoreStructure } from '#core/structure.tsx';
 
 import type { CoreFrame } from './frame';
 import { CoreLabel } from './label';
 
-export class CoreNode {
+export class CoreNode extends CoreStructure {
   x: number;
   y: number;
 
@@ -24,6 +25,8 @@ export class CoreNode {
   };
 
   constructor(value: number) {
+    super();
+
     this.x = 0;
     this.y = 0;
 

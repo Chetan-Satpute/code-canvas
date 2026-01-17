@@ -19,12 +19,12 @@ export function animateMove(
   }
 }
 
-export function appear<T extends { opacity: number; rearrange: () => void }>(
+export function appear<T extends { opacity: number; rearrange?: () => void }>(
   board: CoreBoard,
   element: T,
 ) {
   for (; element.opacity < 1; element.opacity += 0.1) {
-    element.rearrange();
+    if (element.rearrange) element.rearrange();
     board.pushFrame();
     if (board.frames.length) console.log(board.frames[board.frames.length - 1]);
   }
@@ -32,10 +32,9 @@ export function appear<T extends { opacity: number; rearrange: () => void }>(
   element.opacity = 1;
 }
 
-export function disappear<T extends { opacity: number; rearrange: () => void }>(
-  board: CoreBoard,
-  ...elements: T[]
-) {
+export function disappear<
+  T extends { opacity: number; rearrange?: () => void },
+>(board: CoreBoard, ...elements: T[]) {
   let anyVisible = true;
 
   while (anyVisible) {
@@ -44,7 +43,7 @@ export function disappear<T extends { opacity: number; rearrange: () => void }>(
     for (const element of elements) {
       if (element.opacity > 0) {
         element.opacity = Math.max(0, element.opacity - 0.1);
-        element.rearrange();
+        if (element.rearrange) element.rearrange();
         anyVisible = true;
       }
     }

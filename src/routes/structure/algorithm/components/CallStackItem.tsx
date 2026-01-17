@@ -18,11 +18,16 @@ function CallStackItem(props: CallStackItemProps) {
     argItems.push(
       <span key={`param-${index}`} style={{ color: '#EEFFFF' }}>
         {parameter}
-        {': '}
       </span>,
     );
 
     if (Array.isArray(argument)) {
+      argItems.push(
+        <span key={`param-${index}`} style={{ color: '#EEFFFF' }}>
+          {': '}
+        </span>,
+      );
+
       // opening bracket
       argItems.push(
         <span key={`open-${index}`} style={{ color: '#EEFFFF' }}>
@@ -56,6 +61,12 @@ function CallStackItem(props: CallStackItemProps) {
         </span>,
       );
     } else if (typeof argument === 'number') {
+      argItems.push(
+        <span key={`param-${index}`} style={{ color: '#EEFFFF' }}>
+          {': '}
+        </span>,
+      );
+
       argItems.push(
         <span key={`num-${index}`} style={{ color: '#F78C6C' }}>
           {argument}
