@@ -4,14 +4,14 @@ import { CANVAS_FILL_COLOR } from '#constants/canvas.tsx';
 import type { CoreFrame } from './frame';
 import type { CoreNode } from './node';
 
-export class CoreEdge {
-  start: CoreNode;
-  end: CoreNode;
+export class CoreEdge<N extends CoreNode> {
+  start: N;
+  end: N;
 
   color: string;
   opacity: number;
 
-  constructor(start: CoreNode, end: CoreNode) {
+  constructor(start: N, end: N) {
     this.start = start;
     this.end = end;
 

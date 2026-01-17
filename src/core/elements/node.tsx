@@ -79,6 +79,13 @@ export class CoreNode {
     }
   }
 
+  resetAllLabel() {
+    this.setLabel('top');
+    this.setLabel('right');
+    this.setLabel('bottom');
+    this.setLabel('left');
+  }
+
   setLabel(position: keyof typeof this.label, text?: string) {
     if (text) {
       this.label[position] = new CoreLabel(text);

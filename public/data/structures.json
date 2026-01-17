@@ -5,7 +5,7 @@
     "sections": [
       {
         "id": "modify",
-        "name": "Modify array",
+        "name": "Modify Array",
         "algorithms": [
           {
             "id": "random-array",
@@ -79,7 +79,21 @@
   },
   "linked-list": {
     "title": "Linked List",
-    "description": "A linked list is a linear collection of nodes, where each node contains data and a reference to the next node in sequence."
+    "description": "A linked list is a linear collection of nodes, where each node contains data and a reference to the next node in sequence.",
+    "sections": [
+      {
+        "id": "modify",
+        "name": "Modify Linked List",
+        "algorithms": [
+          {
+            "id": "random-linked-list",
+            "name": "Random Linked List",
+            "args": [],
+            "canRun": true
+          }
+        ]
+      }
+    ]
   },
   "binary-search-tree": {
     "title": "Binary Search Tree",
