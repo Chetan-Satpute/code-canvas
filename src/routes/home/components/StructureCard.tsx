@@ -19,8 +19,8 @@ function StructureCard(props: StructureCardProps) {
       to="/$structureID"
       params={{ structureID }}
       className={cn(
-        'group relative flex flex-col justify-between',
-        'max-w-sm flex-1 basis-80',
+        'group relative flex h-full flex-col justify-between',
+        'w-full',
         'rounded-2xl bg-gradient-to-b from-neutral-800 to-neutral-900 p-6 text-left',
         'shadow-sm ring-1 ring-white/5 transition-all duration-200',
         'hover:-translate-y-1 hover:shadow-blue-400/40 hover:ring-blue-400/40',

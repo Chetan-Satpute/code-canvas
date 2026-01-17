@@ -1,3 +1,5 @@
+import SmallScreenBanner from './SmallScreenBanner';
+
 function HeroSection() {
   return (
     <section className="m-auto flex min-h-1/3 max-w-4xl flex-col items-center justify-center px-6 text-center">
@@ -7,6 +9,8 @@ function HeroSection() {
         Watch code come alive as you step through each line and see how data
         structures change in real time.
       </p>
+
+      <SmallScreenBanner />
     </section>
   );
 }
