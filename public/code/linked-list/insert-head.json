@@ -14,7 +14,7 @@
         "fontStyle": 0
       },
       {
-        "content": "insertHead",
+        "content": "inserthead",
         "offset": 9,
         "color": "#82AAFF",
         "fontStyle": 0
@@ -44,7 +44,7 @@
         "fontStyle": 0
       },
       {
-        "content": "LinkedList",
+        "content": "linkedlist",
         "offset": 26,
         "color": "#FFCB6B",
         "fontStyle": 0
@@ -160,7 +160,7 @@
         "fontStyle": 0
       },
       {
-        "content": "LinkedListNode",
+        "content": "linkedlistnode",
         "offset": 74,
         "color": "#82AAFF",
         "fontStyle": 0

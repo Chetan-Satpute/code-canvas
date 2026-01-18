@@ -66,8 +66,7 @@ export function useAlgorithmForm(props: UseAlgorithmFormProps) {
 
         // clear form fields on success
         if (success) formRef.current?.reset();
-      } catch (e) {
-        console.log(e);
+      } catch {
         errorToast();
       } finally {
         dispatch(setDisableSubmit(false));

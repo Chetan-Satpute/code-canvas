@@ -1,0 +1,933 @@
+{
+  "tokens": [
+    [
+      {
+        "content": "function",
+        "offset": 0,
+        "color": "#C792EA",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 8,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "remove",
+        "offset": 9,
+        "color": "#82AAFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "(",
+        "offset": 15,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "list",
+        "offset": 16,
+        "color": "#EEFFFF",
+        "fontStyle": 1
+      },
+      {
+        "content": ":",
+        "offset": 20,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 21,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "LinkedList",
+        "offset": 22,
+        "color": "#FFCB6B",
+        "fontStyle": 0
+      },
+      {
+        "content": ",",
+        "offset": 32,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 33,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "target",
+        "offset": 34,
+        "color": "#EEFFFF",
+        "fontStyle": 1
+      },
+      {
+        "content": ":",
+        "offset": 40,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 41,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "number",
+        "offset": 42,
+        "color": "#FFCB6B",
+        "fontStyle": 0
+      },
+      {
+        "content": ")",
+        "offset": 48,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 49,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 50,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "  ",
+        "offset": 52,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "if",
+        "offset": 54,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": " (",
+        "offset": 56,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "list",
+        "offset": 58,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 62,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "head",
+        "offset": 63,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 67,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "===",
+        "offset": 68,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 71,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "null",
+        "offset": 72,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "offset": 76,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 78,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "    ",
+        "offset": 80,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "return",
+        "offset": 84,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": ";",
+        "offset": 90,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "  ",
+        "offset": 92,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "}",
+        "offset": 94,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "  ",
+        "offset": 97,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "if",
+        "offset": 99,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": " (",
+        "offset": 101,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "list",
+        "offset": 103,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 107,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "head",
+        "offset": 108,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 112,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "value",
+        "offset": 113,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 118,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "===",
+        "offset": 119,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 122,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "target",
+        "offset": 123,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "offset": 129,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 131,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "    ",
+        "offset": 133,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "list",
+        "offset": 137,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 141,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "head",
+        "offset": 142,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 146,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 147,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 148,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "list",
+        "offset": 149,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 153,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "head",
+        "offset": 154,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 158,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "next",
+        "offset": 159,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 163,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "    ",
+        "offset": 166,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "return",
+        "offset": 170,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": ";",
+        "offset": 176,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "  ",
+        "offset": 178,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "}",
+        "offset": 180,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "  ",
+        "offset": 183,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "let",
+        "offset": 185,
+        "color": "#C792EA",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 188,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "parent",
+        "offset": 189,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 195,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 196,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 197,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "list",
+        "offset": 198,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 202,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "head",
+        "offset": 203,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 207,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "  ",
+        "offset": 210,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "for",
+        "offset": 212,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": " (",
+        "offset": 215,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "let",
+        "offset": 217,
+        "color": "#C792EA",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 220,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "node",
+        "offset": 221,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 225,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 226,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 227,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "list",
+        "offset": 228,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 232,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "head",
+        "offset": 233,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 237,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "next",
+        "offset": 238,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 242,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 243,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "node",
+        "offset": 244,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 248,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 249,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "parent",
+        "offset": 250,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 256,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 257,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 258,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "node",
+        "offset": 259,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ",",
+        "offset": 263,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 264,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "node",
+        "offset": 265,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 269,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 270,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 271,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "node",
+        "offset": 272,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 276,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "next",
+        "offset": 277,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "offset": 281,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 283,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "    ",
+        "offset": 285,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "if",
+        "offset": 289,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": " (",
+        "offset": 291,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "node",
+        "offset": 293,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 297,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "value",
+        "offset": 298,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 303,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "===",
+        "offset": 304,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 307,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "target",
+        "offset": 308,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ") ",
+        "offset": 314,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "{",
+        "offset": 316,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "      ",
+        "offset": 318,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "parent",
+        "offset": 324,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 330,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "next",
+        "offset": 331,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 335,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "=",
+        "offset": 336,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 337,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "node",
+        "offset": 338,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ".",
+        "offset": 342,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "next",
+        "offset": 343,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 347,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "      ",
+        "offset": 350,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "return",
+        "offset": 356,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": ";",
+        "offset": 362,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "    ",
+        "offset": 364,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "}",
+        "offset": 368,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "  ",
+        "offset": 370,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "}",
+        "offset": 372,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [],
+    [
+      {
+        "content": "  ",
+        "offset": 375,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "return",
+        "offset": 377,
+        "color": "#89DDFF",
+        "fontStyle": 1
+      },
+      {
+        "content": ";",
+        "offset": 383,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "}",
+        "offset": 385,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ]
+  ],
+  "fg": "#EEFFFF",
+  "bg": "#212121",
+  "themeName": "material-theme-darker",
+  "grammarState": {
+    "lang": "typescript",
+    "theme": "material-theme-darker",
+    "themes": [
+      "material-theme-darker"
+    ],
+    "scopes": [
+      "source.ts"
+    ]
+  }
+}

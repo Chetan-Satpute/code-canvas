@@ -64,7 +64,6 @@ export function* playInsertHead(
   list.rearrange();
   board.pushFrame();
 
-  console.log(board.frames[board.frames.length - 1].labels);
   yield board.serialize(4);
 
   // 5: }

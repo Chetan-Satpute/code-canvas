@@ -23,7 +23,7 @@ function CallStackItem(props: CallStackItemProps) {
 
     if (Array.isArray(argument)) {
       argItems.push(
-        <span key={`param-${index}`} style={{ color: '#EEFFFF' }}>
+        <span key={`param-${index}:`} style={{ color: '#EEFFFF' }}>
           {': '}
         </span>,
       );
@@ -62,7 +62,7 @@ function CallStackItem(props: CallStackItemProps) {
       );
     } else if (typeof argument === 'number') {
       argItems.push(
-        <span key={`param-${index}`} style={{ color: '#EEFFFF' }}>
+        <span key={`param-${index}:`} style={{ color: '#EEFFFF' }}>
           {': '}
         </span>,
       );

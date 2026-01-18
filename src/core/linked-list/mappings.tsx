@@ -7,6 +7,8 @@ import type {
 import { playInsertHead } from './insert-head/play';
 import { runInsertHead } from './insert-head/run';
 import { runRandomLinkedList } from './random-linked-list/run';
+import { playRemove } from './remove/play';
+import { runRemove } from './remove/run';
 
 const RUN_FUNCTION_MAPPING: Record<
   string,
@@ -14,6 +16,7 @@ const RUN_FUNCTION_MAPPING: Record<
 > = {
   'random-linked-list': runRandomLinkedList,
   'insert-head': runInsertHead,
+  remove: runRemove,
 };
 
 const PLAY_FUNCTION_MAPPING: Record<
@@ -21,6 +24,7 @@ const PLAY_FUNCTION_MAPPING: Record<
   (context: CoreFunctionContext) => Generator<CoreStepActionPayload>
 > = {
   'insert-head': playInsertHead,
+  remove: playRemove,
 };
 
 export async function getRunFunction(context: CoreFunctionContext) {
