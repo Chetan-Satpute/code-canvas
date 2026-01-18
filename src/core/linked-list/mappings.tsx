@@ -4,6 +4,8 @@ import type {
   CoreStepActionPayload,
 } from '#core/helpers/types.tsx';
 
+import { playInsertAfter } from './insert-after/play';
+import { runInsertAfter } from './insert-after/run';
 import { playInsertHead } from './insert-head/play';
 import { runInsertHead } from './insert-head/run';
 import { runRandomLinkedList } from './random-linked-list/run';
@@ -16,6 +18,7 @@ const RUN_FUNCTION_MAPPING: Record<
 > = {
   'random-linked-list': runRandomLinkedList,
   'insert-head': runInsertHead,
+  'insert-after': runInsertAfter,
   remove: runRemove,
 };
 
@@ -24,6 +27,7 @@ const PLAY_FUNCTION_MAPPING: Record<
   (context: CoreFunctionContext) => Generator<CoreStepActionPayload>
 > = {
   'insert-head': playInsertHead,
+  'insert-after': playInsertAfter,
   remove: playRemove,
 };
 

@@ -99,6 +99,16 @@
             "canPlay": true
           },
           {
+            "id": "insert-after",
+            "name": "Insert after target",
+            "args": [
+              { "parameter": "target", "type": "number" },
+              { "parameter": "value", "type": "number" }
+            ],
+            "canRun": true,
+            "canPlay": true
+          },
+          {
             "id": "remove",
             "name": "Remove",
             "args": [{ "parameter": "target", "type": "number" }],
