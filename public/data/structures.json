@@ -121,7 +121,21 @@
   },
   "binary-search-tree": {
     "title": "Binary Search Tree",
-    "description": "A binary search tree stores elements in nodes, ensuring left children are smaller and right children are larger than their parent node."
+    "description": "A binary search tree stores elements in nodes, ensuring left children are smaller and right children are larger than their parent node.",
+    "sections": [
+      {
+        "id": "modify",
+        "name": "Modify Tree",
+        "algorithms": [
+          {
+            "id": "random-bst",
+            "name": "Random Tree",
+            "args": [],
+            "canRun": true
+          }
+        ]
+      }
+    ]
   },
   "max-heap": {
     "title": "Max Heap",

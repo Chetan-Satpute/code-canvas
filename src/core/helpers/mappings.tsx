@@ -12,6 +12,10 @@ export async function getRunFunction(context: CoreFunctionContext) {
       return import('#core/linked-list/mappings.tsx').then((module) =>
         module.getRunFunction(context),
       );
+    case 'binary-search-tree':
+      return import('#core/binary-search-tree/mappings.tsx').then((module) =>
+        module.getRunFunction(context),
+      );
   }
 }
 
@@ -25,6 +29,10 @@ export async function getPlayFunction(context: CoreFunctionContext) {
       );
     case 'linked-list':
       return import('#core/linked-list/mappings.tsx').then((module) =>
+        module.getPlayFunction(context),
+      );
+    case 'binary-search-tree':
+      return import('#core/binary-search-tree/mappings.tsx').then((module) =>
         module.getPlayFunction(context),
       );
   }
