@@ -1,8 +1,16 @@
 import { CoreArray } from '#core/array/structure.tsx';
+import {
+  CoreBST,
+  type CoreBSTDataNode,
+} from '#core/binary-search-tree/structure.tsx';
 import { CoreBoard } from '#core/board.tsx';
 import { CoreLinkedList } from '#core/linked-list/structure.tsx';
 import { CoreStructure } from '#core/structure.tsx';
-import { randomNumber, randomNumberArray } from '#utils/random.tsx';
+import {
+  randomBSTData,
+  randomNumber,
+  randomNumberArray,
+} from '#utils/random.tsx';
 
 import type { CoreFunctionContext } from './types';
 
@@ -12,6 +20,8 @@ export function createRandomStructureByID(structureId: string): CoreStructure {
       return CoreArray.fromData(randomNumberArray(randomNumber(5, 10)));
     case 'linked-list':
       return CoreLinkedList.fromData(randomNumberArray(randomNumber(2, 6)));
+    case 'binary-search-tree':
+      return CoreBST.fromData(randomBSTData(randomNumber(3, 8)));
     default:
       return CoreStructure.fromData(null);
   }
@@ -26,6 +36,8 @@ export function createStructureFromData(
       return CoreArray.fromData(structureData as number[]);
     case 'linked-list':
       return CoreLinkedList.fromData(structureData as number[]);
+    case 'binary-search-tree':
+      return CoreBST.fromData(structureData as CoreBSTDataNode);
     default:
       return CoreStructure.fromData(null);
   }
