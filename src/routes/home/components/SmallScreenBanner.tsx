@@ -7,7 +7,7 @@ function SmallScreenBanner() {
       </div>
 
       <p className="text-sm text-neutral-500">
-        For the best learning experience, we recommend using a laptop or tablet.
+        For the best learning experience, we recommend using a laptop.
       </p>
     </div>
   );
