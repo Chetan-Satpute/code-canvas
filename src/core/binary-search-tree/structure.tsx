@@ -140,7 +140,7 @@ export class CoreBST extends CoreStructure {
     this.root.rearrange();
 
     if (this.name) {
-      this.name.x = this.x - CANVAS_NODE_WIDTH;
+      this.name.x = (this.root ? this.root.x : this.x) - CANVAS_NODE_WIDTH;
       this.name.y = this.y;
     }
   }
@@ -157,5 +157,36 @@ export class CoreBST extends CoreStructure {
     } else {
       this.root = null;
     }
+  }
+
+  getInorderNodes(): CoreBSTNode[] {
+    const result: CoreBSTNode[] = [];
+
+    const traverse = (node: CoreBSTNode | null) => {
+      if (!node) return;
+
+      if (node.left) traverse(node.left.end);
+      result.push(node);
+      if (node.right) traverse(node.right.end);
+    };
+
+    traverse(this.root);
+    return result;
+  }
+
+  getInorderLeftNodes(current: CoreBSTNode): CoreBSTNode[] {
+    const inorder = this.getInorderNodes();
+    const index = inorder.indexOf(current);
+
+    if (index === -1) return [];
+    return inorder.slice(0, index);
+  }
+
+  getInorderRightNodes(current: CoreBSTNode): CoreBSTNode[] {
+    const inorder = this.getInorderNodes();
+    const index = inorder.indexOf(current);
+
+    if (index === -1) return [];
+    return inorder.slice(index + 1);
   }
 }

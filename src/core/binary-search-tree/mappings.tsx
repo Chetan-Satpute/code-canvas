@@ -4,6 +4,8 @@ import type {
   CoreStepActionPayload,
 } from '#core/helpers/types.tsx';
 
+import { playInsert } from './insert/play';
+import { runInsert } from './insert/run';
 import { runRandomBST } from './random-bst/run';
 
 const RUN_FUNCTION_MAPPING: Record<
@@ -11,12 +13,15 @@ const RUN_FUNCTION_MAPPING: Record<
   (context: CoreFunctionContext) => void
 > = {
   'random-bst': runRandomBST,
+  insert: runInsert,
 };
 
 const PLAY_FUNCTION_MAPPING: Record<
   string,
   (context: CoreFunctionContext) => Generator<CoreStepActionPayload>
-> = {};
+> = {
+  insert: playInsert,
+};
 
 export async function getRunFunction(context: CoreFunctionContext) {
   const { algorithmID } = context;

@@ -132,6 +132,13 @@
             "name": "Random Tree",
             "args": [],
             "canRun": true
+          },
+          {
+            "id": "insert",
+            "name": "Insert Value",
+            "args": [{ "parameter": "value", "type": "number" }],
+            "canRun": true,
+            "canPlay": true
           }
         ]
       }
