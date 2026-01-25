@@ -1,3 +1,4 @@
+import type { CoreBSTNode } from '#core/binary-search-tree/structure.tsx';
 import type { CoreBoard } from '#core/board.tsx';
 import type { CoreStructure } from '#core/structure.tsx';
 
@@ -81,4 +82,34 @@ export function disappear<
 
     board.pushFrame();
   }
+}
+
+export function animateMoveSubtree(
+  board: CoreBoard,
+  subtreeRoot: CoreBSTNode,
+  diffX: number,
+  diffY: number,
+) {
+  const nodes: CoreBSTNode[] = [];
+
+  const traverse = (node: CoreBSTNode | null) => {
+    if (!node) return;
+
+    nodes.push(node);
+    if (node.left) traverse(node.left.end);
+    if (node.right) traverse(node.right.end);
+  };
+
+  traverse(subtreeRoot);
+
+  animateMoveMany(
+    board,
+    nodes.map((node) => {
+      return {
+        structure: node,
+        targetX: node.x + diffX,
+        targetY: node.y + diffY,
+      };
+    }),
+  );
 }

@@ -7,6 +7,8 @@ import type {
 import { playInsert } from './insert/play';
 import { runInsert } from './insert/run';
 import { runRandomBST } from './random-bst/run';
+import { playRemove } from './remove/play';
+import { runRemove } from './remove/run';
 
 const RUN_FUNCTION_MAPPING: Record<
   string,
@@ -14,6 +16,7 @@ const RUN_FUNCTION_MAPPING: Record<
 > = {
   'random-bst': runRandomBST,
   insert: runInsert,
+  remove: runRemove,
 };
 
 const PLAY_FUNCTION_MAPPING: Record<
@@ -21,6 +24,7 @@ const PLAY_FUNCTION_MAPPING: Record<
   (context: CoreFunctionContext) => Generator<CoreStepActionPayload>
 > = {
   insert: playInsert,
+  remove: playRemove,
 };
 
 export async function getRunFunction(context: CoreFunctionContext) {

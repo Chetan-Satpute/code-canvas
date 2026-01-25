@@ -139,6 +139,13 @@
             "args": [{ "parameter": "value", "type": "number" }],
             "canRun": true,
             "canPlay": true
+          },
+          {
+            "id": "remove",
+            "name": "Remove Value",
+            "args": [{ "parameter": "value", "type": "number" }],
+            "canRun": true,
+            "canPlay": true
           }
         ]
       }

@@ -189,4 +189,18 @@ export class CoreBST extends CoreStructure {
     if (index === -1) return [];
     return inorder.slice(index + 1);
   }
+
+  getInorderBetweenNodes(a: CoreBSTNode, b: CoreBSTNode): CoreBSTNode[] {
+    const inorder = this.getInorderNodes();
+
+    const indexA = inorder.indexOf(a);
+    const indexB = inorder.indexOf(b);
+
+    if (indexA === -1 || indexB === -1) return [];
+
+    const start = Math.min(indexA, indexB);
+    const end = Math.max(indexA, indexB);
+
+    return inorder.slice(start + 1, end);
+  }
 }
