@@ -81,3 +81,42 @@ export function randomBSTData(length: number): CoreBSTDataNode {
 
   return root;
 }
+
+/**
+ * Generate a random max-heap as an array.
+ *
+ * - Uses random values (duplicates allowed)
+ * - Enforces max-heap property
+ * - Mutates internally, returns heapified array
+ *
+ * @param length - Number of elements
+ * @returns Max-heap array
+ */
+export function randomMaxHeapNumberArray(length: number): number[] {
+  const arr = randomNumberArray(length);
+
+  const heapifyDown = (i: number) => {
+    const n = arr.length;
+
+    while (true) {
+      let largest = i;
+      const left = 2 * i + 1;
+      const right = 2 * i + 2;
+
+      if (left < n && arr[left] > arr[largest]) largest = left;
+      if (right < n && arr[right] > arr[largest]) largest = right;
+
+      if (largest === i) break;
+
+      [arr[i], arr[largest]] = [arr[largest], arr[i]];
+      i = largest;
+    }
+  };
+
+  // Bottom-up heap construction
+  for (let i = Math.floor(length / 2) - 1; i >= 0; i--) {
+    heapifyDown(i);
+  }
+
+  return arr;
+}

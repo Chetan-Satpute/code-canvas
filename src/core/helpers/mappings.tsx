@@ -16,6 +16,10 @@ export async function getRunFunction(context: CoreFunctionContext) {
       return import('#core/binary-search-tree/mappings.tsx').then((module) =>
         module.getRunFunction(context),
       );
+    case 'max-heap':
+      return import('#core/max-heap/mappings.tsx').then((module) =>
+        module.getRunFunction(context),
+      );
   }
 }
 
@@ -33,6 +37,10 @@ export async function getPlayFunction(context: CoreFunctionContext) {
       );
     case 'binary-search-tree':
       return import('#core/binary-search-tree/mappings.tsx').then((module) =>
+        module.getPlayFunction(context),
+      );
+    case 'max-heap':
+      return import('#core/max-heap/mappings.tsx').then((module) =>
         module.getPlayFunction(context),
       );
   }

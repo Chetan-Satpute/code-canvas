@@ -153,6 +153,20 @@
   },
   "max-heap": {
     "title": "Max Heap",
-    "description": "A max heap is a complete binary tree where the value of each node is greater than or equal to the values of its children."
+    "description": "A max heap is a complete binary tree where the value of each node is greater than or equal to the values of its children.",
+    "sections": [
+      {
+        "id": "modify",
+        "name": "Modify Max Heap",
+        "algorithms": [
+          {
+            "id": "random-heap",
+            "name": "Random Max Heap",
+            "args": [],
+            "canRun": true
+          }
+        ]
+      }
+    ]
   }
 }

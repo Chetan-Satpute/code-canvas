@@ -5,9 +5,11 @@ import {
 } from '#core/binary-search-tree/structure.tsx';
 import { CoreBoard } from '#core/board.tsx';
 import { CoreLinkedList } from '#core/linked-list/structure.tsx';
+import { CoreMaxHeap } from '#core/max-heap/structure.tsx';
 import { CoreStructure } from '#core/structure.tsx';
 import {
   randomBSTData,
+  randomMaxHeapNumberArray,
   randomNumber,
   randomNumberArray,
 } from '#utils/random.tsx';
@@ -22,6 +24,8 @@ export function createRandomStructureByID(structureId: string): CoreStructure {
       return CoreLinkedList.fromData(randomNumberArray(randomNumber(2, 6)));
     case 'binary-search-tree':
       return CoreBST.fromData(randomBSTData(randomNumber(3, 8)));
+    case 'max-heap':
+      return CoreMaxHeap.fromData(randomMaxHeapNumberArray(randomNumber(3, 7)));
     default:
       return CoreStructure.fromData(null);
   }
@@ -38,6 +42,8 @@ export function createStructureFromData(
       return CoreLinkedList.fromData(structureData as number[]);
     case 'binary-search-tree':
       return CoreBST.fromData(structureData as CoreBSTDataNode);
+    case 'max-heap':
+      return CoreMaxHeap.fromData(structureData as number[]);
     default:
       return CoreStructure.fromData(null);
   }
