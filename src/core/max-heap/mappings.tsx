@@ -4,6 +4,8 @@ import type {
   CoreStepActionPayload,
 } from '#core/helpers/types.tsx';
 
+import { runPop } from './pop/run';
+import { runPush } from './push/run';
 import { runRandomHeap } from './random-heap/run';
 
 const RUN_FUNCTION_MAPPING: Record<
@@ -11,6 +13,8 @@ const RUN_FUNCTION_MAPPING: Record<
   (context: CoreFunctionContext) => void
 > = {
   'random-heap': runRandomHeap,
+  push: runPush,
+  pop: runPop,
 };
 
 const PLAY_FUNCTION_MAPPING: Record<

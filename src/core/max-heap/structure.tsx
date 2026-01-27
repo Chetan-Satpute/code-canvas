@@ -166,4 +166,62 @@ export class CoreMaxHeap extends CoreStructure {
       this.treeName = undefined;
     }
   }
+
+  push(value: number) {
+    this.nodes.push(new CoreMaxHeapNode(value));
+
+    const nodeIndex = this.nodes.length - 1;
+    const parentIndex = Math.floor((nodeIndex - 1) / 2);
+
+    const leftIndex = parentIndex * 2 + 1;
+    const rightIndex = parentIndex * 2 + 2;
+
+    if (nodeIndex === leftIndex) {
+      this.nodes[parentIndex].treeNode.setLeft(this.nodes[nodeIndex].treeNode);
+    }
+
+    if (nodeIndex === rightIndex) {
+      this.nodes[parentIndex].treeNode.setRight(this.nodes[nodeIndex].treeNode);
+    }
+  }
+
+  pop(): CoreMaxHeapNode | null {
+    if (this.nodes.length === 0) return null;
+
+    const nodeIndex = this.nodes.length - 1;
+    const node = this.nodes[nodeIndex];
+
+    if (nodeIndex === 0) {
+      this.nodes.pop();
+
+      return node;
+    }
+
+    const parentIndex = Math.floor((nodeIndex - 1) / 2);
+    const leftIndex = parentIndex * 2 + 1;
+    const rightIndex = parentIndex * 2 + 2;
+
+    if (nodeIndex === leftIndex) {
+      this.nodes[parentIndex].treeNode.setLeft();
+    }
+
+    if (nodeIndex === rightIndex) {
+      this.nodes[parentIndex].treeNode.setRight();
+    }
+
+    this.nodes.pop();
+
+    return node;
+  }
+
+  swapValues(indexA: number, indexB: number) {
+    [this.nodes[indexA].treeNode.value, this.nodes[indexB].treeNode.value] = [
+      this.nodes[indexB].treeNode.value,
+      this.nodes[indexA].treeNode.value,
+    ];
+    [this.nodes[indexA].arrayNode.value, this.nodes[indexB].arrayNode.value] = [
+      this.nodes[indexB].arrayNode.value,
+      this.nodes[indexA].arrayNode.value,
+    ];
+  }
 }

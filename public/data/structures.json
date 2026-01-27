@@ -164,6 +164,20 @@
             "name": "Random Max Heap",
             "args": [],
             "canRun": true
+          },
+          {
+            "id": "push",
+            "name": "Push",
+            "args": [{ "parameter": "value", "type": "number" }],
+            "canRun": true,
+            "canPlay": true
+          },
+          {
+            "id": "pop",
+            "name": "Pop",
+            "args": [],
+            "canRun": true,
+            "canPlay": true
           }
         ]
       }
