@@ -43,6 +43,11 @@ export class CoreMaxHeapNode {
     this.treeNode = new CoreMaxHeapTreeNode(value);
   }
 
+  rearrange() {
+    this.arrayNode.rearrange();
+    this.treeNode.rearrange();
+  }
+
   serialize(frame: CoreFrame): void {
     this.arrayNode.serialize(frame);
     this.treeNode.serialize(frame);
@@ -132,7 +137,7 @@ export class CoreMaxHeap extends CoreStructure {
 
     if (this.treeName) {
       this.treeName.x = this.nodes[0].treeNode.x - CANVAS_NODE_WIDTH;
-      this.treeName.y = this.y;
+      this.treeName.y = this.y + CANVAS_NODE_HEIGHT * 3;
     }
 
     // Array =====
@@ -171,6 +176,8 @@ export class CoreMaxHeap extends CoreStructure {
     this.nodes.push(new CoreMaxHeapNode(value));
 
     const nodeIndex = this.nodes.length - 1;
+    if (nodeIndex === 0) return;
+
     const parentIndex = Math.floor((nodeIndex - 1) / 2);
 
     const leftIndex = parentIndex * 2 + 1;
@@ -223,5 +230,30 @@ export class CoreMaxHeap extends CoreStructure {
       this.nodes[indexB].arrayNode.value,
       this.nodes[indexA].arrayNode.value,
     ];
+  }
+
+  getInorderNodes(): CoreMaxHeapTreeNode[] {
+    if (this.nodes.length === 0) return [];
+
+    const result: CoreMaxHeapTreeNode[] = [];
+
+    const traverse = (node: CoreMaxHeapTreeNode | null) => {
+      if (!node) return;
+
+      if (node.left) traverse(node.left.end);
+      result.push(node);
+      if (node.right) traverse(node.right.end);
+    };
+
+    traverse(this.nodes[0].treeNode);
+    return result;
+  }
+
+  getInorderRightNodes(current: CoreMaxHeapTreeNode): CoreMaxHeapTreeNode[] {
+    const inorder = this.getInorderNodes();
+    const index = inorder.indexOf(current);
+
+    if (index === -1) return [];
+    return inorder.slice(index + 1);
   }
 }

@@ -943,11 +943,7 @@
   "grammarState": {
     "lang": "typescript",
     "theme": "material-theme-darker",
-    "themes": [
-      "material-theme-darker"
-    ],
-    "scopes": [
-      "source.ts"
-    ]
+    "themes": ["material-theme-darker"],
+    "scopes": ["source.ts"]
   }
 }

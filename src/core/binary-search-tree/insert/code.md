@@ -9,7 +9,7 @@ function insert(tree, value: number) {
 
   while (true) {
     if (value === current.value) {
-        break;
+      break;
     }
 
     if (value < current.value) {
