@@ -205,104 +205,92 @@
         "fontStyle": 0
       },
       {
-        "content": "nodes",
+        "content": "length",
         "offset": 86,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
-        "content": ".",
-        "offset": 91,
-        "color": "#89DDFF",
-        "fontStyle": 0
-      },
-      {
-        "content": "length",
-        "offset": 92,
-        "color": "#EEFFFF",
-        "fontStyle": 0
-      },
-      {
         "content": " ",
-        "offset": 98,
+        "offset": 92,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "-",
-        "offset": 99,
+        "offset": 93,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 100,
+        "offset": 94,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "1",
-        "offset": 101,
+        "offset": 95,
         "color": "#F78C6C",
         "fontStyle": 0
       },
       {
         "content": ";",
-        "offset": 102,
+        "offset": 96,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 103,
+        "offset": 97,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "nodeIndex",
-        "offset": 104,
+        "offset": 98,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 113,
+        "offset": 107,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": ">",
-        "offset": 114,
+        "offset": 108,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 115,
+        "offset": 109,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "0",
-        "offset": 116,
+        "offset": 110,
         "color": "#F78C6C",
         "fontStyle": 0
       },
       {
         "content": ";",
-        "offset": 117,
+        "offset": 111,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " ) ",
-        "offset": 118,
+        "offset": 112,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "{",
-        "offset": 121,
+        "offset": 115,
         "color": "#89DDFF",
         "fontStyle": 0
       }
@@ -310,133 +298,133 @@
     [
       {
         "content": "    ",
-        "offset": 123,
+        "offset": 117,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "const",
-        "offset": 127,
+        "offset": 121,
         "color": "#C792EA",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 132,
+        "offset": 126,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "parentIndex",
-        "offset": 133,
+        "offset": 127,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 144,
+        "offset": 138,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "=",
-        "offset": 145,
+        "offset": 139,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 146,
+        "offset": 140,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "Math",
-        "offset": 147,
+        "offset": 141,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
         "content": ".",
-        "offset": 151,
+        "offset": 145,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": "floor",
-        "offset": 152,
+        "offset": 146,
         "color": "#82AAFF",
         "fontStyle": 0
       },
       {
         "content": "((",
-        "offset": 157,
+        "offset": 151,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "nodeIndex",
-        "offset": 159,
+        "offset": 153,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 168,
+        "offset": 162,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "-",
-        "offset": 169,
+        "offset": 163,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 170,
+        "offset": 164,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "1",
-        "offset": 171,
+        "offset": 165,
         "color": "#F78C6C",
         "fontStyle": 0
       },
       {
         "content": ") ",
-        "offset": 172,
+        "offset": 166,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "/",
-        "offset": 174,
+        "offset": 168,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 175,
+        "offset": 169,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "2",
-        "offset": 176,
+        "offset": 170,
         "color": "#F78C6C",
         "fontStyle": 0
       },
       {
         "content": ")",
-        "offset": 177,
+        "offset": 171,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": ";",
-        "offset": 178,
+        "offset": 172,
         "color": "#89DDFF",
         "fontStyle": 0
       }
@@ -445,115 +433,85 @@
     [
       {
         "content": "    ",
-        "offset": 181,
+        "offset": 175,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "if",
-        "offset": 185,
+        "offset": 179,
         "color": "#89DDFF",
         "fontStyle": 1
       },
       {
         "content": " (",
+        "offset": 181,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "heap",
+        "offset": 183,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "[",
         "offset": 187,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
-        "content": "heap",
-        "offset": 189,
-        "color": "#EEFFFF",
-        "fontStyle": 0
-      },
-      {
-        "content": "[",
-        "offset": 193,
-        "color": "#F07178",
-        "fontStyle": 0
-      },
-      {
         "content": "nodeIndex",
-        "offset": 194,
+        "offset": 188,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
-        "content": "]",
-        "offset": 203,
-        "color": "#F07178",
-        "fontStyle": 0
-      },
-      {
-        "content": ".",
-        "offset": 204,
-        "color": "#89DDFF",
-        "fontStyle": 0
-      },
-      {
-        "content": "value",
-        "offset": 205,
-        "color": "#EEFFFF",
-        "fontStyle": 0
-      },
-      {
-        "content": " ",
-        "offset": 210,
+        "content": "] ",
+        "offset": 197,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "<=",
-        "offset": 211,
+        "offset": 199,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 213,
+        "offset": 201,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "heap",
-        "offset": 214,
+        "offset": 202,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
         "content": "[",
-        "offset": 218,
+        "offset": 206,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "parentIndex",
-        "offset": 219,
+        "offset": 207,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
-        "content": "]",
-        "offset": 230,
-        "color": "#F07178",
-        "fontStyle": 0
-      },
-      {
-        "content": "value",
-        "offset": 231,
-        "color": "#EEFFFF",
-        "fontStyle": 0
-      },
-      {
-        "content": ") ",
-        "offset": 236,
+        "content": "]) ",
+        "offset": 218,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "{",
-        "offset": 238,
+        "offset": 221,
         "color": "#89DDFF",
         "fontStyle": 0
       }
@@ -561,19 +519,19 @@
     [
       {
         "content": "      ",
-        "offset": 240,
+        "offset": 223,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "break",
-        "offset": 246,
+        "offset": 229,
         "color": "#89DDFF",
         "fontStyle": 1
       },
       {
         "content": ";",
-        "offset": 251,
+        "offset": 234,
         "color": "#89DDFF",
         "fontStyle": 0
       }
@@ -581,13 +539,13 @@
     [
       {
         "content": "    ",
-        "offset": 253,
+        "offset": 236,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "}",
-        "offset": 257,
+        "offset": 240,
         "color": "#89DDFF",
         "fontStyle": 0
       }
@@ -596,13 +554,13 @@
     [
       {
         "content": "    ",
-        "offset": 260,
+        "offset": 243,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": "// swap values at nodeIndex and parentIndex",
-        "offset": 264,
+        "offset": 247,
         "color": "#545454",
         "fontStyle": 1
       }
@@ -610,7 +568,43 @@
     [
       {
         "content": "    [",
-        "offset": 308,
+        "offset": 291,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "heap",
+        "offset": 296,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "[",
+        "offset": 300,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "nodeIndex",
+        "offset": 301,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "]",
+        "offset": 310,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": ",",
+        "offset": 311,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      },
+      {
+        "content": " ",
+        "offset": 312,
         "color": "#F07178",
         "fontStyle": 0
       },
@@ -627,110 +621,100 @@
         "fontStyle": 0
       },
       {
-        "content": "nodeIndex",
+        "content": "parentIndex",
         "offset": 318,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
-        "content": "]",
-        "offset": 327,
-        "color": "#F07178",
-        "fontStyle": 0
-      },
-      {
-        "content": ",",
-        "offset": 328,
-        "color": "#89DDFF",
-        "fontStyle": 0
-      },
-      {
-        "content": " ",
+        "content": "]] ",
         "offset": 329,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
-        "content": "heap",
-        "offset": 330,
-        "color": "#EEFFFF",
-        "fontStyle": 0
-      },
-      {
-        "content": "[",
-        "offset": 334,
-        "color": "#F07178",
-        "fontStyle": 0
-      },
-      {
-        "content": "parentIndex",
-        "offset": 335,
-        "color": "#EEFFFF",
-        "fontStyle": 0
-      },
-      {
-        "content": "]] ",
-        "offset": 346,
-        "color": "#F07178",
-        "fontStyle": 0
-      },
-      {
         "content": "=",
-        "offset": 349,
+        "offset": 332,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " [",
-        "offset": 350,
+        "offset": 333,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "heap",
-        "offset": 352,
+        "offset": 335,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
         "content": "[",
-        "offset": 356,
+        "offset": 339,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "parentIndex",
-        "offset": 357,
+        "offset": 340,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
         "content": "]",
-        "offset": 368,
+        "offset": 351,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": ",",
-        "offset": 369,
+        "offset": 352,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 370,
+        "offset": 353,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "heap",
-        "offset": 371,
+        "offset": 354,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
         "content": "[",
-        "offset": 375,
+        "offset": 358,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": "nodeIndex",
+        "offset": 359,
+        "color": "#EEFFFF",
+        "fontStyle": 0
+      },
+      {
+        "content": "]]",
+        "offset": 368,
+        "color": "#F07178",
+        "fontStyle": 0
+      },
+      {
+        "content": ";",
+        "offset": 370,
+        "color": "#89DDFF",
+        "fontStyle": 0
+      }
+    ],
+    [
+      {
+        "content": "    ",
+        "offset": 372,
         "color": "#F07178",
         "fontStyle": 0
       },
@@ -741,58 +725,32 @@
         "fontStyle": 0
       },
       {
-        "content": "]]",
+        "content": " ",
         "offset": 385,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
-        "content": ";",
-        "offset": 387,
-        "color": "#89DDFF",
-        "fontStyle": 0
-      }
-    ],
-    [
-      {
-        "content": "    ",
-        "offset": 389,
-        "color": "#F07178",
-        "fontStyle": 0
-      },
-      {
-        "content": "nodeIndex",
-        "offset": 393,
-        "color": "#EEFFFF",
-        "fontStyle": 0
-      },
-      {
-        "content": " ",
-        "offset": 402,
-        "color": "#F07178",
-        "fontStyle": 0
-      },
-      {
         "content": "=",
-        "offset": 403,
+        "offset": 386,
         "color": "#89DDFF",
         "fontStyle": 0
       },
       {
         "content": " ",
-        "offset": 404,
+        "offset": 387,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "parentIndex",
-        "offset": 405,
+        "offset": 388,
         "color": "#EEFFFF",
         "fontStyle": 0
       },
       {
         "content": ";",
-        "offset": 416,
+        "offset": 399,
         "color": "#89DDFF",
         "fontStyle": 0
       }
@@ -800,13 +758,13 @@
     [
       {
         "content": "  ",
-        "offset": 418,
+        "offset": 401,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "}",
-        "offset": 420,
+        "offset": 403,
         "color": "#89DDFF",
         "fontStyle": 0
       }
@@ -815,19 +773,19 @@
     [
       {
         "content": "  ",
-        "offset": 423,
+        "offset": 406,
         "color": "#F07178",
         "fontStyle": 0
       },
       {
         "content": "return",
-        "offset": 425,
+        "offset": 408,
         "color": "#89DDFF",
         "fontStyle": 1
       },
       {
         "content": ";",
-        "offset": 431,
+        "offset": 414,
         "color": "#89DDFF",
         "fontStyle": 0
       }
@@ -835,7 +793,7 @@
     [
       {
         "content": "}",
-        "offset": 433,
+        "offset": 416,
         "color": "#89DDFF",
         "fontStyle": 0
       }
