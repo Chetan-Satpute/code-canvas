@@ -15,6 +15,7 @@ function Controls() {
         onClick={() => handleClose()}
       />
       <ControlButton
+        showPing
         className="rounded-l-none"
         label="Next Step"
         icon={<RedoDot size={16} />}
