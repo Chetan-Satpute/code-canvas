@@ -7,7 +7,7 @@ import { playAlgorithm, runAlgorithm } from '#core/helpers/algorithms.tsx';
 import type { AlgorithmArgInfo } from '#data/types.tsx';
 import { usePlayContextRef } from '#hooks/playContext.tsx';
 import { useAppDispatch, useAppSelector } from '#redux/hooks.tsx';
-import { setDisableSubmit, setStructureFrames } from '#redux/slice.ts';
+import { setDisableSubmit, setStep } from '#redux/slice.ts';
 import { errorToast } from '#utils/toast.tsx';
 
 import { validateForm } from './utils';
@@ -113,7 +113,7 @@ export function useAlgorithmActions(algorithmID: string) {
 
     playContextRef.current = { generator, structureData };
 
-    dispatch(setStructureFrames(frames));
+    dispatch(setStep({ codeID: '', activeCodeLine: 0, frames: frames }));
 
     navigate({
       to: '/$structureID/$algorithmID',

@@ -20,7 +20,10 @@ function StructureCardSection() {
   ));
 
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-12">
+    <section className="mx-auto max-w-6xl px-6 lg:px-16 py-24">
+      <h2 className="mb-16 text-center text-2xl lg:text-3xl font-semibold tracking-tight">
+        Choose a Data Structure
+      </h2>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
         {structureCards}
       </div>

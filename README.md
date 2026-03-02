@@ -2,8 +2,6 @@
 
 Code Canvas is a platform that helps developers understand algorithms by **visualizing how code executes step by step**.
 
-Instead of reading static code, learners can visualize how data structures evolve as the program executes line by line.
-
 > Code is intent executing over time — Code Canvas makes that execution visible.
 
 ###### Live Demo: [canvas.chetansatpute.dev](https://canvas.chetansatpute.dev)
@@ -27,4 +25,4 @@ This project explores ideas around **developer education and visualization-drive
 
 If you discovered this repository while looking for project ideas, I encourage you to explore how the system works and try building something similar yourself.
 
-Understanding the ideas and design decisions behind a project is far more valuable than copying the code.
+Understanding the ideas and design decisions behind a project is far more valuable than the code itself.
