@@ -13,7 +13,12 @@ function PlayControls(props: PlayControlsProps) {
 
   return (
     <div className="bg-card border-border flex shrink-0 items-center gap-2 rounded-xl border p-2">
-      <Button className="basis-1/3" size="sm" variant="outline" onClick={onStop}>
+      <Button
+        className="basis-1/3"
+        size="sm"
+        variant="outline"
+        onClick={onStop}
+      >
         <Icon name="square" />
         Stop
       </Button>
