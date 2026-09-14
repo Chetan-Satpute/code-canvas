@@ -14,6 +14,9 @@ const config = {
 
   importOrder: ['<THIRD_PARTY_MODULES>', '^#.*', '^[./]'],
 
+  // Without this the Tailwind sorter ignores classes passed to cn().
+  tailwindFunctions: ['cn'],
+
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   importOrderCaseInsensitive: true,
