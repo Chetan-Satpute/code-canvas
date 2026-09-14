@@ -1,13 +1,25 @@
-import { LoaderCircle, Play, RotateCcw } from 'lucide-react';
+import {
+  ArrowLeft,
+  Dot,
+  LoaderCircle,
+  Play,
+  RotateCcw,
+  Square,
+  StepForward,
+} from 'lucide-react';
 
 import cn from '#utils/cn.ts';
 
 // The app's only lucide-react import. Keep it named — `import * as lucide`
 // would pull in the entire icon set.
 const iconComponents = {
+  'arrow-left': ArrowLeft,
+  dot: Dot,
   'loader-circle': LoaderCircle,
   play: Play,
   'rotate-ccw': RotateCcw,
+  square: Square,
+  'step-forward': StepForward,
 } as const;
 
 export type IconName = keyof typeof iconComponents;

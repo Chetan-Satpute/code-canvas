@@ -2,6 +2,7 @@ import {
   createRootRoute,
   createRoute,
   createRouter,
+  useParams,
 } from '@tanstack/react-router';
 
 import ExplorePage from './explore/ExplorePage.tsx';
@@ -24,3 +25,10 @@ const exploreRoute = createRoute({
 const routeTree = rootRoute.addChildren([homeRoute, exploreRoute]);
 
 export const router = createRouter({ routeTree });
+
+// Route params are read through here so pages never bind to the router API.
+export function useAlgorithmId() {
+  const { algorithmId } = useParams({ from: exploreRoute.id });
+
+  return algorithmId;
+}
