@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import Card from '#components/Card.tsx';
-import { useAlgorithmId } from '#routes/router.ts';
 import cn from '#utils/cn.ts';
 
 import AlgorithmCard from './components/AlgorithmCard.tsx';
@@ -47,8 +46,6 @@ const sidebarClasses =
   'flex flex-col gap-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:min-h-0';
 
 function ExplorePage() {
-  const algorithmId = useAlgorithmId();
-
   // The arguments a run was started with, and null while none is in flight —
   // so they double as the setup/exploration switch.
   const [runArguments, setRunArguments] = useState<Record<
@@ -75,7 +72,7 @@ function ExplorePage() {
 
   return (
     <div className="bg-background text-foreground flex h-dvh flex-col">
-      <ExploreHeader algorithmId={algorithmId} />
+      <ExploreHeader />
 
       <main className={gridClasses}>
         {/* Outside the mode branch so a run starting or stopping never
