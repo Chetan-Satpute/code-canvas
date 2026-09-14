@@ -9,6 +9,7 @@ type ButtonVariant =
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface ButtonProps extends PropsWithChildren {
+  className?: string;
   variant?: ButtonVariant;
   size?: ButtonSize;
   type?: 'button' | 'submit' | 'reset';
@@ -43,6 +44,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 
 function Button(props: ButtonProps) {
   const {
+    className: classNameProp,
     children,
     variant = 'primary',
     size = 'md',
@@ -52,7 +54,12 @@ function Button(props: ButtonProps) {
     onClick,
   } = props;
 
-  const className = cn(baseClasses, variantClasses[variant], sizeClasses[size]);
+  const className = cn(
+    baseClasses,
+    variantClasses[variant],
+    sizeClasses[size],
+    classNameProp,
+  );
 
   // Flex row so an Icon child aligns with the text instead of the baseline.
   const labelClasses = cn(

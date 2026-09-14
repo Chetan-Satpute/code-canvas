@@ -56,23 +56,18 @@ function ExplorePage() {
     string
   > | null>(null);
 
-  const [step, setStep] = useState(0);
-
   const handleRun = (values: Record<string, string>) => {
     setRunArguments(values);
-    setStep(0);
-  };
-
-  const handleNextStep = () => {
-    setStep((current) => current + 1);
   };
 
   const handleStop = () => {
     setRunArguments(null);
   };
 
-  // Structure edits are wired to the execution engine in a later change; the
-  // layout only needs the submit path.
+  // Stepping and structure edits are wired to the execution engine in a later
+  // change; the layout only needs the handlers to exist.
+  const handleNextStep = () => {};
+
   const handleStructureOperation = () => {};
 
   const frames =
@@ -114,11 +109,7 @@ function ExplorePage() {
         ) : (
           <>
             <div className={sidebarClasses}>
-              <PlayControls
-                step={step}
-                onNextStep={handleNextStep}
-                onStop={handleStop}
-              />
+              <PlayControls onNextStep={handleNextStep} onStop={handleStop} />
 
               <div className="lg:min-h-0 lg:flex-1">
                 <CodeCard lines={placeholderAlgorithm.code} />
