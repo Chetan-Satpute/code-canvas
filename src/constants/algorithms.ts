@@ -10,6 +10,7 @@ import { binarySearchTreeRemove } from '#engine/algorithms/binary-search-tree/re
 import { linkedListInsertAfter } from '#engine/algorithms/linked-list/insert-after.ts';
 import { linkedListInsertHead } from '#engine/algorithms/linked-list/insert-head.ts';
 import { linkedListRemove } from '#engine/algorithms/linked-list/remove.ts';
+import { maxHeapPop } from '#engine/algorithms/max-heap/pop.ts';
 import { maxHeapPush } from '#engine/algorithms/max-heap/push.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
@@ -200,6 +201,7 @@ const algorithms: Record<string, Algorithm> = {
       'Moves the last value to the root and removes the old maximum, then sinks the root past its larger child.',
     args: [],
     listing: heapPopListing,
+    run: maxHeapPop,
   },
 };
 

@@ -3,10 +3,10 @@
 Written for a reader who was not present for the conversation that produced
 them. No shorthand, no references to a chat, no bare ticket ids.
 
-| Document                 | What it covers                                                                                                                        |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| [engine.md](engine.md)   | The execution engine: how a run produces steps, how algorithms and structure operations are authored, and what the renderer receives. |
-| [porting.md](porting.md) | The plan for porting the twelve algorithms and three structures that v1 has and the v2 engine does not yet run.                       |
+| Document                 | What it covers                                                                                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| [engine.md](engine.md)   | The execution engine: how a run produces steps, how algorithms and structure operations are authored, and what the renderer receives.       |
+| [porting.md](porting.md) | The record of porting v1's thirteen algorithms and four structures onto the v2 engine, now complete, and the decisions that came out of it. |
 
 ## Conventions
 

@@ -1,38 +1,40 @@
 ```ts
-function pop(heap: number[]) {
-  if (heap.length === 0) {
-    return;
+/*#enter*/ function pop(heap: number[]) {
+  /*#emptyCheck*/ if (heap.length === 0) {
+    /*#emptyReturn*/ return;
   }
+
+  /*#last*/ const last = heap.length - 1;
 
   // Swap top and last values
-  [heap[0], heap[heap.length - 1]] = [heap[heap.length - 1], heap[0]];
+  /*#swapLast*/ [heap[0], heap[last]] = [heap[last], heap[0]];
 
-  heap.pop();
+  /*#removeLast*/ heap.pop();
 
-  for (let nodeIndex = 0; nodeIndex < heap.length;) {
-    const leftIndex = nodeIndex * 2 + 1;
-    const rightIndex = nodeIndex * 2 + 2;
+  /*#loop*/ for (let index = 0; index < heap.length;) {
+    /*#left*/ const left = index * 2 + 1;
+    /*#right*/ const right = index * 2 + 2;
 
-    let nextIndex = nodeIndex;
+    /*#next*/ let next = index;
 
-    if (leftIndex < heap.length && heap[nextIndex] < heap[leftIndex]) {
-      nextIndex = leftIndex;
+    /*#checkLeft*/ if (left < heap.length && heap[next] < heap[left]) {
+      /*#takeLeft*/ next = left;
     }
 
-    if (rightIndex < heap.length && heap[nextIndex] < heap[rightIndex]) {
-      nextIndex = rightIndex;
+    /*#checkRight*/ if (right < heap.length && heap[next] < heap[right]) {
+      /*#takeRight*/ next = right;
     }
 
-    if (nextIndex === nodeIndex) {
-      break;
+    /*#settled*/ if (next === index) {
+      /*#stop*/ break;
     }
 
-    // Swap values at nextIndex and nodeIndex
-    [heap[nextIndex], heap[nodeIndex]] = [heap[nodeIndex], heap[nextIndex]];
+    // Swap values at next and index
+    /*#swap*/ [heap[next], heap[index]] = [heap[index], heap[next]];
 
-    nodeIndex = nextIndex;
+    /*#sink*/ index = next;
   }
 
-  return;
-}
+  /*#return*/ return;
+} /*#exit*/
 ```

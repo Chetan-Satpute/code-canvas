@@ -1,12 +1,14 @@
 # Porting the remaining algorithms
 
-The v2 engine runs all but one algorithm in the catalog. The one left is the
-max heap's pop, which appears on the explore page with its Run button
-disabled; every other entry across the four structures plays.
+The port is finished. All thirteen algorithms in
+`src/constants/algorithms.ts` play, across all four structures, and every
+structure can be built and edited. Nothing on the explore page has its Run
+button disabled any more.
 
-This document is the plan for closing that gap. It is a living doc: as an
-algorithm lands, its row in the status table below is updated in the same
-commit.
+This document was the plan for getting there, and stays as the record of how
+each port was done. The sections on what must not be carried over from v1, on
+the engine changes the ports forced, and on the two listings that had to
+change are all still live guidance for anyone adding a fifth structure.
 
 ## What "not ported" means today
 
@@ -35,7 +37,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | `linked-list-insert-after`  | Linked List        | Yes    |
 | `linked-list-remove`        | Linked List        | Yes    |
 | `max-heap-push`             | Max Heap           | Yes    |
-| `max-heap-pop`              | Max Heap           | No     |
+| `max-heap-pop`              | Max Heap           | Yes    |
 | `binary-search-tree-insert` | Binary Search Tree | Yes    |
 | `binary-search-tree-remove` | Binary Search Tree | Yes    |
 
@@ -189,12 +191,16 @@ those two assignments on lines of their own, which is both what fits and what
 the algorithm is actually about: the run stops on `parent = node` and the
 reader sees why the scan keeps the node in front.
 
-The max heap's push listing hit the same wall and was resolved the same way.
-Its swap statement is long enough that a marker tips it over eighty columns,
-and prettier then breaks the destructuring swap across four lines. Renaming
-`nodeIndex` and `parentIndex` to `index` and `parent` brings every marked line
-inside the limit, and matches what the array's own listings already call these
-variables.
+The max heap's two listings hit the same wall and were resolved the same way.
+Their swap statements, and the two bound checks in `pop`, are long enough that
+a marker tips them over eighty columns, and prettier then breaks a
+destructuring swap across four lines and an `if` condition across three —
+which would leave a step highlighting a bare `if (`. Renaming `nodeIndex`,
+`parentIndex`, `nextIndex`, `leftIndex` and `rightIndex` to `index`, `parent`,
+`next`, `left` and `right` brings every marked line inside the limit, and
+matches what the array's own listings already call these variables. `pop` also
+names `heap.length - 1` as `last` rather than repeating it three times, which
+both fits and puts the slot being removed in the memory card.
 
 The general rule for a fifth structure: a listing line plus its marker has to
 fit in eighty columns, or prettier will reformat the listing underneath you.
@@ -303,9 +309,9 @@ per-frame step so that no single move runs longer than `MAX_MOVE_FRAMES`
 frames. Anything shorter than that is unchanged, so nothing that already
 existed moves differently, and an algorithm still never states a duration.
 
-## Order of work
+## The order it was done in
 
-Easiest to hardest, so each structure's conventions are settled before the
+Easiest to hardest, so each structure's conventions were settled before the
 algorithms that lean on them hardest:
 
 1. **Remaining array algorithms** — all done. The two recursive ones went
@@ -317,10 +323,9 @@ algorithms that lean on them hardest:
    sidebar operations, then insert and remove.
 3. **Linked list** — done: the structure, its four operations, then its three
    algorithms.
-4. **Max heap** — the structure with its dual view, its three sidebar
-   operations and push are done; pop is what is left.
+4. **Max heap** — the structure with its dual view, then push and pop.
 
-Each algorithm is its own commit, and the explore page gains one working Run
+Each algorithm was its own commit, and the explore page gained one working Run
 button per commit.
 
 ## Verifying a port
