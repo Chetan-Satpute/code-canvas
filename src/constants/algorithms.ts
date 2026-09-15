@@ -7,6 +7,7 @@ import { arrayQuickSort } from '#engine/algorithms/array/quick-sort.ts';
 import { arrayRemoveValue } from '#engine/algorithms/array/remove-value.ts';
 import { binarySearchTreeInsert } from '#engine/algorithms/binary-search-tree/insert.ts';
 import { binarySearchTreeRemove } from '#engine/algorithms/binary-search-tree/remove.ts';
+import { linkedListInsertHead } from '#engine/algorithms/linked-list/insert-head.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
 
@@ -127,6 +128,7 @@ const algorithms: Record<string, Algorithm> = {
       'Points a new node at the current head and makes it the head, so the list grows in constant time.',
     args: [{ name: 'value', placeholder: '42' }],
     listing: linkedListInsertHeadListing,
+    run: linkedListInsertHead,
   },
 
   'linked-list-insert-after': {

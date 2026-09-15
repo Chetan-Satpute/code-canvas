@@ -3,9 +3,9 @@
 The v2 engine runs every algorithm on two of the four structures: the array's
 six and the binary search tree's two. The catalog in
 `src/constants/algorithms.ts` lists thirteen algorithms across four
-structures, and the five that are not ported yet — the linked list's three
-and the max heap's two — appear on the explore page with their Run button
-disabled.
+structures, and the four that are not ported yet — the linked list's insert
+after and remove, and the max heap's two — appear on the explore page with
+their Run button disabled.
 
 This document is the plan for closing that gap. It is a living doc: as an
 algorithm lands, its row in the status table below is updated in the same
@@ -34,7 +34,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | `array-remove-value`        | Array              | Yes    |
 | `array-merge-sort`          | Array              | Yes    |
 | `array-quick-sort`          | Array              | Yes    |
-| `linked-list-insert-head`   | Linked List        | No     |
+| `linked-list-insert-head`   | Linked List        | Yes    |
 | `linked-list-insert-after`  | Linked List        | No     |
 | `linked-list-remove`        | Linked List        | No     |
 | `max-heap-push`             | Max Heap           | No     |
@@ -168,9 +168,9 @@ produces, so the listing now says `.fill(0)` and the canvas is honest.
 
 ### Linked list
 
-The structure and its four operations are done. `CoreLinkedListNode` holds a
-`CoreEdge` to its successor; the list lays out left to right at two
-node-widths of pitch, so there is room for the edge between cells. The `head` label is rewritten by `rearrange` on every layout,
+Done. `CoreLinkedListNode` holds a `CoreEdge` to its successor; the list lays
+out left to right at two node-widths of pitch, so there is room for the edge
+between cells. The `head` label is rewritten by `rearrange` on every layout,
 the way the array rewrites its indices and the tree its `root` — rather than
 v1's `setHead`, which cleared the old node's label by hand and left two heads
 labelled if the call was missed.
@@ -314,8 +314,8 @@ algorithms that lean on them hardest:
    followed.
 2. **Binary search tree** — done, taken out of order: the structure, its three
    sidebar operations, then insert and remove.
-3. **Linked list** — the structure and its four operations are done; its
-   three algorithms are what is left of it.
+3. **Linked list** — the structure, its four operations and insert at head
+   are done; insert after and remove are what is left of it.
 4. **Max heap** — the structure with its dual view, then push and pop.
 
 Each algorithm is its own commit, and the explore page gains one working Run
