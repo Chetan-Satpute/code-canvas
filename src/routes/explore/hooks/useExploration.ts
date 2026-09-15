@@ -5,10 +5,8 @@ import type { Algorithm } from '#constants/algorithms.ts';
 import type { Structure } from '#constants/structures.ts';
 import { CoreBoard } from '#engine/board.ts';
 import type { CoreStep } from '#engine/step.ts';
-import {
-  createRandomStructure,
-  isStructureImplemented,
-} from '#engine/structures/registry.ts';
+import { createRandomStructure } from '#engine/structures/registry.ts';
+import { isPlayable } from '#utils/algorithms.ts';
 import logger from '#utils/logger.ts';
 
 // One exploration session: the structure on the canvas, the edits applied to
@@ -116,7 +114,7 @@ export function useExploration(algorithm: Algorithm, structure: Structure) {
     callStack: step?.callStack ?? [],
     activeLine: step?.activeLine,
     isRunning: step !== null,
-    canRun: algorithm.run !== undefined && isStructureImplemented(structure.id),
+    canRun: isPlayable(algorithm),
     run,
     nextStep,
     stop,

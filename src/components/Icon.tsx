@@ -1,6 +1,8 @@
 import {
   ArrowLeft,
+  ArrowRight,
   Dot,
+  ExternalLink,
   LoaderCircle,
   Maximize,
   Minimize,
@@ -16,7 +18,9 @@ import cn from '#utils/cn.ts';
 // would pull in the entire icon set.
 const iconComponents = {
   'arrow-left': ArrowLeft,
+  'arrow-right': ArrowRight,
   dot: Dot,
+  'external-link': ExternalLink,
   'loader-circle': LoaderCircle,
   maximize: Maximize,
   minimize: Minimize,

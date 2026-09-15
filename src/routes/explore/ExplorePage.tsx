@@ -1,4 +1,5 @@
 import Card from '#components/Card.tsx';
+import VisualizationCanvas from '#components/VisualizationCanvas.tsx';
 import type { Algorithm } from '#constants/algorithms.ts';
 import { useAlgorithmId } from '#routes/router.ts';
 import { findAlgorithm, getStructure } from '#utils/algorithms.ts';
@@ -12,7 +13,6 @@ import ExploreHeader from './components/ExploreHeader.tsx';
 import MemoryCard from './components/MemoryCard.tsx';
 import PlayControls from './components/PlayControls.tsx';
 import StructureCard from './components/StructureCard.tsx';
-import VisualizationCanvas from './components/VisualizationCanvas.tsx';
 import { useExploration } from './hooks/useExploration.ts';
 
 /*

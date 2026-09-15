@@ -444,6 +444,13 @@ body {
   @apply bg-background;
 }
 
+/* In-page anchors on the landing page glide rather than jump. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /*
  * Scrollbars.
  *
