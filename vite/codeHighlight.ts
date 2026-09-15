@@ -3,7 +3,12 @@ import { createHighlighterCore, type HighlighterCore } from 'shiki/core';
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
 import type { Plugin } from 'vite';
 
-import type { CodeLine, CodePalette } from '../src/utils/code.ts';
+import type {
+  CodeAnchors,
+  CodeLine,
+  CodePalette,
+  Listing,
+} from '../src/utils/code.ts';
 
 const LANG = 'typescript';
 const THEME = 'tokyo-night';
@@ -37,6 +42,43 @@ function extractCode(markdown: string): string {
   const fenced = /```[a-zA-Z0-9-]*\s*([\s\S]*?)```/m.exec(markdown);
 
   return (fenced === null ? markdown : fenced[1]).trim();
+}
+
+// A `/*#name*/` marker names the line it sits on, so an algorithm can yield
+// `step('compare')` instead of a hand-counted line number. Stripped here,
+// before shiki tokenizes, so a marker never reaches the rendered listing and
+// the tokens are the same as if it had never been written.
+//
+// It leads the line rather than trailing it because prettier formats code
+// inside markdown fences, and it moves a trailing comment off any line ending
+// in `{` onto the next one — which would silently shift the anchor to the
+// wrong line. A leading block comment it leaves alone.
+const ANCHOR_PATTERN = /\/\*#([A-Za-z][\w-]*)\*\/ ?/g;
+
+function extractAnchors(code: string): { code: string; anchors: CodeAnchors } {
+  const anchors: CodeAnchors = {};
+
+  const lines = code.split('\n').map((line, index) => {
+    const names = [...line.matchAll(ANCHOR_PATTERN)].map((match) => match[1]);
+    if (names.length === 0) return line;
+
+    // Both a line with two names and a name on two lines leave it ambiguous
+    // which line a step means, and the author would never see which won — so
+    // fail the build rather than pick one.
+    if (names.length > 1)
+      throw new Error(`Listing names one line '${names.join("' and '")}'`);
+
+    const [name] = names;
+    if (Object.hasOwn(anchors, name))
+      throw new Error(`Listing names '${name}' on more than one line`);
+
+    // 1-based, as the code card's gutter counts.
+    anchors[name] = index + 1;
+
+    return line.replace(ANCHOR_PATTERN, '').trimEnd();
+  });
+
+  return { code: lines.join('\n'), anchors };
 }
 
 function toLines(highlighter: HighlighterCore, code: string): CodeLine[] {
@@ -124,10 +166,16 @@ function codeHighlight(): Plugin {
       // read here — the bundler never sees it as an input of its own.
       this.addWatchFile(file);
 
-      const code = extractCode(await fs.readFile(file, 'utf8'));
-      const lines = toLines(await getHighlighter(), code);
+      const { code, anchors } = extractAnchors(
+        extractCode(await fs.readFile(file, 'utf8')),
+      );
 
-      return `export default ${JSON.stringify(lines)};`;
+      const listing: Listing = {
+        lines: toLines(await getHighlighter(), code),
+        anchors,
+      };
+
+      return `export default ${JSON.stringify(listing)};`;
     },
   };
 }

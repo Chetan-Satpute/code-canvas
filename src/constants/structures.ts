@@ -1,3 +1,11 @@
+import type { OperationRunner } from '#engine/algorithm.ts';
+import {
+  insertIntoArray,
+  randomizeArray,
+  removeFromArray,
+  sortArray,
+} from '#engine/structures/array/operations.ts';
+
 export interface StructureOperationArgument {
   name: string;
   placeholder?: string;
@@ -9,6 +17,8 @@ export interface StructureOperation {
   id: string;
   label: string;
   args: StructureOperationArgument[];
+  // Absent until the structure is ported to the engine.
+  apply?: OperationRunner;
 }
 
 export interface Structure {
@@ -28,8 +38,8 @@ const structures: Record<StructureId, Structure> = {
     description:
       'A fixed-size collection of elements stored in order, where each element is reached directly by its index.',
     operations: [
-      { id: 'randomize', label: 'Randomize', args: [] },
-      { id: 'sort', label: 'Sort', args: [] },
+      { id: 'randomize', label: 'Randomize', args: [], apply: randomizeArray },
+      { id: 'sort', label: 'Sort', args: [], apply: sortArray },
       {
         id: 'insert',
         label: 'Insert',
@@ -37,11 +47,13 @@ const structures: Record<StructureId, Structure> = {
           { name: 'index', placeholder: '2' },
           { name: 'value', placeholder: '42' },
         ],
+        apply: insertIntoArray,
       },
       {
         id: 'remove',
         label: 'Remove',
         args: [{ name: 'index', placeholder: '2' }],
+        apply: removeFromArray,
       },
     ],
   },

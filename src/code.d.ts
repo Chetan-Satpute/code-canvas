@@ -4,9 +4,9 @@
 // new ones.
 
 declare module '*.md?highlight' {
-  const lines: import('#utils/code.ts').CodeLine[];
+  const listing: import('#utils/code.ts').Listing;
 
-  export default lines;
+  export default listing;
 }
 
 declare module 'virtual:code-theme' {

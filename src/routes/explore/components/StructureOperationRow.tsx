@@ -7,11 +7,13 @@ import type { StructureOperationArgument } from '#constants/structures.ts';
 interface StructureOperationRowProps {
   label: string;
   args: StructureOperationArgument[];
+  // False while the structure has no engine implementation yet.
+  applicable: boolean;
   onSubmit: (values: Record<string, string>) => void;
 }
 
 function StructureOperationRow(props: StructureOperationRowProps) {
-  const { label, args, onSubmit } = props;
+  const { label, args, applicable, onSubmit } = props;
 
   const [values, setValues] = useState<Record<string, string>>({});
 
@@ -31,7 +33,12 @@ function StructureOperationRow(props: StructureOperationRowProps) {
           {label}
         </span>
 
-        <Button variant="outline" size="sm" onClick={handleApply}>
+        <Button
+          variant="outline"
+          size="sm"
+          disabled={!applicable}
+          onClick={handleApply}
+        >
           Apply
         </Button>
       </div>

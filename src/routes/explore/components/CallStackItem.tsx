@@ -1,8 +1,7 @@
 import CodeTokens from '#components/CodeTokens.tsx';
+import type { CallStackFrame } from '#engine/step.ts';
 import cn from '#utils/cn.ts';
 import { highlightSignature } from '#utils/signature.ts';
-
-import type { CallStackFrame } from './CallStackCard.tsx';
 
 interface CallStackItemProps {
   frame: CallStackFrame;

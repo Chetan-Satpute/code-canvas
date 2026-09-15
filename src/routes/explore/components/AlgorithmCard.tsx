@@ -10,11 +10,13 @@ interface AlgorithmCardProps {
   title: string;
   description: string;
   args: AlgorithmArgument[];
+  // False while the algorithm has no engine implementation yet.
+  runnable: boolean;
   onRun: (values: Record<string, string>) => void;
 }
 
 function AlgorithmCard(props: AlgorithmCardProps) {
-  const { title, description, args, onRun } = props;
+  const { title, description, args, runnable, onRun } = props;
 
   const [values, setValues] = useState<Record<string, string>>({});
 
@@ -44,9 +46,17 @@ function AlgorithmCard(props: AlgorithmCardProps) {
         </div>
 
         {/* Outside the scrolling arguments, so Run stays reachable however
-            long the list gets. */}
-        <div className="border-border flex shrink-0 border-t p-5">
-          <Button className="flex-1" onClick={handleRun}>
+            long the list gets. The column stretches the button to full width
+            on its own — a flex-1 here would give it a zero basis on the
+            column's axis instead, collapsing its height onto its text. */}
+        <div className="border-border flex shrink-0 flex-col gap-3 border-t p-5">
+          {!runnable && (
+            <p className="text-muted-foreground font-en text-sm">
+              This algorithm is not playable yet.
+            </p>
+          )}
+
+          <Button disabled={!runnable} onClick={handleRun}>
             <Icon name="play" />
             Run
           </Button>

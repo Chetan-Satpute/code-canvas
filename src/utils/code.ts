@@ -14,6 +14,17 @@ export interface CodeToken {
 // The tokens of a single line, in order. An empty line has no tokens.
 export type CodeLine = CodeToken[];
 
+// Named lines of a listing, mapped to 1-based line numbers the way the code
+// card's gutter counts. An algorithm yields `step('compare')` rather than a
+// hand-counted number, so editing a listing cannot silently point a step at
+// the wrong line.
+export type CodeAnchors = Record<string, number>;
+
+export interface Listing {
+  lines: CodeLine[];
+  anchors: CodeAnchors;
+}
+
 // The few theme colors needed to highlight code that only exists at runtime.
 // Extracted from the theme at build time rather than written down, so it
 // cannot drift from the listings.

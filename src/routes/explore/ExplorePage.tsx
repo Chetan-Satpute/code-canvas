@@ -1,6 +1,5 @@
-import { useState } from 'react';
-
 import Card from '#components/Card.tsx';
+import type { Algorithm } from '#constants/algorithms.ts';
 import { useAlgorithmId } from '#routes/router.ts';
 import { findAlgorithm, getStructure } from '#utils/algorithms.ts';
 import cn from '#utils/cn.ts';
@@ -14,7 +13,7 @@ import MemoryCard from './components/MemoryCard.tsx';
 import PlayControls from './components/PlayControls.tsx';
 import StructureCard from './components/StructureCard.tsx';
 import VisualizationCanvas from './components/VisualizationCanvas.tsx';
-import { buildPlaceholderCallStack } from './utils/placeholderCallStack.ts';
+import { useExploration } from './hooks/useExploration.ts';
 
 /*
  * Both modes use one grid, so switching between them never moves the canvas.
@@ -49,47 +48,38 @@ const sidebarClasses =
 function ExplorePage() {
   const algorithmId = useAlgorithmId();
 
-  // The arguments a run was started with, and null while none is in flight —
-  // so they double as the setup/exploration switch.
-  const [runArguments, setRunArguments] = useState<Record<
-    string,
-    string
-  > | null>(null);
-
-  // The line the code card marks as current, numbered from 1.
-  const [activeLine, setActiveLine] = useState(1);
-
   const algorithm = findAlgorithm(algorithmId);
 
   if (algorithm === null)
     return <AlgorithmNotFound algorithmId={algorithmId} />;
 
+  // Keyed by structure so moving to an algorithm of another structure
+  // starts a fresh one, while moving within a structure keeps it.
+  return <Exploration key={algorithm.structureId} algorithm={algorithm} />;
+}
+
+interface ExplorationProps {
+  algorithm: Algorithm;
+}
+
+// Split from the route component so the exploration hook is never called
+// conditionally — an unknown id returns before this renders at all.
+function Exploration(props: ExplorationProps) {
+  const { algorithm } = props;
+
   const structure = getStructure(algorithm);
 
-  const handleRun = (values: Record<string, string>) => {
-    setRunArguments(values);
-    setActiveLine(1);
-  };
-
-  const handleStop = () => {
-    setRunArguments(null);
-  };
-
-  // The execution engine will say which line comes next. Until it does,
-  // stepping walks the listing from the top and wraps at the end, which is
-  // enough to watch the highlight follow along.
-  const handleNextStep = () => {
-    setActiveLine((line) => (line % algorithm.code.length) + 1);
-  };
-
-  // Structure edits are wired to the execution engine in a later change; the
-  // layout only needs the handler to exist.
-  const handleStructureOperation = () => {};
-
-  const frames =
-    runArguments === null
-      ? []
-      : buildPlaceholderCallStack(algorithm, runArguments);
+  const {
+    frames,
+    callStack,
+    activeLine,
+    isRunning,
+    canRun,
+    run,
+    nextStep,
+    stop,
+    applyOperation,
+  } = useExploration(algorithm, structure);
 
   return (
     <div className="bg-background text-foreground flex h-dvh flex-col">
@@ -100,11 +90,11 @@ function ExplorePage() {
             remounts the canvas. */}
         <div className={canvasClasses}>
           <Card padded={false}>
-            <VisualizationCanvas />
+            <VisualizationCanvas frames={frames} />
           </Card>
         </div>
 
-        {runArguments === null ? (
+        {!isRunning ? (
           <>
             <div className={sidebarClasses}>
               {/* The wrapper's auto height pins the card to its content —
@@ -117,7 +107,8 @@ function ExplorePage() {
                   title={algorithm.title}
                   description={algorithm.description}
                   args={algorithm.args}
-                  onRun={handleRun}
+                  runnable={canRun}
+                  onRun={run}
                 />
               </div>
 
@@ -128,28 +119,31 @@ function ExplorePage() {
                   title={structure.title}
                   description={structure.description}
                   operations={structure.operations}
-                  onSubmit={handleStructureOperation}
+                  onSubmit={applyOperation}
                 />
               </div>
             </div>
 
             <div className={underCanvasClasses}>
-              <CodeCard lines={algorithm.code} />
+              <CodeCard lines={algorithm.listing.lines} />
             </div>
           </>
         ) : (
           <>
             <div className={sidebarClasses}>
-              <PlayControls onNextStep={handleNextStep} onStop={handleStop} />
+              <PlayControls onNextStep={nextStep} onStop={stop} />
 
               <div className="lg:min-h-0 lg:flex-1">
-                <CodeCard lines={algorithm.code} activeLine={activeLine} />
+                <CodeCard
+                  lines={algorithm.listing.lines}
+                  activeLine={activeLine}
+                />
               </div>
             </div>
 
             <div className={cn(underCanvasClasses, stackAndMemoryClasses)}>
-              <CallStackCard frames={frames} />
-              <MemoryCard variables={frames[0]?.variables ?? []} />
+              <CallStackCard frames={callStack} />
+              <MemoryCard variables={callStack[0]?.variables ?? []} />
             </div>
           </>
         )}

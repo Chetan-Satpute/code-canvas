@@ -23,6 +23,7 @@ function StructureCard(props: StructureCardProps) {
             key={operation.id}
             label={operation.label}
             args={operation.args}
+            applicable={operation.apply !== undefined}
             onSubmit={(values) => onSubmit(operation.id, values)}
           />
         ))}

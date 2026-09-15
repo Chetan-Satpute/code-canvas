@@ -1,12 +1,10 @@
 import Card from '#components/Card.tsx';
-
-export interface MemoryVariable {
-  name: string;
-  value: string;
-}
+import CodeTokens from '#components/CodeTokens.tsx';
+import { type CoreVariable, formatCoreValue } from '#engine/value.ts';
+import { highlightSignature } from '#utils/signature.ts';
 
 interface MemoryCardProps {
-  variables: MemoryVariable[];
+  variables: CoreVariable[];
 }
 
 // The variables of the frame the run is currently inside — the one the call
@@ -32,8 +30,12 @@ function MemoryCard(props: MemoryCardProps) {
                   {variable.name}
                 </dt>
 
-                <dd className="font-code text-card-foreground min-w-0 text-right text-sm break-all">
-                  {variable.value}
+                {/* Painted from the same palette as the listing above, so a
+                    number here is the color it is there. */}
+                <dd className="font-code min-w-0 text-right text-sm break-all">
+                  <CodeTokens
+                    tokens={highlightSignature(formatCoreValue(variable.value))}
+                  />
                 </dd>
               </div>
             ))}

@@ -1,13 +1,7 @@
 import Card from '#components/Card.tsx';
+import type { CallStackFrame } from '#engine/step.ts';
 
 import CallStackItem from './CallStackItem.tsx';
-import type { MemoryVariable } from './MemoryCard.tsx';
-
-export interface CallStackFrame {
-  id: string;
-  signature: string;
-  variables?: MemoryVariable[];
-}
 
 interface CallStackCardProps {
   frames: CallStackFrame[];
