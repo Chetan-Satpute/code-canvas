@@ -20,12 +20,16 @@ interface TextInputProps {
 const inputBaseClasses =
   'bg-surface-2 text-foreground font-en rounded-lg border px-3 py-2 text-sm outline-none focus:ring-3';
 
-// A rejected field keeps its red border through focus, so focusing it to fix
-// the value does not make the marking disappear before it is fixed.
+// A rejected field carries the same ring the design system gives focus, not
+// just a recolored border: a 1px hairline on a dark card is easy to miss when
+// the eye is on the control that was just pressed.
+//
+// It keeps the ring through focus too, so focusing the field to fix the value
+// does not make the marking disappear before it is fixed.
 const inputStateClasses = {
   valid: 'border-input focus:border-ring focus:ring-ring/45',
   invalid:
-    'border-destructive focus:border-destructive focus:ring-destructive/45',
+    'border-destructive ring-3 ring-destructive/45 focus:border-destructive focus:ring-destructive/45',
 };
 
 function TextInput(props: TextInputProps) {
