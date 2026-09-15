@@ -1,23 +1,20 @@
 import { NODE_WIDTH } from '#canvas/elements/node.ts';
+import { parseArgument } from '#utils/argument.ts';
 import { randomNumber, randomNumberArray } from '#utils/random.ts';
 
 import { animateMoveMany, appear, disappear } from '../../animation.ts';
 import { CoreNode } from '../../elements/node.ts';
 import { defineArrayOperation } from './algorithm.ts';
 
-// An index the user typed. Out of range is ordinary — the field is free text
-// — so it is clamped rather than refused, which is what v1 did too.
+// An index the user typed. Whether it is a whole number at all is settled by
+// `parseArgument`; being out of range is ordinary — the bound depends on the
+// array's current length, which the form does not know — so it is clamped
+// rather than refused, as v1 did.
 function clampIndex(value: string, max: number): number | null {
-  const index = Number(value);
-  if (!Number.isInteger(index)) return null;
+  const index = parseArgument(value, 'integer');
+  if (index === null) return null;
 
   return Math.min(Math.max(index, 0), max);
-}
-
-function parseValue(value: string): number | null {
-  const parsed = Number(value);
-
-  return Number.isFinite(parsed) ? parsed : null;
 }
 
 export const randomizeArray = defineArrayOperation({
@@ -40,7 +37,7 @@ export const sortArray = defineArrayOperation({
 
 export const insertIntoArray = defineArrayOperation({
   parseArgs: (values) => {
-    const value = parseValue(values.value ?? '');
+    const value = parseArgument(values.value ?? '');
     if (value === null) return null;
 
     return { index: values.index ?? '', value };

@@ -5,10 +5,13 @@ import {
   removeFromArray,
   sortArray,
 } from '#engine/structures/array/operations.ts';
+import type { ArgumentKind } from '#utils/argument.ts';
 
 export interface StructureOperationArgument {
   name: string;
   placeholder?: string;
+  // Defaults to any finite number.
+  kind?: ArgumentKind;
 }
 
 // An edit the user can apply to the structure from the explore sidebar,
@@ -44,7 +47,7 @@ const structures: Record<StructureId, Structure> = {
         id: 'insert',
         label: 'Insert',
         args: [
-          { name: 'index', placeholder: '2' },
+          { name: 'index', placeholder: '2', kind: 'integer' },
           { name: 'value', placeholder: '42' },
         ],
         apply: insertIntoArray,
@@ -52,7 +55,7 @@ const structures: Record<StructureId, Structure> = {
       {
         id: 'remove',
         label: 'Remove',
-        args: [{ name: 'index', placeholder: '2' }],
+        args: [{ name: 'index', placeholder: '2', kind: 'integer' }],
         apply: removeFromArray,
       },
     ],

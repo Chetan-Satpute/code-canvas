@@ -5,6 +5,7 @@ import Card from '#components/Card.tsx';
 import Icon from '#components/Icon.tsx';
 import TextInput from '#components/TextInput.tsx';
 import type { AlgorithmArgument } from '#constants/algorithms.ts';
+import { invalidArguments, parseArgument } from '#utils/argument.ts';
 
 interface AlgorithmCardProps {
   title: string;
@@ -20,11 +21,27 @@ function AlgorithmCard(props: AlgorithmCardProps) {
 
   const [values, setValues] = useState<Record<string, string>>({});
 
+  // Named after the arguments a Run could not use. Only a submission adds to
+  // it, so a field being typed into is never marked mid-keystroke.
+  const [invalid, setInvalid] = useState<string[]>([]);
+
   const handleChange = (name: string, value: string) => {
     setValues((current) => ({ ...current, [name]: value }));
+
+    const kind = args.find((argument) => argument.name === name)?.kind;
+
+    // Clears as soon as the value reads as valid, rather than waiting for the
+    // next Run to say so.
+    if (parseArgument(value, kind) !== null)
+      setInvalid((current) => current.filter((entry) => entry !== name));
   };
 
   const handleRun = () => {
+    const rejected = invalidArguments(args, values);
+    setInvalid(rejected);
+
+    if (rejected.length > 0) return;
+
     onRun(values);
   };
 
@@ -41,6 +58,7 @@ function AlgorithmCard(props: AlgorithmCardProps) {
               value={values[argument.name] ?? ''}
               onChange={(value) => handleChange(argument.name, value)}
               placeholder={argument.placeholder}
+              invalid={invalid.includes(argument.name)}
             />
           ))}
         </div>

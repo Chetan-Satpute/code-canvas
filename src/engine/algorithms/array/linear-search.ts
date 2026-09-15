@@ -1,12 +1,14 @@
+import { parseArgument } from '#utils/argument.ts';
+
 import { defineArrayAlgorithm } from '../../structures/array/algorithm.ts';
 
 // The listing this plays against is `constants/code/array-linear-search.md`,
 // whose lines are named by the `//#` markers the build strips out.
 export const arrayLinearSearch = defineArrayAlgorithm({
   parseArgs: (values) => {
-    const target = Number(values.target);
+    const target = parseArgument(values.target ?? '');
 
-    return Number.isFinite(target) ? { target } : null;
+    return target === null ? null : { target };
   },
 
   play: function* ({ board, structure: array, args, step }) {

@@ -1,5 +1,6 @@
 import type { AlgorithmRunner } from '#engine/algorithm.ts';
 import { arrayLinearSearch } from '#engine/algorithms/array/linear-search.ts';
+import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
 
 import binarySearchListing from './code/array-binary-search.md?highlight';
@@ -20,6 +21,8 @@ import type { StructureId } from './structures.ts';
 export interface AlgorithmArgument {
   name: string;
   placeholder?: string;
+  // Defaults to any finite number.
+  kind?: ArgumentKind;
 }
 
 export interface Algorithm {
@@ -88,7 +91,7 @@ const algorithms: Record<string, Algorithm> = {
     description:
       'Makes room at an index by copying every later element one place along, then writes the new value.',
     args: [
-      { name: 'index', placeholder: '2' },
+      { name: 'index', placeholder: '2', kind: 'integer' },
       { name: 'value', placeholder: '42' },
     ],
     listing: arrayInsertValueListing,
@@ -100,7 +103,7 @@ const algorithms: Record<string, Algorithm> = {
     title: 'Remove Value',
     description:
       'Closes the gap left at an index by shifting every later element one place back, then drops the last slot.',
-    args: [{ name: 'index', placeholder: '2' }],
+    args: [{ name: 'index', placeholder: '2', kind: 'integer' }],
     listing: arrayRemoveValueListing,
   },
 

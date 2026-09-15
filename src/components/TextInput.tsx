@@ -12,13 +12,31 @@ interface TextInputProps {
   onChange: (value: string) => void;
   placeholder?: string;
   layout?: TextInputLayout;
+  // Marks the field as rejected. Set when a submission could not use the
+  // value, and cleared as soon as it reads as valid again.
+  invalid?: boolean;
 }
 
 const inputBaseClasses =
-  'bg-surface-2 border-input text-foreground font-en focus:border-ring focus:ring-ring/45 rounded-lg border px-3 py-2 text-sm outline-none focus:ring-3';
+  'bg-surface-2 text-foreground font-en rounded-lg border px-3 py-2 text-sm outline-none focus:ring-3';
+
+// A rejected field keeps its red border through focus, so focusing it to fix
+// the value does not make the marking disappear before it is fixed.
+const inputStateClasses = {
+  valid: 'border-input focus:border-ring focus:ring-ring/45',
+  invalid:
+    'border-destructive focus:border-destructive focus:ring-destructive/45',
+};
 
 function TextInput(props: TextInputProps) {
-  const { label, value, onChange, placeholder, layout = 'stacked' } = props;
+  const {
+    label,
+    value,
+    onChange,
+    placeholder,
+    layout = 'stacked',
+    invalid = false,
+  } = props;
   const id = useId();
 
   const inline = layout === 'inline';
@@ -37,6 +55,7 @@ function TextInput(props: TextInputProps) {
   // min-w-0 keeps the field from forcing the inline row wider than the card.
   const inputClasses = cn(
     inputBaseClasses,
+    inputStateClasses[invalid ? 'invalid' : 'valid'],
     inline ? 'min-w-0 flex-1' : 'w-full',
   );
 
@@ -51,6 +70,7 @@ function TextInput(props: TextInputProps) {
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
+        aria-invalid={invalid}
       />
     </div>
   );
