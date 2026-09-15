@@ -16,6 +16,11 @@ import {
   randomizeLinkedList,
   removeFromLinkedList,
 } from '#engine/structures/linked-list/operations.ts';
+import {
+  popFromMaxHeap,
+  pushOntoMaxHeap,
+  randomizeMaxHeap,
+} from '#engine/structures/max-heap/operations.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 
 export interface StructureOperationArgument {
@@ -141,13 +146,19 @@ const structures: Record<StructureId, Structure> = {
     description:
       'A complete binary tree where every node is greater than or equal to its children, so the maximum sits at the root.',
     operations: [
-      { id: 'randomize', label: 'Randomize', args: [] },
+      {
+        id: 'randomize',
+        label: 'Randomize',
+        args: [],
+        apply: randomizeMaxHeap,
+      },
       {
         id: 'push',
         label: 'Push',
         args: [{ name: 'value', placeholder: '42' }],
+        apply: pushOntoMaxHeap,
       },
-      { id: 'pop', label: 'Pop', args: [] },
+      { id: 'pop', label: 'Pop', args: [], apply: popFromMaxHeap },
     ],
   },
 };

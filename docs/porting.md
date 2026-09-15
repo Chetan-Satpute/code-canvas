@@ -45,7 +45,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | ------------------ | ------ |
 | Array              | Yes    |
 | Linked List        | Yes    |
-| Max Heap           | No     |
+| Max Heap           | Yes    |
 | Binary Search Tree | Yes    |
 
 ## v1 is the reference
@@ -193,20 +193,37 @@ reader sees why the scan keeps the node in front.
 
 ### Max heap
 
-The heap draws the same values twice: an indexed array row and the tree it
-represents, with `CoreMaxHeapNode` pairing one `CoreNode` with one tree node so
-the two views never drift. Both views need the same name label, at different
-positions.
+The structure and its three sidebar operations are done. The heap draws
+the same values twice: an indexed array row and the tree
+it represents, with `CoreMaxHeapNode` pairing one `CoreNode` with one tree
+node. Everything that says something about a value — its colour, its cursor
+name, its opacity — is set through the pair rather than on either node, which
+is what keeps the two views from drifting. Both carry the same name label, at
+different positions.
 
-Tree layout is an in-order walk assigning x one node-width at a time and y by
-depth, which is also what the binary search tree does. It gives every node a
-distinct column and no crossings, without measuring subtree widths.
+The tree is derived from the array rather than maintained beside it: `link()`
+wires the children of slot `i` to slots `2i + 1` and `2i + 2`, and is re-run
+after every mutation. That relation is the whole of what makes an array a
+heap, so there is no second structure to keep in step. Layout is the same
+in-order walk the binary search tree uses — a column at a time, a row per
+depth — three rows below the array, which leaves the array's cursors a row of
+their own and the tree's `top` label a row of its own.
 
-One decision to make rather than inherit: v1's `swapValues` swaps the numbers
-between two nodes and leaves both nodes where they are. That is a recolor, and
-a sift-up that only recolors does not show the reader a value climbing the
-heap. v2 should swap the nodes and animate them past each other. This is the
-one place the port is expected to diverge from v1's behaviour.
+**How a swap is drawn, and why only half of it moves.** The plan here was to
+diverge from v1, whose `swapValues` swapped the numbers between two nodes and
+left both standing: that is a recolor, and a sift that only recolors does not
+show a value climbing the heap. In the array row that is what
+`structures/max-heap/swap.ts` does — the two nodes leave the row in opposite
+directions, cross, and drop back in, the route quick sort uses and for the
+same reason.
+
+The tree was built the same way at first and it was wrong on screen. Moving
+two tree nodes past each other drags every edge that touches them out of shape
+for the length of the move, so the tree reads as coming apart rather than as
+two values swapping. There the two values simply trade places. The lesson is
+narrower than "animate structural mutations": what is worth animating is
+movement the reader can follow, and in a view whose every node is tied to its
+neighbours by an edge, a moving node takes the whole picture with it.
 
 ### Binary search tree
 
@@ -292,8 +309,8 @@ algorithms that lean on them hardest:
    sidebar operations, then insert and remove.
 3. **Linked list** — done: the structure, its four operations, then its three
    algorithms.
-4. **Max heap** — the structure with its dual view, then push and pop. All
-   that is left.
+4. **Max heap** — the structure with its dual view and its three sidebar
+   operations are done; push and pop are what is left.
 
 Each algorithm is its own commit, and the explore page gains one working Run
 button per commit.

@@ -23,3 +23,35 @@ export function uniqueRandomNumberArray(length: number): number[] {
 
   return [...values];
 }
+
+// Values already satisfying the max-heap property, so a random heap is one
+// the structure's own operations could have built. Sifting each parent down,
+// deepest first, is the standard bottom-up construction.
+export function randomMaxHeapArray(length: number): number[] {
+  const values = randomNumberArray(length);
+
+  const siftDown = (from: number) => {
+    let index = from;
+
+    for (;;) {
+      const left = 2 * index + 1;
+      const right = 2 * index + 2;
+      let largest = index;
+
+      if (left < values.length && values[left] > values[largest])
+        largest = left;
+      if (right < values.length && values[right] > values[largest])
+        largest = right;
+
+      if (largest === index) return;
+
+      [values[index], values[largest]] = [values[largest], values[index]];
+      index = largest;
+    }
+  };
+
+  for (let index = Math.floor(length / 2) - 1; index >= 0; index--)
+    siftDown(index);
+
+  return values;
+}

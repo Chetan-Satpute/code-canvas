@@ -6,6 +6,8 @@ import { fillRandomly as fillTree } from './binary-search-tree/operations.ts';
 import { CoreBinarySearchTree } from './binary-search-tree/structure.ts';
 import { fillRandomly as fillLinkedList } from './linked-list/operations.ts';
 import { CoreLinkedList } from './linked-list/structure.ts';
+import { fillRandomly as fillHeap } from './max-heap/operations.ts';
+import { CoreMaxHeap } from './max-heap/structure.ts';
 
 // Structures the engine can build. The catalog lists four; the ones missing
 // here are not ported yet, and the explore page disables their controls
@@ -35,6 +37,20 @@ const randomStructures: Record<string, () => CoreStructure> = {
     list.rearrange();
 
     return list;
+  },
+
+  'max-heap': () => {
+    const heap = new CoreMaxHeap();
+
+    fillHeap(heap);
+
+    // Named on creation for the same reason the array is: the listings call
+    // it `heap`, and a label that appeared when a run started would outlive
+    // it.
+    heap.setName('heap');
+    heap.rearrange();
+
+    return heap;
   },
 
   'binary-search-tree': () => {
