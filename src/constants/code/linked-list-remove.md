@@ -1,25 +1,29 @@
 ```ts
-function remove(list: LinkedList, target: number) {
-  if (list.head === null) {
-    return;
+/*#enter*/ function remove(list: LinkedList, target: number) {
+  /*#emptyCheck*/ if (list.head === null) {
+    /*#emptyReturn*/ return;
   }
 
-  if (list.head.value === target) {
-    list.head = list.head.next;
+  /*#headCheck*/ if (list.head.value === target) {
+    /*#unlinkHead*/ list.head = list.head.next;
 
-    return;
+    /*#headReturn*/ return;
   }
 
-  let parent = list.head;
+  /*#parent*/ let parent = list.head;
+  /*#node*/ let node = list.head.next;
 
-  for (let node = list.head.next; node; parent = node, node = node.next) {
-    if (node.value === target) {
-      parent.next = node.next;
+  /*#loop*/ while (node) {
+    /*#compare*/ if (node.value === target) {
+      /*#unlink*/ parent.next = node.next;
 
-      return;
+      /*#foundReturn*/ return;
     }
+
+    /*#advanceParent*/ parent = node;
+    /*#advanceNode*/ node = node.next;
   }
 
-  return;
-}
+  /*#return*/ return;
+} /*#exit*/
 ```

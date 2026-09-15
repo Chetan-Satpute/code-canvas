@@ -9,6 +9,7 @@ import { binarySearchTreeInsert } from '#engine/algorithms/binary-search-tree/in
 import { binarySearchTreeRemove } from '#engine/algorithms/binary-search-tree/remove.ts';
 import { linkedListInsertAfter } from '#engine/algorithms/linked-list/insert-after.ts';
 import { linkedListInsertHead } from '#engine/algorithms/linked-list/insert-head.ts';
+import { linkedListRemove } from '#engine/algorithms/linked-list/remove.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
 
@@ -154,6 +155,7 @@ const algorithms: Record<string, Algorithm> = {
       'Keeps a reference to the previous node while scanning, so the match can be unlinked by pointing past it.',
     args: [{ name: 'target', placeholder: '13' }],
     listing: linkedListRemoveListing,
+    run: linkedListRemove,
   },
 
   'binary-search-tree-insert': {

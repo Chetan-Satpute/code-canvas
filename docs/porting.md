@@ -1,11 +1,10 @@
 # Porting the remaining algorithms
 
-The v2 engine runs every algorithm on two of the four structures: the array's
-six and the binary search tree's two. The catalog in
-`src/constants/algorithms.ts` lists thirteen algorithms across four
-structures, and the three that are not ported yet — the linked list's remove
-and the max heap's two — appear on the explore page with their Run button
-disabled.
+The v2 engine runs every algorithm on three of the four structures: the
+array's six, the binary search tree's two and the linked list's three. The
+catalog in `src/constants/algorithms.ts` lists thirteen algorithms across four
+structures, and the two that are not ported yet — the max heap's push and pop
+— appear on the explore page with their Run button disabled.
 
 This document is the plan for closing that gap. It is a living doc: as an
 algorithm lands, its row in the status table below is updated in the same
@@ -36,7 +35,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | `array-quick-sort`          | Array              | Yes    |
 | `linked-list-insert-head`   | Linked List        | Yes    |
 | `linked-list-insert-after`  | Linked List        | Yes    |
-| `linked-list-remove`        | Linked List        | No     |
+| `linked-list-remove`        | Linked List        | Yes    |
 | `max-heap-push`             | Max Heap           | No     |
 | `max-heap-pop`              | Max Heap           | No     |
 | `binary-search-tree-insert` | Binary Search Tree | Yes    |
@@ -181,35 +180,6 @@ link is assigned. It is staged a row below the slot it will take and floated
 on the board, then captured alongside the list so that it rises into the row
 in the same motion that opens the gap for it.
 
-## Porting one structure
-
-1. Subclass `CoreStructure<Data>` in `src/engine/structures/<name>/`,
-   implementing `toData`, `restore`, `serialize` and `rearrange`. v1's
-   `structure.tsx` for that structure holds the layout; the difference is that
-   v1's `fromData` was static and v2's `restore` mutates in place, so that
-   references held by the board and by a running algorithm stay valid.
-2. Export the binders: `algorithmFor(TheClass)` and `operationFor(TheClass)`.
-3. Write the sidebar operations in `operations.ts` and register them as
-   `apply` on `src/constants/structures.ts`. An operation is not stepped — it
-   mutates and returns, leaving its frames on the board.
-4. Register a random constructor in `src/engine/structures/registry.ts`, which
-   is also what tells the explore page the structure exists.
-
-### Linked list
-
-Done. `CoreLinkedListNode` holds a `CoreEdge` to its successor; the list lays
-out left to right at two node-widths of pitch, so there is room for the edge
-between cells. The `head` label is rewritten by `rearrange` on every layout,
-the way the array rewrites its indices and the tree its `root` — rather than
-v1's `setHead`, which cleared the old node's label by hand and left two heads
-labelled if the call was missed.
-
-A node that is about to join the list exists before it belongs to anything:
-the listings all write `const node = new LinkedListNode(value)` before any
-link is assigned. It is staged a row below the slot it will take and floated
-on the board, then captured alongside the list so that it rises into the row
-in the same motion that opens the gap for it.
-
 One listing changed, and not only to carry markers. The remove listing's
 `for (let node = list.head.next; node; parent = node, node = node.next)` is
 long enough that a marker pushes it past eighty columns, and prettier — which
@@ -320,9 +290,10 @@ algorithms that lean on them hardest:
    followed.
 2. **Binary search tree** — done, taken out of order: the structure, its three
    sidebar operations, then insert and remove.
-3. **Linked list** — the structure, its four operations and both inserts are
-   done; remove is what is left of it.
-4. **Max heap** — the structure with its dual view, then push and pop.
+3. **Linked list** — done: the structure, its four operations, then its three
+   algorithms.
+4. **Max heap** — the structure with its dual view, then push and pop. All
+   that is left.
 
 Each algorithm is its own commit, and the explore page gains one working Run
 button per commit.
