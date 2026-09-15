@@ -1,10 +1,8 @@
 # Porting the remaining algorithms
 
-The v2 engine runs every algorithm on three of the four structures: the
-array's six, the binary search tree's two and the linked list's three. The
-catalog in `src/constants/algorithms.ts` lists thirteen algorithms across four
-structures, and the two that are not ported yet — the max heap's push and pop
-— appear on the explore page with their Run button disabled.
+The v2 engine runs all but one algorithm in the catalog. The one left is the
+max heap's pop, which appears on the explore page with its Run button
+disabled; every other entry across the four structures plays.
 
 This document is the plan for closing that gap. It is a living doc: as an
 algorithm lands, its row in the status table below is updated in the same
@@ -36,7 +34,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | `linked-list-insert-head`   | Linked List        | Yes    |
 | `linked-list-insert-after`  | Linked List        | Yes    |
 | `linked-list-remove`        | Linked List        | Yes    |
-| `max-heap-push`             | Max Heap           | No     |
+| `max-heap-push`             | Max Heap           | Yes    |
 | `max-heap-pop`              | Max Heap           | No     |
 | `binary-search-tree-insert` | Binary Search Tree | Yes    |
 | `binary-search-tree-remove` | Binary Search Tree | Yes    |
@@ -191,10 +189,20 @@ those two assignments on lines of their own, which is both what fits and what
 the algorithm is actually about: the run stops on `parent = node` and the
 reader sees why the scan keeps the node in front.
 
+The max heap's push listing hit the same wall and was resolved the same way.
+Its swap statement is long enough that a marker tips it over eighty columns,
+and prettier then breaks the destructuring swap across four lines. Renaming
+`nodeIndex` and `parentIndex` to `index` and `parent` brings every marked line
+inside the limit, and matches what the array's own listings already call these
+variables.
+
+The general rule for a fifth structure: a listing line plus its marker has to
+fit in eighty columns, or prettier will reformat the listing underneath you.
+Check that before writing the generator, not after.
+
 ### Max heap
 
-The structure and its three sidebar operations are done. The heap draws
-the same values twice: an indexed array row and the tree
+Done. The heap draws the same values twice: an indexed array row and the tree
 it represents, with `CoreMaxHeapNode` pairing one `CoreNode` with one tree
 node. Everything that says something about a value — its colour, its cursor
 name, its opacity — is set through the pair rather than on either node, which
@@ -309,8 +317,8 @@ algorithms that lean on them hardest:
    sidebar operations, then insert and remove.
 3. **Linked list** — done: the structure, its four operations, then its three
    algorithms.
-4. **Max heap** — the structure with its dual view and its three sidebar
-   operations are done; push and pop are what is left.
+4. **Max heap** — the structure with its dual view, its three sidebar
+   operations and push are done; pop is what is left.
 
 Each algorithm is its own commit, and the explore page gains one working Run
 button per commit.

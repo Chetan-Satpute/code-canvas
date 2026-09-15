@@ -1,19 +1,19 @@
 ```ts
-function push(heap: number[], value: number) {
-  heap.push(value);
+/*#enter*/ function push(heap: number[], value: number) {
+  /*#append*/ heap.push(value);
 
-  for (let nodeIndex = heap.length - 1; nodeIndex > 0;) {
-    const parentIndex = Math.floor((nodeIndex - 1) / 2);
+  /*#loop*/ for (let index = heap.length - 1; index > 0;) {
+    /*#parent*/ const parent = Math.floor((index - 1) / 2);
 
-    if (heap[nodeIndex] <= heap[parentIndex]) {
-      break;
+    /*#compare*/ if (heap[index] <= heap[parent]) {
+      /*#stop*/ break;
     }
 
-    // Swap values at nodeIndex and parentIndex
-    [heap[nodeIndex], heap[parentIndex]] = [heap[parentIndex], heap[nodeIndex]];
-    nodeIndex = parentIndex;
+    // Swap values at index and parent
+    /*#swap*/ [heap[index], heap[parent]] = [heap[parent], heap[index]];
+    /*#climb*/ index = parent;
   }
 
-  return;
-}
+  /*#return*/ return;
+} /*#exit*/
 ```

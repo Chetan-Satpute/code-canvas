@@ -10,6 +10,7 @@ import { binarySearchTreeRemove } from '#engine/algorithms/binary-search-tree/re
 import { linkedListInsertAfter } from '#engine/algorithms/linked-list/insert-after.ts';
 import { linkedListInsertHead } from '#engine/algorithms/linked-list/insert-head.ts';
 import { linkedListRemove } from '#engine/algorithms/linked-list/remove.ts';
+import { maxHeapPush } from '#engine/algorithms/max-heap/push.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
 
@@ -188,6 +189,7 @@ const algorithms: Record<string, Algorithm> = {
       'Appends the value at the end, then swaps it upwards past any smaller parent until the heap order holds.',
     args: [{ name: 'value', placeholder: '42' }],
     listing: heapPushListing,
+    run: maxHeapPush,
   },
 
   'max-heap-pop': {
