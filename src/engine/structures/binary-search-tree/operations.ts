@@ -1,63 +1,13 @@
 import { parseArgument } from '#utils/argument.ts';
 import { randomNumber, uniqueRandomNumberArray } from '#utils/random.ts';
 
-import { animateMoveMany, appear, disappear } from '../../animation.ts';
-import type { CoreBoard } from '../../board.ts';
+import { appear, disappear } from '../../animation.ts';
 import { defineBinarySearchTreeOperation } from './algorithm.ts';
-import type { CoreBinarySearchTreeNode } from './structure.ts';
-import { CoreBinarySearchTree } from './structure.ts';
+import { positions, relayout } from './layout.ts';
+import type { CoreBinarySearchTree } from './structure.ts';
 
 export const NODE_COUNT_MIN = 4;
 export const NODE_COUNT_MAX = 8;
-
-interface Position {
-  x: number;
-  y: number;
-}
-
-// Where every node currently is. A tree's layout is derived from the whole
-// tree — a node's column is its in-order position and its row is its depth —
-// so an edit anywhere moves nodes it never touched. Capturing the positions
-// first and animating the new layout back from them means no operation has to
-// work out which nodes it displaced.
-function positions(
-  tree: CoreBinarySearchTree,
-): Map<CoreBinarySearchTreeNode, Position> {
-  return new Map(
-    tree.inorder().map((node) => [node, { x: node.x, y: node.y }]),
-  );
-}
-
-// Lays the tree out again and walks every node from where it was to where it
-// now belongs. A node the edit added is not in `before` and so is left where
-// the layout put it — it has no previous place to travel from.
-function relayout(
-  board: CoreBoard,
-  tree: CoreBinarySearchTree,
-  before: Map<CoreBinarySearchTreeNode, Position>,
-) {
-  tree.rearrange();
-
-  const moves = [];
-
-  for (const node of tree.inorder()) {
-    const from = before.get(node);
-    if (from === undefined) continue;
-    if (from.x === node.x && from.y === node.y) continue;
-
-    const to = { x: node.x, y: node.y };
-
-    node.x = from.x;
-    node.y = from.y;
-    node.rearrange();
-
-    moves.push({ element: node, ...to });
-  }
-
-  if (moves.length > 0) animateMoveMany(board, moves);
-
-  board.pushFrame();
-}
 
 // A tree of distinct values in random order, so the shape it takes is the one
 // that insertion order gives it rather than a balanced one.

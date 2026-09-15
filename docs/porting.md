@@ -1,11 +1,9 @@
 # Porting the remaining algorithms
 
-The v2 engine runs every algorithm the array has: linear search, binary
-search, merge sort, quick sort, insert value and remove value. It also builds
-and edits the binary search tree, though neither of that structure's two
-algorithms is ported yet. The catalog in `src/constants/algorithms.ts` lists
-thirteen algorithms across four structures, and the seven that are not ported
-yet appear on the explore page with their Run button disabled.
+The v2 engine runs every algorithm the array has and the binary search tree's
+insert. The catalog in `src/constants/algorithms.ts` lists thirteen algorithms
+across four structures, and the six that are not ported yet appear on the
+explore page with their Run button disabled.
 
 This document is the plan for closing that gap. It is a living doc: as an
 algorithm lands, its row in the status table below is updated in the same
@@ -40,7 +38,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | `max-heap-push`             | Max Heap           | No     |
 | `max-heap-pop`              | Max Heap           | No     |
 | `binary-search-tree-insert` | Binary Search Tree | Yes    |
-| `binary-search-tree-remove` | Binary Search Tree | Yes    |
+| `binary-search-tree-remove` | Binary Search Tree | No     |
 
 | Structure          | Ported |
 | ------------------ | ------ |
@@ -220,6 +218,86 @@ successor, and `unlink` is what copies its value over the node being removed.
 in this plan: v1's `play.tsx` is 465 lines covering a leaf, a node with one
 child, and a node with two children replaced by its in-order successor.
 
+## Porting one structure
+
+1. Subclass `CoreStructure<Data>` in `src/engine/structures/<name>/`,
+   implementing `toData`, `restore`, `serialize` and `rearrange`. v1's
+   `structure.tsx` for that structure holds the layout; the difference is that
+   v1's `fromData` was static and v2's `restore` mutates in place, so that
+   references held by the board and by a running algorithm stay valid.
+2. Export the binders: `algorithmFor(TheClass)` and `operationFor(TheClass)`.
+3. Write the sidebar operations in `operations.ts` and register them as
+   `apply` on `src/constants/structures.ts`. An operation is not stepped — it
+   mutates and returns, leaving its frames on the board.
+4. Register a random constructor in `src/engine/structures/registry.ts`, which
+   is also what tells the explore page the structure exists.
+
+### Linked list
+
+The simplest of the three. `CoreLinkedListNode` holds a `CoreEdge` to its
+successor; the list lays out left to right at two node-widths of pitch, so
+there is room for the edge between cells. The head carries a `head` label,
+which has to move when the head changes — v1's `setHead` clears the old
+node's label before assigning, and forgetting that leaves two heads labelled.
+
+### Max heap
+
+The heap draws the same values twice: an indexed array row and the tree it
+represents, with `CoreMaxHeapNode` pairing one `CoreNode` with one tree node so
+the two views never drift. Both views need the same name label, at different
+positions.
+
+Tree layout is an in-order walk assigning x one node-width at a time and y by
+depth, which is also what the binary search tree does. It gives every node a
+distinct column and no crossings, without measuring subtree widths.
+
+One decision to make rather than inherit: v1's `swapValues` swaps the numbers
+between two nodes and leaves both nodes where they are. That is a recolor, and
+a sift-up that only recolors does not show the reader a value climbing the
+heap. v2 should swap the nodes and animate them past each other. This is the
+one place the port is expected to diverge from v1's behaviour.
+
+### Binary search tree
+
+The structure is done, ahead of the two below it, along with its three sidebar
+operations. Three things about it are worth knowing before the algorithms are
+written.
+
+**The layout is derived from the whole tree.** A node's column is its in-order
+position and its row is its depth, so an edit anywhere moves nodes it never
+touched. `operations.ts` therefore captures every node's position before an
+edit and animates the new layout back from them, rather than each operation
+working out what it displaced. This is why v1's `getInorderLeftNodes`,
+`getInorderRightNodes` and `getInorderBetweenNodes` were not ported: they exist
+so a removal can find the nodes that must shift sideways, and capturing
+positions answers that question for every case at once. Only `inorder()` came
+across. The algorithms should reach for the same capture-and-animate helper
+rather than reviving the v1 trio.
+
+**A removal is planned before it is applied.** `CoreBinarySearchTree.remove`
+changes nothing: it returns the node that will leave, the link that points at
+it, and an `unlink` closure that makes the change. That shape exists because a
+node the tree has unlinked is no longer serialized and so could not be seen
+fading — the same reason `snapshot` hands back a closure instead of doing the
+work. For a node with two children the node that leaves is the in-order
+successor, and `unlink` is what copies its value over the node being removed.
+
+**Both algorithms are done.** Insert is a descent. Remove was expected to be
+the largest single piece of work in this plan — v1's `play.tsx` is 465 lines —
+and came out at less than half that, because the length was never the algorithm.
+v1 wrote the same fade-relink-shift dance out by hand in each of its six link
+assignments; here they are one `replace` helper over `positions` and
+`relayout`, and the three references a case can write (`tree.root`,
+`parent.left`, `parent.right`) are one closure, with the step saying which of
+the three lines the reader is on.
+
+That last point has a trap in it, and it is worth knowing about before writing
+the linked list's remove. The assignment happens before its step is yielded,
+so a branch cannot ask `current === tree.root` to decide which line to
+highlight — by then `tree.root` has already been written. The node being the
+root is exactly the search never having taken a step, so it is read off
+`parent` instead, captured when the node is found.
+
 ## The three engine changes merge sort forced
 
 Both landed with merge sort and are described in `docs/engine.md`. They are
@@ -259,13 +337,11 @@ algorithms that lean on them hardest:
    proven, and merge sort forced all three engine changes above while the only
    thing in flight was an array. Binary search, insert value and remove value
    followed.
-2. **Binary search tree structure** — done, taken out of order: the structure
-   and its three sidebar operations landed before the two structures below,
-   which leaves its two algorithms as the only thing outstanding for it.
+2. **Binary search tree** — taken out of order: the structure, its three
+   sidebar operations and insert are done; remove is what is left of it.
 3. **Linked list** — the structure, its four operations, then its three
    algorithms.
 4. **Max heap** — the structure with its dual view, then push and pop.
-5. **Binary search tree algorithms** — insert, then remove last.
 
 Each algorithm is its own commit, and the explore page gains one working Run
 button per commit.

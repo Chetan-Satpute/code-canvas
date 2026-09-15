@@ -113,6 +113,13 @@ first set. Two views are taken of it:
 - **Memory** shows the variables whose value is a scalar. An array is a
   structure, and a structure is read on the canvas, so it stays out.
 
+An array is short enough that a signature prints it whole. A structure that is
+not — a tree — is passed as `{ structure: 'BinarySearchTree' }`, which prints
+as that name, so the signature reads the way the listing declares it. The same
+applies to a variable holding a reference to one node rather than a value:
+there is nothing scalar to print, so it is named on the canvas under the node
+it points at instead.
+
 `frame.set(name, value)` declares a local or updates an existing variable in
 place — including a parameter, which is how an algorithm that mutates an
 argument keeps its signature true. `frame.clear(name)` drops a local that has

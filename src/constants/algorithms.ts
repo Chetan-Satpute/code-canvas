@@ -5,6 +5,7 @@ import { arrayLinearSearch } from '#engine/algorithms/array/linear-search.ts';
 import { arrayMergeSort } from '#engine/algorithms/array/merge-sort.ts';
 import { arrayQuickSort } from '#engine/algorithms/array/quick-sort.ts';
 import { arrayRemoveValue } from '#engine/algorithms/array/remove-value.ts';
+import { binarySearchTreeInsert } from '#engine/algorithms/binary-search-tree/insert.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
 
@@ -158,6 +159,7 @@ const algorithms: Record<string, Algorithm> = {
       'Descends left or right by comparing against each node, and hangs the new node off the first empty slot.',
     args: [{ name: 'value', placeholder: '42' }],
     listing: treeInsertListing,
+    run: binarySearchTreeInsert,
   },
 
   'binary-search-tree-remove': {

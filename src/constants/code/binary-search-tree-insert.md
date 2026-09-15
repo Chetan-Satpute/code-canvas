@@ -1,34 +1,34 @@
 ```ts
-function insert(tree: BinarySearchTree, value: number) {
-  if (tree.root === null) {
-    tree.root = new Node(value);
-    return;
+/*#enter*/ function insert(tree: BinarySearchTree, value: number) {
+  /*#emptyCheck*/ if (tree.root === null) {
+    /*#setRoot*/ tree.root = new Node(value);
+    /*#rootReturn*/ return;
   }
 
-  let current = tree.root;
+  /*#current*/ let current = tree.root;
 
-  while (true) {
-    if (value === current.value) {
-      break;
+  /*#loop*/ while (true) {
+    /*#equalCheck*/ if (value === current.value) {
+      /*#duplicate*/ break;
     }
 
-    if (value < current.value) {
-      if (current.left === null) {
-        current.left = new Node(value);
-        break;
+    /*#lessCheck*/ if (value < current.value) {
+      /*#leftCheck*/ if (current.left === null) {
+        /*#setLeft*/ current.left = new Node(value);
+        /*#leftBreak*/ break;
       }
 
-      current = current.left;
+      /*#goLeft*/ current = current.left;
     } else {
-      if (current.right === null) {
-        current.right = new Node(value);
-        break;
+      /*#rightCheck*/ if (current.right === null) {
+        /*#setRight*/ current.right = new Node(value);
+        /*#rightBreak*/ break;
       }
 
-      current = current.right;
+      /*#goRight*/ current = current.right;
     }
   }
 
-  return;
-}
+  /*#return*/ return;
+} /*#exit*/
 ```
