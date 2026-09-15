@@ -4,6 +4,7 @@ import { arrayInsertValue } from '#engine/algorithms/array/insert-value.ts';
 import { arrayLinearSearch } from '#engine/algorithms/array/linear-search.ts';
 import { arrayMergeSort } from '#engine/algorithms/array/merge-sort.ts';
 import { arrayQuickSort } from '#engine/algorithms/array/quick-sort.ts';
+import { arrayRemoveValue } from '#engine/algorithms/array/remove-value.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
 
@@ -113,6 +114,7 @@ const algorithms: Record<string, Algorithm> = {
       'Closes the gap left at an index by shifting every later element one place back, then drops the last slot.',
     args: [{ name: 'index', placeholder: '2', kind: 'integer' }],
     listing: arrayRemoveValueListing,
+    run: arrayRemoveValue,
   },
 
   'linked-list-insert-head': {

@@ -1,10 +1,11 @@
 # Porting the remaining algorithms
 
-The v2 engine runs five algorithms, all on the array: linear search, binary
-search, merge sort, quick sort and insert value. The catalog in
+The v2 engine runs every algorithm the array has: linear search, binary
+search, merge sort, quick sort, insert value and remove value. The catalog in
 `src/constants/algorithms.ts` lists thirteen algorithms across four
-structures, and the eight that are not ported yet appear on the explore page
-with their Run button disabled.
+structures, and the seven that are not ported yet — all of them on the three
+structures the engine cannot build — appear on the explore page with their Run
+button disabled.
 
 This document is the plan for closing that gap. It is a living doc: as an
 algorithm lands, its row in the status table below is updated in the same
@@ -30,7 +31,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | `array-linear-search`       | Array              | Yes    |
 | `array-binary-search`       | Array              | Yes    |
 | `array-insert-value`        | Array              | Yes    |
-| `array-remove-value`        | Array              | No     |
+| `array-remove-value`        | Array              | Yes    |
 | `array-merge-sort`          | Array              | Yes    |
 | `array-quick-sort`          | Array              | Yes    |
 | `linked-list-insert-head`   | Linked List        | No     |
@@ -136,7 +137,10 @@ That copy-between-two-arrays animation is shared rather than rewritten:
 `src/engine/structures/array/assign.ts` holds `assign(board, to, index, from)`,
 which floats a copy out into the free row between the two arrays, along it,
 and into the destination cell. Merge sort and insert value both use it, and
-remove value will.
+remove value does too. The lane it routes along is the free row between the
+two arrays, except for an assignment within one array — `array[i - 1] =
+array[i]` in remove value — where there is no row between, and the copy goes
+out below the row it came from instead.
 
 `src/engine/algorithms/array/insert-value.ts` is the worked example for an
 algorithm whose listing rebinds its own parameter. `array = result` cannot
@@ -230,11 +234,11 @@ existed moves differently, and an algorithm still never states a duration.
 Easiest to hardest, so each structure's conventions are settled before the
 algorithms that lean on them hardest:
 
-1. **Remaining array algorithms** — the two recursive ones first, merge sort
-   and then quick sort, both done: they reuse the one structure already
+1. **Remaining array algorithms** — all done. The two recursive ones went
+   first, merge sort and then quick sort: they reuse the one structure already
    proven, and merge sort forced all three engine changes above while the only
-   thing in flight was an array. Binary search and insert value are done too;
-   remove value is what is left of the array.
+   thing in flight was an array. Binary search, insert value and remove value
+   followed.
 2. **Linked list** — the structure, its four operations, then its three
    algorithms. First port of a structure, on the simplest one.
 3. **Max heap** — the structure with its dual view, then push and pop.
