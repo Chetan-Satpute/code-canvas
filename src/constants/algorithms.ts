@@ -1,5 +1,6 @@
 import type { AlgorithmRunner } from '#engine/algorithm.ts';
 import { arrayLinearSearch } from '#engine/algorithms/array/linear-search.ts';
+import { arrayMergeSort } from '#engine/algorithms/array/merge-sort.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
 
@@ -72,6 +73,7 @@ const algorithms: Record<string, Algorithm> = {
       'Splits the array down to single elements, then merges the halves back together in order.',
     args: [],
     listing: mergeSortListing,
+    run: arrayMergeSort,
   },
 
   'array-quick-sort': {

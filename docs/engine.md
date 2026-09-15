@@ -44,6 +44,13 @@ place and everything else is derived from it:
 - A node's labels are re-pinned by `CoreNode.rearrange()`, so an index or a
   pointer name travels with the node it annotates.
 
+A node in flight belongs to no structure. `board.float(node)` puts one on the
+canvas over every structure and `board.unfloat(node)` takes it off again. That
+is how an assignment between two structures animates: `array[i] = left[j]`
+copies a value, so neither array gains or loses an element, and what travels
+is a copy that exists only for as long as the move — the destination cell
+takes its value where it lands.
+
 The canvas element holds the largest size any frame in the step needs while
 that step plays, so a structure growing mid-animation does not make it jitter
 against its container; the last frame settles it to its own size, so a step
@@ -54,12 +61,19 @@ canvas painted before its web font arrives would keep the fallback face until
 something happened to redraw it, so `useCanvasFrames` replays the current step
 once `useFontsReady` reports the fonts have loaded.
 
-Two limits, both inherited from v1 and both deliberate for now. Movement is
-one pixel per frame, so how long a move takes is decided by how far it goes
-and there is no easing. And generators are forward-only, so there is no
-stepping backwards — the hook drains lazily, and making a Back button possible
-would mean draining eagerly into an array, which is a change isolated to
-`useExploration` and touches no algorithm.
+Movement is one pixel per frame, so how far a move goes is what decides how
+long it takes and there is no easing. The one qualification is a ceiling: past
+the distance a second of frames covers, the per-frame step grows so that the
+move still lands within it. A cell shifting one place is well under that and
+so is untouched; what the ceiling is for is the long diagonal a merge-sort
+element travels coming up out of its half, which at a pixel a frame ran for
+six seconds. An algorithm still never states a duration — the ceiling belongs
+to the animator.
+
+One limit is inherited from v1 and deliberate for now: generators are
+forward-only, so there is no stepping backwards — the hook drains lazily, and
+making a Back button possible would mean draining eagerly into an array, which
+is a change isolated to `useExploration` and touches no algorithm.
 
 ## Lines are named, not numbered
 
@@ -158,6 +172,12 @@ current step and the frames being played. The hook is built once on mount, and
 the explore page keys it by structure id, so moving to an algorithm of another
 structure starts fresh while moving within one keeps what the user built.
 
-`run` takes `structure.snapshot()`, which returns a closure that restores the
-contents. Stopping midway calls it, so an abandoned run leaves nothing behind;
-a run that finishes keeps what it did.
+`run` takes `board.snapshot()`, which returns a closure that restores it.
+Stopping midway calls it, so an abandoned run leaves nothing behind; a run
+that finishes keeps what it did.
+
+The snapshot is the board's rather than the structure's because a run can
+change more than one structure's contents. Merge sort adds a structure per
+half, so undoing it has to restore which structures are on the board at all,
+and a run stopped inside a call leaves frames on the call stack that the next
+run would otherwise push onto.

@@ -46,7 +46,7 @@ export function useExploration(algorithm: Algorithm, structure: Structure) {
     generatorRef.current = null;
 
     // A run abandoned midway leaves nothing behind; one that finished keeps
-    // what it did. This is why `run` takes the snapshot in the first place.
+    // what it did. This is why `run` snapshots the board in the first place.
     revertRef.current?.();
     revertRef.current = null;
 
@@ -81,7 +81,10 @@ export function useExploration(algorithm: Algorithm, structure: Structure) {
       return;
     }
 
-    revertRef.current = core.snapshot();
+    // The board rather than the structure, because an algorithm may add
+    // structures of its own — merge sort splits into one per half — and
+    // abandoning it has to take those with it.
+    revertRef.current = board.snapshot();
     generatorRef.current = generator;
 
     advance(generator);
