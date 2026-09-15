@@ -4,6 +4,10 @@
  * search may miss a value that is present, or report the wrong index.
  */
 /*#enter*/ function binarySearch(array: number[], target: number): number {
+  /*#empty*/ if (array.length === 0) {
+    /*#none*/ return -1;
+  }
+
   /*#left*/ let left = 0;
   /*#right*/ let right = array.length - 1;
 

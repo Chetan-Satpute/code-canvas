@@ -25,6 +25,16 @@ export const arrayBinarySearch = defineArrayAlgorithm({
     ]);
 
     yield step('enter');
+    yield step('empty');
+
+    if (array.nodes.length === 0) {
+      yield step('none');
+      yield step('exit');
+
+      board.return();
+
+      return;
+    }
 
     // `right` is not declared yet, so there is no window to show — only the
     // one cell `left` starts on.
@@ -71,11 +81,13 @@ export const arrayBinarySearch = defineArrayAlgorithm({
 
     yield step('check');
 
-    // One cell is left, and on an empty array not even that: `right` starts
-    // at -1, the loop never runs, and `array[0]` reads as undefined.
+    // Exactly one cell is left. `left` only ever moves to `mid + 1`, which is
+    // never past `right`, and `right` only ever moves back to `mid`, which is
+    // never before `left` — so the loop ends with the two on the same cell,
+    // and the empty array that would have had none was returned above.
     const found = array.nodes[left];
 
-    if (found !== undefined && found.value === args.target) {
+    if (found.value === args.target) {
       found.variant = 'success';
       yield step('found');
 
@@ -89,7 +101,7 @@ export const arrayBinarySearch = defineArrayAlgorithm({
     // Only the one cell the search narrowed to is marked. Binary search never
     // looked at the rest — it ruled them out — so painting the whole array
     // would claim a search it did not do.
-    if (found !== undefined) found.variant = 'danger';
+    found.variant = 'danger';
     yield step('missing');
 
     reset(array);
@@ -135,8 +147,6 @@ function show(
   const named = new Map<number, string[]>();
 
   for (const cursor of marks) {
-    if (array.nodes[cursor.index] === undefined) continue;
-
     const names = named.get(cursor.index) ?? [];
     names.push(cursor.name);
     named.set(cursor.index, names);
