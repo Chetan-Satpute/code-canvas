@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router';
 
 import Icon from '#components/Icon.tsx';
+import BrandMark from '#routes/home/components/BrandMark.tsx';
 import cn from '#utils/cn.ts';
 
 const repositoryUrl = 'https://github.com/chetan-satpute/code-canvas';
@@ -17,9 +18,7 @@ function HomeHeader() {
     <header className="border-border/60 bg-background/80 sticky top-0 z-20 border-b backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6 lg:px-10">
         <Link to="/" className="flex items-center gap-3">
-          <span className="to-sapphire-500 flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-400">
-            <span className="bg-pearl-100 size-2 rounded-xs" />
-          </span>
+          <BrandMark />
 
           <span className="font-en-display text-foreground text-base font-semibold">
             Code Canvas

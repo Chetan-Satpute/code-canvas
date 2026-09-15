@@ -6,6 +6,7 @@ them. No shorthand, no references to a chat, no bare ticket ids.
 | Document                 | What it covers                                                                                                                              |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | [engine.md](engine.md)   | The execution engine: how a run produces steps, how algorithms and structure operations are authored, and what the renderer receives.       |
+| [icon.md](icon.md)       | The application icon: the mark and why it is that, the served asset files and the sources they come from, and how to regenerate them.       |
 | [porting.md](porting.md) | The record of porting v1's thirteen algorithms and four structures onto the v2 engine, now complete, and the decisions that came out of it. |
 
 ## Conventions
