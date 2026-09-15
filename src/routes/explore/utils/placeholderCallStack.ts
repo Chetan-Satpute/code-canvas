@@ -1,10 +1,14 @@
 import type { Algorithm } from '#constants/algorithms.ts';
+import { lineText } from '#utils/code.ts';
 
 import type { CallStackFrame } from '../components/CallStackCard.tsx';
 
 // The entry function is the first one the listing declares.
 function entryFunctionName(algorithm: Algorithm): string {
-  const match = algorithm.code.join('\n').match(/function (\w+)/);
+  const match = algorithm.code
+    .map(lineText)
+    .join('\n')
+    .match(/function (\w+)/);
 
   return match === null ? algorithm.id : match[1];
 }
@@ -23,8 +27,8 @@ export function buildPlaceholderCallStack(
   }));
 
   const signature = `${entryFunctionName(algorithm)}(${variables
-    .map((variable) => variable.value)
+    .map((variable) => `${variable.name}: ${variable.value}`)
     .join(', ')})`;
 
-  return [{ id: 'frame-0', signature, line: 1, variables }];
+  return [{ id: 'frame-0', signature, variables }];
 }

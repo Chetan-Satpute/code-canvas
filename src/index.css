@@ -489,3 +489,17 @@ body {
 ::-webkit-scrollbar-thumb:active {
   background-color: var(--scrollbar-thumb-active);
 }
+
+/*
+ * Opts one scroll container out of the bars above while leaving it scrollable,
+ * for content that reads as a single unbroken line. Both declarations are
+ * needed for the same reason the rules above are: Firefox only honours the
+ * first, Chromium and Safari only the second.
+ */
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

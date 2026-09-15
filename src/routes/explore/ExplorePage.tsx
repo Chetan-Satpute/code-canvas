@@ -56,19 +56,8 @@ function ExplorePage() {
     string
   > | null>(null);
 
-  const handleRun = (values: Record<string, string>) => {
-    setRunArguments(values);
-  };
-
-  const handleStop = () => {
-    setRunArguments(null);
-  };
-
-  // Stepping and structure edits are wired to the execution engine in a later
-  // change; the layout only needs the handlers to exist.
-  const handleNextStep = () => {};
-
-  const handleStructureOperation = () => {};
+  // The line the code card marks as current, numbered from 1.
+  const [activeLine, setActiveLine] = useState(1);
 
   const algorithm = findAlgorithm(algorithmId);
 
@@ -76,6 +65,26 @@ function ExplorePage() {
     return <AlgorithmNotFound algorithmId={algorithmId} />;
 
   const structure = getStructure(algorithm);
+
+  const handleRun = (values: Record<string, string>) => {
+    setRunArguments(values);
+    setActiveLine(1);
+  };
+
+  const handleStop = () => {
+    setRunArguments(null);
+  };
+
+  // The execution engine will say which line comes next. Until it does,
+  // stepping walks the listing from the top and wraps at the end, which is
+  // enough to watch the highlight follow along.
+  const handleNextStep = () => {
+    setActiveLine((line) => (line % algorithm.code.length) + 1);
+  };
+
+  // Structure edits are wired to the execution engine in a later change; the
+  // layout only needs the handler to exist.
+  const handleStructureOperation = () => {};
 
   const frames =
     runArguments === null
@@ -134,7 +143,7 @@ function ExplorePage() {
               <PlayControls onNextStep={handleNextStep} onStop={handleStop} />
 
               <div className="lg:min-h-0 lg:flex-1">
-                <CodeCard lines={algorithm.code} />
+                <CodeCard lines={algorithm.code} activeLine={activeLine} />
               </div>
             </div>
 
