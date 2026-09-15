@@ -1,4 +1,5 @@
 import type { AlgorithmRunner } from '#engine/algorithm.ts';
+import { arrayBinarySearch } from '#engine/algorithms/array/binary-search.ts';
 import { arrayLinearSearch } from '#engine/algorithms/array/linear-search.ts';
 import { arrayMergeSort } from '#engine/algorithms/array/merge-sort.ts';
 import { arrayQuickSort } from '#engine/algorithms/array/quick-sort.ts';
@@ -64,6 +65,7 @@ const algorithms: Record<string, Algorithm> = {
       'Halves a sorted array on every step, discarding the side that cannot hold the target.',
     args: [{ name: 'target', placeholder: '42' }],
     listing: binarySearchListing,
+    run: arrayBinarySearch,
   },
 
   'array-merge-sort': {

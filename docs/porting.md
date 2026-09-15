@@ -1,9 +1,10 @@
 # Porting the remaining algorithms
 
-The v2 engine runs three algorithms, all on the array: linear search, merge
-sort and quick sort. The catalog in `src/constants/algorithms.ts` lists
-thirteen algorithms across four structures, and the ten that are not ported
-yet appear on the explore page with their Run button disabled.
+The v2 engine runs four algorithms, all on the array: linear search, binary
+search, merge sort and quick sort. The catalog in
+`src/constants/algorithms.ts` lists thirteen algorithms across four
+structures, and the nine that are not ported yet appear on the explore page
+with their Run button disabled.
 
 This document is the plan for closing that gap. It is a living doc: as an
 algorithm lands, its row in the status table below is updated in the same
@@ -27,7 +28,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | Algorithm                   | Structure          | Ported |
 | --------------------------- | ------------------ | ------ |
 | `array-linear-search`       | Array              | Yes    |
-| `array-binary-search`       | Array              | No     |
+| `array-binary-search`       | Array              | Yes    |
 | `array-insert-value`        | Array              | No     |
 | `array-remove-value`        | Array              | No     |
 | `array-merge-sort`          | Array              | Yes    |
@@ -216,8 +217,8 @@ algorithms that lean on them hardest:
 1. **Remaining array algorithms** — the two recursive ones first, merge sort
    and then quick sort, both done: they reuse the one structure already
    proven, and merge sort forced all three engine changes above while the only
-   thing in flight was an array. Binary search, insert value and remove value
-   are what is left of the array.
+   thing in flight was an array. Binary search is done too; insert value and
+   remove value are what is left of the array.
 2. **Linked list** — the structure, its four operations, then its three
    algorithms. First port of a structure, on the simplest one.
 3. **Max heap** — the structure with its dual view, then push and pop.

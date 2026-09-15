@@ -3,24 +3,24 @@
  * The array MUST be sorted in ascending order. On an unsorted array binary
  * search may miss a value that is present, or report the wrong index.
  */
-function binarySearch(array: number[], target: number): number {
-  let left = 0;
-  let right = array.length - 1;
+/*#enter*/ function binarySearch(array: number[], target: number): number {
+  /*#left*/ let left = 0;
+  /*#right*/ let right = array.length - 1;
 
-  while (left < right) {
-    const mid = Math.floor((left + right) / 2);
+  /*#loop*/ while (left < right) {
+    /*#mid*/ const mid = Math.floor((left + right) / 2);
 
-    if (array[mid] < target) {
-      left = mid + 1;
+    /*#compare*/ if (array[mid] < target) {
+      /*#goRight*/ left = mid + 1;
     } else {
-      right = mid;
+      /*#goLeft*/ right = mid;
     }
   }
 
-  if (array[left] === target) {
-    return left;
+  /*#check*/ if (array[left] === target) {
+    /*#found*/ return left;
   }
 
-  return -1;
-}
+  /*#missing*/ return -1;
+} /*#exit*/
 ```
