@@ -1,9 +1,12 @@
 import { useState } from 'react';
 
 import Card from '#components/Card.tsx';
+import { useAlgorithmId } from '#routes/router.ts';
+import { findAlgorithm, getStructure } from '#utils/algorithms.ts';
 import cn from '#utils/cn.ts';
 
 import AlgorithmCard from './components/AlgorithmCard.tsx';
+import AlgorithmNotFound from './components/AlgorithmNotFound.tsx';
 import CallStackCard from './components/CallStackCard.tsx';
 import CodeCard from './components/CodeCard.tsx';
 import ExploreHeader from './components/ExploreHeader.tsx';
@@ -11,9 +14,7 @@ import MemoryCard from './components/MemoryCard.tsx';
 import PlayControls from './components/PlayControls.tsx';
 import StructureCard from './components/StructureCard.tsx';
 import VisualizationCanvas from './components/VisualizationCanvas.tsx';
-import placeholderAlgorithm, {
-  buildPlaceholderCallStack,
-} from './utils/placeholderAlgorithm.ts';
+import { buildPlaceholderCallStack } from './utils/placeholderCallStack.ts';
 
 /*
  * Both modes use one grid, so switching between them never moves the canvas.
@@ -46,6 +47,8 @@ const sidebarClasses =
   'flex flex-col gap-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:min-h-0';
 
 function ExplorePage() {
+  const algorithmId = useAlgorithmId();
+
   // The arguments a run was started with, and null while none is in flight —
   // so they double as the setup/exploration switch.
   const [runArguments, setRunArguments] = useState<Record<
@@ -67,8 +70,17 @@ function ExplorePage() {
 
   const handleStructureOperation = () => {};
 
+  const algorithm = findAlgorithm(algorithmId);
+
+  if (algorithm === null)
+    return <AlgorithmNotFound algorithmId={algorithmId} />;
+
+  const structure = getStructure(algorithm);
+
   const frames =
-    runArguments === null ? [] : buildPlaceholderCallStack(runArguments);
+    runArguments === null
+      ? []
+      : buildPlaceholderCallStack(algorithm, runArguments);
 
   return (
     <div className="bg-background text-foreground flex h-dvh flex-col">
@@ -93,9 +105,9 @@ function ExplorePage() {
                   never squeezed out. */}
               <div className="lg:max-h-[50%] lg:min-h-0">
                 <AlgorithmCard
-                  title={placeholderAlgorithm.title}
-                  description={placeholderAlgorithm.description}
-                  args={placeholderAlgorithm.args}
+                  title={algorithm.title}
+                  description={algorithm.description}
+                  args={algorithm.args}
                   onRun={handleRun}
                 />
               </div>
@@ -104,14 +116,16 @@ function ExplorePage() {
                   scrolls its own operations. */}
               <div className="lg:min-h-0 lg:flex-1">
                 <StructureCard
-                  operations={placeholderAlgorithm.operations}
+                  title={structure.title}
+                  description={structure.description}
+                  operations={structure.operations}
                   onSubmit={handleStructureOperation}
                 />
               </div>
             </div>
 
             <div className={underCanvasClasses}>
-              <CodeCard lines={placeholderAlgorithm.code} />
+              <CodeCard lines={algorithm.code} />
             </div>
           </>
         ) : (
@@ -120,7 +134,7 @@ function ExplorePage() {
               <PlayControls onNextStep={handleNextStep} onStop={handleStop} />
 
               <div className="lg:min-h-0 lg:flex-1">
-                <CodeCard lines={placeholderAlgorithm.code} />
+                <CodeCard lines={algorithm.code} />
               </div>
             </div>
 

@@ -4,11 +4,7 @@ import Button from '#components/Button.tsx';
 import Card from '#components/Card.tsx';
 import Icon from '#components/Icon.tsx';
 import TextInput from '#components/TextInput.tsx';
-
-export interface AlgorithmArgument {
-  name: string;
-  placeholder?: string;
-}
+import type { AlgorithmArgument } from '#constants/algorithms.ts';
 
 interface AlgorithmCardProps {
   title: string;

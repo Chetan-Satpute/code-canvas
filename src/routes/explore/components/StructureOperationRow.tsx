@@ -2,8 +2,7 @@ import { useState } from 'react';
 
 import Button from '#components/Button.tsx';
 import TextInput from '#components/TextInput.tsx';
-
-import type { StructureOperationArgument } from './StructureCard.tsx';
+import type { StructureOperationArgument } from '#constants/structures.ts';
 
 interface StructureOperationRowProps {
   label: string;
