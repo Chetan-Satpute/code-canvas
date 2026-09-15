@@ -1,5 +1,6 @@
 import type { AlgorithmRunner } from '#engine/algorithm.ts';
 import { arrayBinarySearch } from '#engine/algorithms/array/binary-search.ts';
+import { arrayInsertValue } from '#engine/algorithms/array/insert-value.ts';
 import { arrayLinearSearch } from '#engine/algorithms/array/linear-search.ts';
 import { arrayMergeSort } from '#engine/algorithms/array/merge-sort.ts';
 import { arrayQuickSort } from '#engine/algorithms/array/quick-sort.ts';
@@ -101,6 +102,7 @@ const algorithms: Record<string, Algorithm> = {
       { name: 'value', placeholder: '42' },
     ],
     listing: arrayInsertValueListing,
+    run: arrayInsertValue,
   },
 
   'array-remove-value': {

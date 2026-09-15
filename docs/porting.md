@@ -1,9 +1,9 @@
 # Porting the remaining algorithms
 
-The v2 engine runs four algorithms, all on the array: linear search, binary
-search, merge sort and quick sort. The catalog in
+The v2 engine runs five algorithms, all on the array: linear search, binary
+search, merge sort, quick sort and insert value. The catalog in
 `src/constants/algorithms.ts` lists thirteen algorithms across four
-structures, and the nine that are not ported yet appear on the explore page
+structures, and the eight that are not ported yet appear on the explore page
 with their Run button disabled.
 
 This document is the plan for closing that gap. It is a living doc: as an
@@ -29,7 +29,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | --------------------------- | ------------------ | ------ |
 | `array-linear-search`       | Array              | Yes    |
 | `array-binary-search`       | Array              | Yes    |
-| `array-insert-value`        | Array              | No     |
+| `array-insert-value`        | Array              | Yes    |
 | `array-remove-value`        | Array              | No     |
 | `array-merge-sort`          | Array              | Yes    |
 | `array-quick-sort`          | Array              | Yes    |
@@ -132,6 +132,22 @@ each of them through every element in between, which is the same reason merge
 sort routes a value out into the empty row between an array and its halves.
 Read the statement, then decide what moves.
 
+That copy-between-two-arrays animation is shared rather than rewritten:
+`src/engine/structures/array/assign.ts` holds `assign(board, to, index, from)`,
+which floats a copy out into the free row between the two arrays, along it,
+and into the destination cell. Merge sort and insert value both use it, and
+remove value will.
+
+`src/engine/algorithms/array/insert-value.ts` is the worked example for an
+algorithm whose listing rebinds its own parameter. `array = result` cannot
+replace the structure object, because the board and the explore page hold it;
+instead the old row fades out, `result` slides up into its place, and the
+structure takes over the result's nodes where they stand — the same reason
+`CoreStructure.restore` mutates in place. Its listing is also the one place
+the port changed the code rather than only annotating it: v1 drew the cells of
+`new Array(array.length + 1)` as zeroes, which is not what that expression
+produces, so the listing now says `.fill(0)` and the canvas is honest.
+
 ## Porting one structure
 
 1. Subclass `CoreStructure<Data>` in `src/engine/structures/<name>/`,
@@ -217,8 +233,8 @@ algorithms that lean on them hardest:
 1. **Remaining array algorithms** — the two recursive ones first, merge sort
    and then quick sort, both done: they reuse the one structure already
    proven, and merge sort forced all three engine changes above while the only
-   thing in flight was an array. Binary search is done too; insert value and
-   remove value are what is left of the array.
+   thing in flight was an array. Binary search and insert value are done too;
+   remove value is what is left of the array.
 2. **Linked list** — the structure, its four operations, then its three
    algorithms. First port of a structure, on the simplest one.
 3. **Max heap** — the structure with its dual view, then push and pop.

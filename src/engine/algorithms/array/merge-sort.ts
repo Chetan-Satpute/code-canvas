@@ -1,11 +1,11 @@
 import type { NodeVariant } from '#canvas/elements/node.ts';
 import { NODE_HEIGHT, NODE_WIDTH } from '#canvas/elements/node.ts';
 
-import { animateMove, appear, disappear } from '../../animation.ts';
+import { appear, disappear } from '../../animation.ts';
 import type { CoreBoard } from '../../board.ts';
-import { CoreNode } from '../../elements/node.ts';
 import type { CoreStep } from '../../step.ts';
 import { defineArrayAlgorithm } from '../../structures/array/algorithm.ts';
+import { assign } from '../../structures/array/assign.ts';
 import { CoreArray } from '../../structures/array/structure.ts';
 
 // What a recursive call needs from the algorithm context. The structure is
@@ -271,39 +271,4 @@ function advance(
   mark(half, next, 'secondary');
 
   return next;
-}
-
-// `array[arrayIndex] = half[halfIndex]`, animated. The assignment copies a
-// value, so both arrays keep every node they had: what travels is a copy
-// belonging to neither, and the array's cell takes its value where it lands.
-function assign(
-  board: CoreBoard,
-  array: CoreArray,
-  index: number,
-  source: CoreNode,
-) {
-  const target = array.nodes[index];
-
-  const travelling = new CoreNode(source.value);
-  travelling.x = source.x;
-  travelling.y = source.y;
-  travelling.variant = 'secondary';
-
-  board.float(travelling);
-
-  // Out into the empty row first, and only then along it. Travelling straight
-  // to the cell would slide the value through the half it was read from and
-  // then through the elements already merged; halves sit two rows below the
-  // array they came from precisely so there is a row between that nothing is
-  // ever laid out on.
-  animateMove(board, travelling, travelling.x, array.y + NODE_HEIGHT);
-  animateMove(board, travelling, target.x, target.y);
-
-  // It arrives over the cell it is being written to, so the value is taken
-  // from under it: what the reader sees is the old value replaced.
-  target.value = travelling.value;
-  target.variant = 'success';
-
-  board.unfloat(travelling);
-  board.pushFrame();
 }
