@@ -6,6 +6,7 @@ import { arrayMergeSort } from '#engine/algorithms/array/merge-sort.ts';
 import { arrayQuickSort } from '#engine/algorithms/array/quick-sort.ts';
 import { arrayRemoveValue } from '#engine/algorithms/array/remove-value.ts';
 import { binarySearchTreeInsert } from '#engine/algorithms/binary-search-tree/insert.ts';
+import { binarySearchTreeRemove } from '#engine/algorithms/binary-search-tree/remove.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
 
@@ -170,6 +171,7 @@ const algorithms: Record<string, Algorithm> = {
       'Unlinks a leaf, lifts a lone child into place, or — for a node with two children — replaces it with its inorder successor.',
     args: [{ name: 'value', placeholder: '42' }],
     listing: treeRemoveListing,
+    run: binarySearchTreeRemove,
   },
 
   'max-heap-push': {

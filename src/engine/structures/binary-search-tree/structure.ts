@@ -14,7 +14,9 @@ export interface BinarySearchTreeData {
   right: BinarySearchTreeData | null;
 }
 
-type Link = CoreEdge<CoreBinarySearchTreeNode> | null;
+// A child link, or its absence. An edge holds both of its nodes, so a link
+// is the edge itself rather than a reference to the child.
+export type Link = CoreEdge<CoreBinarySearchTreeNode> | null;
 
 // What an insert put into the tree, so the caller can fade it in.
 export interface Insertion {
