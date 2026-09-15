@@ -2,8 +2,8 @@ import { parseArgument } from '#utils/argument.ts';
 import { randomNumber, uniqueRandomNumberArray } from '#utils/random.ts';
 
 import { appear, disappear } from '../../animation.ts';
+import { animateFrom, capture } from '../../layout.ts';
 import { defineBinarySearchTreeOperation } from './algorithm.ts';
-import { positions, relayout } from './layout.ts';
 import type { CoreBinarySearchTree } from './structure.ts';
 
 export const NODE_COUNT_MIN = 4;
@@ -36,7 +36,7 @@ export const insertIntoBinarySearchTree = defineBinarySearchTreeOperation({
     return value === null ? null : { value };
   },
   apply: (board, tree, args) => {
-    const before = positions(tree);
+    const before = capture(tree.inorder());
 
     const insertion = tree.insert(args.value);
 
@@ -49,7 +49,8 @@ export const insertIntoBinarySearchTree = defineBinarySearchTreeOperation({
     insertion.node.opacity = 0;
     if (insertion.edge !== null) insertion.edge.opacity = 0;
 
-    relayout(board, tree, before);
+    tree.rearrange();
+    animateFrom(board, tree.inorder(), before);
 
     if (insertion.edge === null) appear(board, insertion.node);
     else appear(board, insertion.node, insertion.edge);
@@ -66,7 +67,7 @@ export const removeFromBinarySearchTree = defineBinarySearchTreeOperation({
     const removal = tree.remove(args.value);
     if (removal === null) return;
 
-    const before = positions(tree);
+    const before = capture(tree.inorder());
 
     // Faded before the change is applied, since a node and an edge the tree
     // has unlinked are not serialized and so could not be seen fading. This
@@ -76,6 +77,7 @@ export const removeFromBinarySearchTree = defineBinarySearchTreeOperation({
 
     removal.unlink();
 
-    relayout(board, tree, before);
+    tree.rearrange();
+    animateFrom(board, tree.inorder(), before);
   },
 });

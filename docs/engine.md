@@ -33,6 +33,17 @@ A tween is written inside a single yield as _mutate a little → push a frame �
 repeat_. `src/engine/animation.ts` has the helpers: `animateMove`,
 `animateMoveMany`, `animateMoveBy`, `appear`, `disappear`.
 
+A structure that derives its layout from its contents needs one more.
+`rearrange` recomputes every position at once, so an edit anywhere moves nodes
+it never touched — a linked list positions by index, a tree by in-order column
+and depth. `src/engine/layout.ts` is the pair for that: `capture(nodes)` takes
+the positions before the edit, and `animateFrom(board, nodes, before)` walks
+each node from where it stood to where `rearrange` has since put it. Nothing
+that edits such a structure has to work out which nodes it displaced. A node
+the edit added is simply absent from the capture and is left where the layout
+put it — unless the caller captures it too, which is how a node staged off the
+structure rises into place in the same motion that opens the gap for it.
+
 Movement needs no per-element bookkeeping, because position is held in one
 place and everything else is derived from it:
 

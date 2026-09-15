@@ -10,6 +10,12 @@ import {
   randomizeBinarySearchTree,
   removeFromBinarySearchTree,
 } from '#engine/structures/binary-search-tree/operations.ts';
+import {
+  insertAfterInLinkedList,
+  insertAtLinkedListHead,
+  randomizeLinkedList,
+  removeFromLinkedList,
+} from '#engine/structures/linked-list/operations.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 
 export interface StructureOperationArgument {
@@ -72,11 +78,17 @@ const structures: Record<StructureId, Structure> = {
     description:
       'A linear chain of nodes, where each node holds a value and a reference to the next node in the sequence.',
     operations: [
-      { id: 'randomize', label: 'Randomize', args: [] },
+      {
+        id: 'randomize',
+        label: 'Randomize',
+        args: [],
+        apply: randomizeLinkedList,
+      },
       {
         id: 'insert-head',
         label: 'Insert at head',
         args: [{ name: 'value', placeholder: '42' }],
+        apply: insertAtLinkedListHead,
       },
       {
         id: 'insert-after',
@@ -85,11 +97,13 @@ const structures: Record<StructureId, Structure> = {
           { name: 'target', placeholder: '13' },
           { name: 'value', placeholder: '42' },
         ],
+        apply: insertAfterInLinkedList,
       },
       {
         id: 'remove',
         label: 'Remove',
         args: [{ name: 'target', placeholder: '13' }],
+        apply: removeFromLinkedList,
       },
     ],
   },

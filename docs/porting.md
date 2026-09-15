@@ -1,10 +1,10 @@
 # Porting the remaining algorithms
 
 The v2 engine runs every algorithm on two of the four structures: the array's
-six, and the binary search tree's two. The catalog in
+six and the binary search tree's two. The catalog in
 `src/constants/algorithms.ts` lists thirteen algorithms across four
-structures, and the five that are not ported yet — the linked list's three and
-the max heap's two — appear on the explore page with their Run button
+structures, and the five that are not ported yet — the linked list's three
+and the max heap's two — appear on the explore page with their Run button
 disabled.
 
 This document is the plan for closing that gap. It is a living doc: as an
@@ -45,7 +45,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | Structure          | Ported |
 | ------------------ | ------ |
 | Array              | Yes    |
-| Linked List        | No     |
+| Linked List        | Yes    |
 | Max Heap           | No     |
 | Binary Search Tree | Yes    |
 
@@ -168,11 +168,52 @@ produces, so the listing now says `.fill(0)` and the canvas is honest.
 
 ### Linked list
 
-The simplest of the three. `CoreLinkedListNode` holds a `CoreEdge` to its
-successor; the list lays out left to right at two node-widths of pitch, so
-there is room for the edge between cells. The head carries a `head` label,
-which has to move when the head changes — v1's `setHead` clears the old
-node's label before assigning, and forgetting that leaves two heads labelled.
+The structure and its four operations are done. `CoreLinkedListNode` holds a
+`CoreEdge` to its successor; the list lays out left to right at two
+node-widths of pitch, so there is room for the edge between cells. The `head` label is rewritten by `rearrange` on every layout,
+the way the array rewrites its indices and the tree its `root` — rather than
+v1's `setHead`, which cleared the old node's label by hand and left two heads
+labelled if the call was missed.
+
+## Porting one structure
+
+1. Subclass `CoreStructure<Data>` in `src/engine/structures/<name>/`,
+   implementing `toData`, `restore`, `serialize` and `rearrange`. v1's
+   `structure.tsx` for that structure holds the layout; the difference is that
+   v1's `fromData` was static and v2's `restore` mutates in place, so that
+   references held by the board and by a running algorithm stay valid.
+2. Export the binders: `algorithmFor(TheClass)` and `operationFor(TheClass)`.
+3. Write the sidebar operations in `operations.ts` and register them as
+   `apply` on `src/constants/structures.ts`. An operation is not stepped — it
+   mutates and returns, leaving its frames on the board.
+4. Register a random constructor in `src/engine/structures/registry.ts`, which
+   is also what tells the explore page the structure exists.
+
+### Linked list
+
+Done. `CoreLinkedListNode` holds a `CoreEdge` to its successor; the list lays
+out left to right at two node-widths of pitch, so there is room for the edge
+between cells. The `head` label is rewritten by `rearrange` on every layout,
+the way the array rewrites its indices and the tree its `root` — rather than
+v1's `setHead`, which cleared the old node's label by hand and left two heads
+labelled if the call was missed.
+
+A node that is about to join the list exists before it belongs to anything:
+the listings all write `const node = new LinkedListNode(value)` before any
+link is assigned. It is staged a row below the slot it will take and floated
+on the board, then captured alongside the list so that it rises into the row
+in the same motion that opens the gap for it.
+
+One listing changed, and not only to carry markers. The remove listing's
+`for (let node = list.head.next; node; parent = node, node = node.next)` is
+long enough that a marker pushes it past eighty columns, and prettier — which
+formats code inside markdown fences — then breaks the header across five
+lines. That would have left the loop's anchor highlighting a bare `for (`,
+with `parent = node` and `node = node.next` buried in a wrapped update clause
+that no step could ever stop on separately. It is a `while` loop now, with
+those two assignments on lines of their own, which is both what fits and what
+the algorithm is actually about: the run stops on `parent = node` and the
+reader sees why the scan keeps the node in front.
 
 ### Max heap
 
@@ -273,8 +314,8 @@ algorithms that lean on them hardest:
    followed.
 2. **Binary search tree** — done, taken out of order: the structure, its three
    sidebar operations, then insert and remove.
-3. **Linked list** — the structure, its four operations, then its three
-   algorithms.
+3. **Linked list** — the structure and its four operations are done; its
+   three algorithms are what is left of it.
 4. **Max heap** — the structure with its dual view, then push and pop.
 
 Each algorithm is its own commit, and the explore page gains one working Run

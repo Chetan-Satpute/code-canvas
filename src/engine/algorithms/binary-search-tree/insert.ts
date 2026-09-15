@@ -3,11 +3,8 @@ import { parseArgument } from '#utils/argument.ts';
 import { appear } from '../../animation.ts';
 import type { CoreBoard } from '../../board.ts';
 import { CoreEdge } from '../../elements/edge.ts';
+import { animateFrom, capture } from '../../layout.ts';
 import { defineBinarySearchTreeAlgorithm } from '../../structures/binary-search-tree/algorithm.ts';
-import {
-  positions,
-  relayout,
-} from '../../structures/binary-search-tree/layout.ts';
 import {
   CoreBinarySearchTree,
   CoreBinarySearchTreeNode,
@@ -165,12 +162,14 @@ function attach(
   const edge = new CoreEdge(parent, node);
   edge.opacity = 0;
 
-  const before = positions(tree);
+  const before = capture(tree.inorder());
 
   if (side === 'left') parent.left = edge;
   else parent.right = edge;
 
-  relayout(board, tree, before);
+  tree.rearrange();
+  animateFrom(board, tree.inorder(), before);
+
   appear(board, node, edge);
 
   return node;

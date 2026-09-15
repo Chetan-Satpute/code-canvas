@@ -3,11 +3,8 @@ import { parseArgument } from '#utils/argument.ts';
 import { appear, disappear } from '../../animation.ts';
 import type { CoreBoard } from '../../board.ts';
 import { CoreEdge } from '../../elements/edge.ts';
+import { animateFrom, capture } from '../../layout.ts';
 import { defineBinarySearchTreeAlgorithm } from '../../structures/binary-search-tree/algorithm.ts';
-import {
-  positions,
-  relayout,
-} from '../../structures/binary-search-tree/layout.ts';
 import type { Link } from '../../structures/binary-search-tree/structure.ts';
 import {
   CoreBinarySearchTree,
@@ -327,7 +324,7 @@ function replace(
   detached: Link[],
   assign: () => Link,
 ) {
-  const before = positions(tree);
+  const before = capture(tree.inorder());
 
   disappear(board, leaving, ...detached.filter((link) => link !== null));
 
@@ -338,5 +335,6 @@ function replace(
     appear(board, created);
   }
 
-  relayout(board, tree, before);
+  tree.rearrange();
+  animateFrom(board, tree.inorder(), before);
 }
