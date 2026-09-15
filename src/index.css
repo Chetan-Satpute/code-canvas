@@ -206,6 +206,12 @@
   --input: var(--midnight-500);
   --ring: var(--indigo-400);
 
+  /* Scrollbar */
+  --scrollbar-size: 10px;
+  --scrollbar-thumb: var(--midnight-700);
+  --scrollbar-thumb-hover: var(--midnight-600);
+  --scrollbar-thumb-active: var(--indigo-500);
+
   /* Typography
    * Body, display, and script fonts are defined per language.
    * Kalam supports both Latin and Devanagari, so a single family covers
@@ -436,4 +442,50 @@
 
 body {
   @apply bg-background;
+}
+
+/*
+ * Scrollbars.
+ *
+ * Firefox only exposes the standard `scrollbar-width` / `scrollbar-color`
+ * properties; Chromium and Safari only implement the `::-webkit-scrollbar`
+ * pseudo-elements. Both are declared so the two engines land on the same
+ * track-less thumb. Both properties inherit, so `:root` covers every
+ * scroll container.
+ *
+ * The webkit rules also opt Chromium/Safari out of macOS overlay scrollbars,
+ * which is the point — the bar stays visible instead of fading, matching what
+ * Firefox and Windows already show.
+ */
+
+:root {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background-color: var(--scrollbar-thumb);
+  /* Transparent border plus content-box clipping insets the thumb inside the
+     track, so it reads as a floating pill rather than a full-width slab. */
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--scrollbar-thumb-active);
 }
