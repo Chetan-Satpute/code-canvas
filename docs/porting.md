@@ -1,11 +1,11 @@
 # Porting the remaining algorithms
 
 The v2 engine runs every algorithm the array has: linear search, binary
-search, merge sort, quick sort, insert value and remove value. The catalog in
-`src/constants/algorithms.ts` lists thirteen algorithms across four
-structures, and the seven that are not ported yet — all of them on the three
-structures the engine cannot build — appear on the explore page with their Run
-button disabled.
+search, merge sort, quick sort, insert value and remove value. It also builds
+and edits the binary search tree, though neither of that structure's two
+algorithms is ported yet. The catalog in `src/constants/algorithms.ts` lists
+thirteen algorithms across four structures, and the seven that are not ported
+yet appear on the explore page with their Run button disabled.
 
 This document is the plan for closing that gap. It is a living doc: as an
 algorithm lands, its row in the status table below is updated in the same
@@ -39,15 +39,15 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | `linked-list-remove`        | Linked List        | No     |
 | `max-heap-push`             | Max Heap           | No     |
 | `max-heap-pop`              | Max Heap           | No     |
-| `binary-search-tree-insert` | Binary Search Tree | No     |
-| `binary-search-tree-remove` | Binary Search Tree | No     |
+| `binary-search-tree-insert` | Binary Search Tree | Yes    |
+| `binary-search-tree-remove` | Binary Search Tree | Yes    |
 
 | Structure          | Ported |
 | ------------------ | ------ |
 | Array              | Yes    |
 | Linked List        | No     |
 | Max Heap           | No     |
-| Binary Search Tree | No     |
+| Binary Search Tree | Yes    |
 
 ## v1 is the reference
 
@@ -193,12 +193,32 @@ one place the port is expected to diverge from v1's behaviour.
 
 ### Binary search tree
 
-Insert is a descent, and a port. Remove is the largest single piece of work in
-this plan: v1's `play.tsx` is 465 lines covering a leaf, a node with one child,
-and a node with two children replaced by its in-order successor. The v1
-structure carries `getInorderNodes` and the `getInorderLeft/Right/Between`
-helpers specifically so the nodes that have to shift sideways after a removal
-can be found; port those with the class.
+The structure is done, ahead of the two below it, along with its three sidebar
+operations. Three things about it are worth knowing before the algorithms are
+written.
+
+**The layout is derived from the whole tree.** A node's column is its in-order
+position and its row is its depth, so an edit anywhere moves nodes it never
+touched. `operations.ts` therefore captures every node's position before an
+edit and animates the new layout back from them, rather than each operation
+working out what it displaced. This is why v1's `getInorderLeftNodes`,
+`getInorderRightNodes` and `getInorderBetweenNodes` were not ported: they exist
+so a removal can find the nodes that must shift sideways, and capturing
+positions answers that question for every case at once. Only `inorder()` came
+across. The algorithms should reach for the same capture-and-animate helper
+rather than reviving the v1 trio.
+
+**A removal is planned before it is applied.** `CoreBinarySearchTree.remove`
+changes nothing: it returns the node that will leave, the link that points at
+it, and an `unlink` closure that makes the change. That shape exists because a
+node the tree has unlinked is no longer serialized and so could not be seen
+fading — the same reason `snapshot` hands back a closure instead of doing the
+work. For a node with two children the node that leaves is the in-order
+successor, and `unlink` is what copies its value over the node being removed.
+
+**Insert is a descent, and a port.** Remove is the largest single piece of work
+in this plan: v1's `play.tsx` is 465 lines covering a leaf, a node with one
+child, and a node with two children replaced by its in-order successor.
 
 ## The three engine changes merge sort forced
 
@@ -239,10 +259,13 @@ algorithms that lean on them hardest:
    proven, and merge sort forced all three engine changes above while the only
    thing in flight was an array. Binary search, insert value and remove value
    followed.
-2. **Linked list** — the structure, its four operations, then its three
-   algorithms. First port of a structure, on the simplest one.
-3. **Max heap** — the structure with its dual view, then push and pop.
-4. **Binary search tree** — the structure, then insert, then remove last.
+2. **Binary search tree structure** — done, taken out of order: the structure
+   and its three sidebar operations landed before the two structures below,
+   which leaves its two algorithms as the only thing outstanding for it.
+3. **Linked list** — the structure, its four operations, then its three
+   algorithms.
+4. **Max heap** — the structure with its dual view, then push and pop.
+5. **Binary search tree algorithms** — insert, then remove last.
 
 Each algorithm is its own commit, and the explore page gains one working Run
 button per commit.

@@ -5,6 +5,11 @@ import {
   removeFromArray,
   sortArray,
 } from '#engine/structures/array/operations.ts';
+import {
+  insertIntoBinarySearchTree,
+  randomizeBinarySearchTree,
+  removeFromBinarySearchTree,
+} from '#engine/structures/binary-search-tree/operations.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 
 export interface StructureOperationArgument {
@@ -95,16 +100,23 @@ const structures: Record<StructureId, Structure> = {
     description:
       'A tree of nodes kept ordered, so every left child is smaller than its parent and every right child is larger.',
     operations: [
-      { id: 'randomize', label: 'Randomize', args: [] },
+      {
+        id: 'randomize',
+        label: 'Randomize',
+        args: [],
+        apply: randomizeBinarySearchTree,
+      },
       {
         id: 'insert',
         label: 'Insert',
         args: [{ name: 'value', placeholder: '42' }],
+        apply: insertIntoBinarySearchTree,
       },
       {
         id: 'remove',
         label: 'Remove',
         args: [{ name: 'value', placeholder: '42' }],
+        apply: removeFromBinarySearchTree,
       },
     ],
   },

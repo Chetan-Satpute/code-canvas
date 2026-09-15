@@ -106,9 +106,12 @@ export function animateMoveBy(
   );
 }
 
+// An edge has no position of its own — it reads its two nodes — so it has
+// nothing to recompute when its opacity changes, which is why `rearrange` is
+// optional here and required on a `Movable`.
 interface Fadable {
   opacity: number;
-  rearrange(): void;
+  rearrange?(): void;
 }
 
 const FADE_STEP = 0.1;
@@ -133,7 +136,7 @@ function fade(board: CoreBoard, elements: Fadable[], target: number) {
       const remaining = target - element.opacity;
       element.opacity +=
         Math.sign(remaining) * Math.min(FADE_STEP, Math.abs(remaining));
-      element.rearrange();
+      element.rearrange?.();
 
       fading = true;
     }

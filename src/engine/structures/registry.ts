@@ -2,6 +2,8 @@ import { randomNumber, randomNumberArray } from '#utils/random.ts';
 
 import type { CoreStructure } from '../structure.ts';
 import { CoreArray } from './array/structure.ts';
+import { fillRandomly } from './binary-search-tree/operations.ts';
+import { CoreBinarySearchTree } from './binary-search-tree/structure.ts';
 
 // Structures the engine can build. The catalog lists four; the ones missing
 // here are not ported yet, and the explore page disables their controls
@@ -17,6 +19,17 @@ const randomStructures: Record<string, () => CoreStructure> = {
     array.rearrange();
 
     return array;
+  },
+
+  'binary-search-tree': () => {
+    const tree = new CoreBinarySearchTree();
+
+    fillRandomly(tree);
+
+    tree.setName('tree');
+    tree.rearrange();
+
+    return tree;
   },
 };
 
