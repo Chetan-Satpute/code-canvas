@@ -16,7 +16,15 @@ const placeholderAlgorithm: PlaceholderAlgorithm = {
   title: 'Binary Search',
   description:
     'Halves a sorted array on every step, discarding the side that cannot hold the target.',
-  args: [{ name: 'target', placeholder: '42' }],
+  args: [
+    { name: 'target', placeholder: '42' },
+    { name: 'target', placeholder: '42' },
+    { name: 'target', placeholder: '42' },
+    { name: 'target', placeholder: '42' },
+    { name: 'target', placeholder: '42' },
+    { name: 'target', placeholder: '42' },
+    { name: 'target', placeholder: '42' },
+  ],
   code: [
     'function binarySearch(values, target, low, high) {',
     '  if (low > high) return -1;',
@@ -33,9 +41,24 @@ const placeholderAlgorithm: PlaceholderAlgorithm = {
     '}',
   ],
   operations: [
-    { id: 'insert', label: 'Insert', placeholder: 'value' },
-    { id: 'remove', label: 'Remove', placeholder: 'value' },
-    { id: 'replace', label: 'Replace', placeholder: '3, 8, 15, 42' },
+    {
+      id: 'insert',
+      label: 'Insert',
+      args: [
+        { name: 'value', placeholder: '42' },
+        { name: 'index', placeholder: '3' },
+      ],
+    },
+    {
+      id: 'remove',
+      label: 'Remove',
+      args: [{ name: 'value', placeholder: '42' }],
+    },
+    {
+      id: 'replace',
+      label: 'Replace',
+      args: [{ name: 'values', placeholder: '3, 8, 15, 42' }],
+    },
   ],
 };
 

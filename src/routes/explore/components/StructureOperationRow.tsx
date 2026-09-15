@@ -3,37 +3,50 @@ import { useState } from 'react';
 import Button from '#components/Button.tsx';
 import TextInput from '#components/TextInput.tsx';
 
+import type { StructureOperationArgument } from './StructureCard.tsx';
+
 interface StructureOperationRowProps {
   label: string;
-  placeholder?: string;
-  onSubmit: (value: string) => void;
+  args: StructureOperationArgument[];
+  onSubmit: (values: Record<string, string>) => void;
 }
 
 function StructureOperationRow(props: StructureOperationRowProps) {
-  const { label, placeholder, onSubmit } = props;
+  const { label, args, onSubmit } = props;
 
-  const [value, setValue] = useState('');
+  const [values, setValues] = useState<Record<string, string>>({});
+
+  const handleChange = (name: string, value: string) => {
+    setValues((current) => ({ ...current, [name]: value }));
+  };
 
   const handleApply = () => {
-    onSubmit(value);
-    setValue('');
+    onSubmit(values);
+    setValues({});
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="min-w-0 flex-1">
-        <TextInput
-          layout="inline"
-          label={label}
-          value={value}
-          onChange={setValue}
-          placeholder={placeholder}
-        />
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center justify-between gap-2">
+        <span className="text-card-foreground font-en text-sm font-medium">
+          {label}
+        </span>
+
+        <Button variant="outline" size="sm" onClick={handleApply}>
+          Apply
+        </Button>
       </div>
 
-      <Button variant="outline" size="sm" onClick={handleApply}>
-        Apply
-      </Button>
+      {args.map((argument) => (
+        <TextInput
+          key={argument.name}
+          layout="inline"
+          label={argument.name}
+          value={values[argument.name] ?? ''}
+          onChange={(value) => handleChange(argument.name, value)}
+          placeholder={argument.placeholder}
+        />
+      ))}
     </div>
   );
 }

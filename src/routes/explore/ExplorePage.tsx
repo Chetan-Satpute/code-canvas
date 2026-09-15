@@ -85,18 +85,29 @@ function ExplorePage() {
 
         {runArguments === null ? (
           <>
-            <div className={cn(sidebarClasses, 'lg:overflow-y-auto')}>
-              <AlgorithmCard
-                title={placeholderAlgorithm.title}
-                description={placeholderAlgorithm.description}
-                args={placeholderAlgorithm.args}
-                onRun={handleRun}
-              />
+            <div className={sidebarClasses}>
+              {/* The wrapper's auto height pins the card to its content —
+                  a bare card is `h-full` and would stretch over the whole
+                  sidebar. Past half the sidebar it stops growing and the
+                  arguments scroll inside it, so the structure card below is
+                  never squeezed out. */}
+              <div className="lg:max-h-[50%] lg:min-h-0">
+                <AlgorithmCard
+                  title={placeholderAlgorithm.title}
+                  description={placeholderAlgorithm.description}
+                  args={placeholderAlgorithm.args}
+                  onRun={handleRun}
+                />
+              </div>
 
-              <StructureCard
-                operations={placeholderAlgorithm.operations}
-                onSubmit={handleStructureOperation}
-              />
+              {/* The structure card then takes the rest of the sidebar and
+                  scrolls its own operations. */}
+              <div className="lg:min-h-0 lg:flex-1">
+                <StructureCard
+                  operations={placeholderAlgorithm.operations}
+                  onSubmit={handleStructureOperation}
+                />
+              </div>
             </div>
 
             <div className={underCanvasClasses}>

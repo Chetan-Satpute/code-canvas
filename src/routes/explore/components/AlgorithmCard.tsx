@@ -31,20 +31,26 @@ function AlgorithmCard(props: AlgorithmCardProps) {
   };
 
   return (
-    <Card title={title} description={description}>
-      <div className="flex flex-col gap-4">
-        {args.map((argument) => (
-          <TextInput
-            key={argument.name}
-            label={argument.name}
-            value={values[argument.name] ?? ''}
-            onChange={(value) => handleChange(argument.name, value)}
-            placeholder={argument.placeholder}
-          />
-        ))}
+    <Card title={title} description={description} padded={false}>
+      {/* Capped on small screens, where the card is in page flow; on large
+          screens it fills the height the sidebar allows it. */}
+      <div className="flex h-full max-h-[50vh] flex-col lg:max-h-none">
+        <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-auto p-5">
+          {args.map((argument) => (
+            <TextInput
+              key={argument.name}
+              label={argument.name}
+              value={values[argument.name] ?? ''}
+              onChange={(value) => handleChange(argument.name, value)}
+              placeholder={argument.placeholder}
+            />
+          ))}
+        </div>
 
-        <div className="flex justify-end">
-          <Button onClick={handleRun}>
+        {/* Outside the scrolling arguments, so Run stays reachable however
+            long the list gets. */}
+        <div className="border-border flex shrink-0 border-t p-5">
+          <Button className="flex-1" onClick={handleRun}>
             <Icon name="play" />
             Run
           </Button>
