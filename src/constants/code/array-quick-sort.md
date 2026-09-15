@@ -1,31 +1,39 @@
 ```ts
-function quickSort(array: number[], low = 0, high = array.length - 1): void {
+/*#enter*/ function quickSort(
+  array: number[],
+  low = 0,
+  high = array.length - 1,
+): void {
   // Base case: 0 or 1 element is already sorted
-  if (low >= high) {
-    return;
+  /*#base*/ if (low >= high) {
+    /*#sorted*/ return;
   }
 
-  const pivotIndex = partition(array, low, high);
+  /*#partitionCall*/ const pivotIndex = partition(array, low, high);
 
-  quickSort(array, low, pivotIndex - 1);
-  quickSort(array, pivotIndex + 1, high);
-}
+  /*#sortLeft*/ quickSort(array, low, pivotIndex - 1);
+  /*#sortRight*/ quickSort(array, pivotIndex + 1, high);
+} /*#exit*/
 
-function partition(array: number[], low: number, high: number): number {
-  const pivot = array[high];
-  let i = low - 1;
+/*#partitionEnter*/ function partition(
+  array: number[],
+  low: number,
+  high: number,
+): number {
+  /*#pivot*/ const pivot = array[high];
+  /*#boundary*/ let i = low - 1;
 
-  for (let j = low; j < high; j++) {
-    if (array[j] <= pivot) {
-      i++;
+  /*#loop*/ for (let j = low; j < high; j++) {
+    /*#compare*/ if (array[j] <= pivot) {
+      /*#advanceBoundary*/ i++;
       // Swap to move smaller element to the left side
-      [array[i], array[j]] = [array[j], array[i]];
+      /*#swap*/ [array[i], array[j]] = [array[j], array[i]];
     }
   }
 
   // Swap pivot into its final sorted position
-  [array[i + 1], array[high]] = [array[high], array[i + 1]];
+  /*#placePivot*/ [array[i + 1], array[high]] = [array[high], array[i + 1]];
 
-  return i + 1;
-}
+  /*#returnIndex*/ return i + 1;
+} /*#partitionExit*/
 ```

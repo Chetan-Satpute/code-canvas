@@ -1,9 +1,9 @@
 # Porting the remaining algorithms
 
-The v2 engine runs two algorithms, both on the array: linear search and merge
-sort. The catalog in `src/constants/algorithms.ts` lists thirteen algorithms
-across four structures, and the eleven that are not ported yet appear on the
-explore page with their Run button disabled.
+The v2 engine runs three algorithms, all on the array: linear search, merge
+sort and quick sort. The catalog in `src/constants/algorithms.ts` lists
+thirteen algorithms across four structures, and the ten that are not ported
+yet appear on the explore page with their Run button disabled.
 
 This document is the plan for closing that gap. It is a living doc: as an
 algorithm lands, its row in the status table below is updated in the same
@@ -31,7 +31,7 @@ when an algorithm is ported — filling in `run` is what turns it on.
 | `array-insert-value`        | Array              | No     |
 | `array-remove-value`        | Array              | No     |
 | `array-merge-sort`          | Array              | Yes    |
-| `array-quick-sort`          | Array              | No     |
+| `array-quick-sort`          | Array              | Yes    |
 | `linked-list-insert-head`   | Linked List        | No     |
 | `linked-list-insert-after`  | Linked List        | No     |
 | `linked-list-remove`        | Linked List        | No     |
@@ -113,8 +113,8 @@ recursive: the generator recurses with `yield*`, so one `.next()` still means
 one step however deep the run is, and the structures a call creates are
 removed by the same call before it returns.
 
-It is also the worked example for a rule that outranks how good an animation
-looks. What is animated has to be what the listing beside it does. Merge's
+It and `quick-sort.ts` beside it are also the worked examples for a rule that
+outranks how good an animation looks. What is animated has to be what the listing beside it does. Merge's
 `array[arrayIndex] = left[leftIndex]` is an assignment: it copies a value into
 a cell that already exists, `left` and `right` are read and never modified,
 and `array` keeps every cell it had. An earlier version emptied the array and
@@ -122,6 +122,14 @@ moved the halves' nodes up into it, which sorted correctly and read well but
 showed the reader a different algorithm from the one on screen. What travels
 is a copy belonging to neither array, and the destination is overwritten where
 it stands.
+
+Quick sort is the other side of the same rule. Its
+`[array[i], array[j]] = [array[j], array[i]]` really does exchange two
+elements, so there the nodes themselves move: out of the row in opposite
+directions, past each other, and back in. Travelling along the row would take
+each of them through every element in between, which is the same reason merge
+sort routes a value out into the empty row between an array and its halves.
+Read the statement, then decide what moves.
 
 ## Porting one structure
 
@@ -205,10 +213,11 @@ existed moves differently, and an algorithm still never states a duration.
 Easiest to hardest, so each structure's conventions are settled before the
 algorithms that lean on them hardest:
 
-1. **Remaining array algorithms** — merge sort first, which is done: it reuses
-   the one structure already proven, and it forced both engine changes above
-   while the only thing in flight was an array. Then quick sort, the other
-   recursive one, and binary search, insert and remove.
+1. **Remaining array algorithms** — the two recursive ones first, merge sort
+   and then quick sort, both done: they reuse the one structure already
+   proven, and merge sort forced all three engine changes above while the only
+   thing in flight was an array. Binary search, insert value and remove value
+   are what is left of the array.
 2. **Linked list** — the structure, its four operations, then its three
    algorithms. First port of a structure, on the simplest one.
 3. **Max heap** — the structure with its dual view, then push and pop.

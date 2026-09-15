@@ -1,6 +1,7 @@
 import type { AlgorithmRunner } from '#engine/algorithm.ts';
 import { arrayLinearSearch } from '#engine/algorithms/array/linear-search.ts';
 import { arrayMergeSort } from '#engine/algorithms/array/merge-sort.ts';
+import { arrayQuickSort } from '#engine/algorithms/array/quick-sort.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
 
@@ -84,6 +85,7 @@ const algorithms: Record<string, Algorithm> = {
       'Partitions the array around a pivot so smaller values fall left and larger right, then sorts each side.',
     args: [],
     listing: quickSortListing,
+    run: arrayQuickSort,
   },
 
   'array-insert-value': {
