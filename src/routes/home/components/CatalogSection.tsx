@@ -20,9 +20,11 @@ function CatalogSection() {
             Each one opens on the same canvas, where you shape the structure
             first and then step through the code against it. The algorithms
             marked{' '}
-            <span className="font-code text-accent text-sm">playable</span> run
-            on the engine today; the rest show their code and structure while
-            the engine catches up with them.
+            <span className="font-code text-muted-foreground text-sm">
+              soon
+            </span>{' '}
+            show their code and structure while the engine catches up with them;
+            every other one runs on it today.
           </p>
         </header>
 

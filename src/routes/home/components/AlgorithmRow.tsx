@@ -3,7 +3,6 @@ import { Link } from '@tanstack/react-router';
 import Icon from '#components/Icon.tsx';
 import type { Algorithm } from '#constants/algorithms.ts';
 import { isPlayable } from '#utils/algorithms.ts';
-import cn from '#utils/cn.ts';
 
 interface AlgorithmRowProps {
   algorithm: Algorithm;
@@ -16,7 +15,10 @@ const rowClasses =
 function AlgorithmRow(props: AlgorithmRowProps) {
   const { algorithm } = props;
 
-  const playable = isPlayable(algorithm);
+  // Only what is not ready yet is marked. Most of the catalog plays by the
+  // time this is deployed, so marking those too would put a label on nearly
+  // every row and leave the reader nothing to pick out.
+  const pending = !isPlayable(algorithm);
 
   return (
     <Link
@@ -30,14 +32,11 @@ function AlgorithmRow(props: AlgorithmRowProps) {
             {algorithm.title}
           </h4>
 
-          <span
-            className={cn(
-              'font-code text-xs',
-              playable ? 'text-accent' : 'text-muted-foreground/60',
-            )}
-          >
-            {playable ? 'playable' : 'soon'}
-          </span>
+          {pending && (
+            <span className="font-code text-muted-foreground/60 text-xs">
+              soon
+            </span>
+          )}
         </div>
 
         <p className="font-en text-muted-foreground mt-1.5 text-sm leading-relaxed">
