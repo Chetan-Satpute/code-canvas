@@ -7,6 +7,7 @@ import { arrayQuickSort } from '#engine/algorithms/array/quick-sort.ts';
 import { arrayRemoveValue } from '#engine/algorithms/array/remove-value.ts';
 import { binarySearchTreeInsert } from '#engine/algorithms/binary-search-tree/insert.ts';
 import { binarySearchTreeRemove } from '#engine/algorithms/binary-search-tree/remove.ts';
+import { linkedListInsertAfter } from '#engine/algorithms/linked-list/insert-after.ts';
 import { linkedListInsertHead } from '#engine/algorithms/linked-list/insert-head.ts';
 import type { ArgumentKind } from '#utils/argument.ts';
 import type { Listing } from '#utils/code.ts';
@@ -142,6 +143,7 @@ const algorithms: Record<string, Algorithm> = {
       { name: 'value', placeholder: '42' },
     ],
     listing: linkedListInsertAfterListing,
+    run: linkedListInsertAfter,
   },
 
   'linked-list-remove': {

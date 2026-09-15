@@ -1,22 +1,26 @@
 ```ts
-function insertAfter(list: LinkedList, target: number, value: number) {
-  if (list.head === null) {
-    return;
+/*#enter*/ function insertAfter(
+  list: LinkedList,
+  target: number,
+  value: number,
+) {
+  /*#emptyCheck*/ if (list.head === null) {
+    /*#emptyReturn*/ return;
   }
 
-  for (let ptr = list.head; ptr; ptr = ptr.next) {
-    if (ptr.value !== target) {
-      continue;
+  /*#loop*/ for (let ptr = list.head; ptr; ptr = ptr.next) {
+    /*#compare*/ if (ptr.value !== target) {
+      /*#skip*/ continue;
     }
 
-    const node = new LinkedListNode(value);
+    /*#create*/ const node = new LinkedListNode(value);
 
-    node.next = ptr.next;
-    ptr.next = node;
+    /*#link*/ node.next = ptr.next;
+    /*#splice*/ ptr.next = node;
 
-    break;
+    /*#stop*/ break;
   }
 
-  return;
-}
+  /*#return*/ return;
+} /*#exit*/
 ```
